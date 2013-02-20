@@ -1,0 +1,297 @@
+/*-------------------------------------------
+	Autor: Emilio Ponce / last update: 07-10-12
+---------------------------------------------*/
+/*---------------------------
+			Reset
+-----------------------------*/
+html, body, div, span,iframe,h1, h2, h3, h4, h5, h6, p,
+a,font, img,strong,ol, ul, li,fieldset, form, label, legend,
+table, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline}
+ol, ul {list-style: none}
+table {border-collapse: separate; border-spacing: 0}
+caption,th, td {text-align: left;font-weight: normal;}
+a img {border: none;}
+a{ text-decoration:none}
+/*---------------------------
+		Micro - ClearFix
+-----------------------------*/
+.cf:before,.cf:after{content:"";display:table}
+.cf:after{clear:both}
+/*---------------------------
+			Layout
+-----------------------------*/
+html{background-color:#DCE9F7; background-image:url('../images/bg-header-green.jpg'); background-repeat:repeat-x;}
+body{width: 980px; margin:0 auto 0 auto; background-color: #FFF; font-family: Arial, Helvetica, sans-serif;}
+header{height:218px; background-image:url('../images/bg-header-green.jpg'); background-repeat:repeat-x;}
+header .content{width:934px; margin:0 23px 0 23px;}
+.logo{width:307px; float:left; margin-right: 17px;}
+/* menu */
+#menu{margin-top:111px}
+.itemGreen, .itemYellow, .itemBlue, .itemRed{background:url('../images/sprite-nav.png'); width:118px; height:88px; display:block; float:left;
+    margin-left:4px; font: 16px/76px bold normal Arial, Helvetica, sans-serif; color:#FFF; text-align:center }
+.itemGreen{background-position:0 0;}
+.itemGreen:hover , .itemGreenActive{background-position:0 88px;}
+.itemRed{background-position:-123px 0;}
+.itemRed:hover, .itemRedActive{background-position:-123px 88px;}
+.itemBlue{background-position:-245px 0;}
+.itemBlue:hover, .itemBlueActive{background-position:-245px 88px;}
+.itemYellow{background-position:-368px 0;}
+.itemYellow:hover, .itemYellowActive{background-position:-368px 88px;}
+footer{width:980px; margin:0 auto 0 auto; height:158px; background-image:url('../images/bg-foot.png'); background-repeat:no-repeat; color: #fff; font-weight: bold; font-size: 12px;}
+footer a{color: #fff; font-weight: bold;}
+footer .links{float: left;padding-left: 15px;padding-top: 140px;}
+footer .powered{float: right; padding-right: 15px;padding-top: 140px;}
+.imageContainer{background-color:#72B043; height:384px; margin:0 23px 0 23px;}
+.imageContainer img{margin:25px}
+.newsContainer{margin:17px 23px 0 23px;}
+.newsContainer .news{width:250px; padding:25px; float:left; margin-right:17px}
+.newsContainer .news h2{font-size: 32px; line-height:32px; color:#FFF; margin-bottom:18px }
+.newsContainer .news p{font-size:15px; color:#FFF; font-size: 14px; text-align: justify; margin-bottom:18px}
+.newsContainer .news img{border:6px solid #FFF}
+.newsContainer .lastNews{margin-right:0px}
+.bgRed{background-image:url('../images/block_red_bg.gif'); background-repeat:repeat;}
+.bgGreen{background-image:url('../images/block_green_bg.gif'); background-repeat:repeat;}
+.bgYellow{background-image:url('../images/block_yellow_bg.gif'); background-repeat:repeat;}
+.mainContainer{background-color:#E1EBF1; margin:0 23px 0 23px; padding-bottom: 20px;}
+.mainContainer p{
+    /*padding-left: 20px;*/}
+.mainContainer h1{margin-bottom:5px; background-image:url('../images/bg-triangulo.png'); background-repeat:repeat-x; height:52px; line-height: 42px; color:#19849A; font-size: 21px;padding-left: 20px;}
+.mainContainer h2{margin-bottom:5px; height:26px; line-height: 26px; color:#19849A; font-size: 16px;}
+.mainContainer .child{color:#626366; margin:0 23px 0 23px; font-size:14px}
+.mainContainer .child .left, .mainContainer .child .right {float: left; width: 430px;}
+.mainContainer .child .left{margin-right:27px}
+.boxContainer{margin: 0 23px 0 23px; padding: 10px; border: solid 1px #E1EBF1;}
+.boxContainer h1{margin-bottom:5px; background-image:url('../images/bg-triangulo.png'); background-repeat:repeat-x; height:52px; line-height: 42px; color:#19849A; font-size: 21px;padding-left: 20px;}
+.inputText{border:2px solid #7D9CDB; height:30px; width:426px; margin:5px 0 5px 0; padding-left: 10px;}
+textarea{width: 426px; border:2px solid #7D9CDB; height: 162px; margin:5px 0 20px 0}
+.btnGray{color:#FFF; font-size:14px; font-weight:bold; background-image:url('../images/btn-gray.png'); background-repeat:no-repeat; width:99px; height:35px; border:none; float:right}
+.btnGreen{color:#FFF; font-size:14px; font-weight:bold; background-image:url('../images/btn-green.png'); background-repeat:no-repeat; width:99px; height:35px; border:none; float:right; margin:0 20px 0 0}
+
+/***Scrollable***/
+.container_scroll{width:960px; margin: 0px auto; padding-top:25px; margin-bottom:35px}
+.scrollable {position:relative;overflow:hidden;	width: 375px; height:216px; padding-left:12px; float:left; margin-right:10px}
+.scrollable .ads {width:20000em;position:absolute;clear:both;}
+.ads .set {float:left; width:400px;}
+.ads .set .pic{float:left}
+.scrollable .ad_small, .scrollable .ad_big {float:left; margin:0px 10px 0px 0px; padding:45px 20px 35px 20px; height:170px; background: url(../images/old/ads.png) no-repeat;
+    position:relative; font-family: 'Arial';}
+.scrollable .ad_small{width:283px;/*304*/ background-position: left 0px}
+.scrollable .ad_big {width:587px;/*608*/ background-position: left -216px}
+/*prev, next, prevPage and nextPage buttons*/
+.container_btns{width:48px; padding-left:0px}
+a.browse {background:url(../images/old/hori_large.png) no-repeat; display:block; width:19px; height:19px; float:right; cursor:pointer;}
+/*right*/
+a.right{ background-position: 0 -19px; /*clear:right;*/}
+a.right:hover{ background-position:-19px -19px;}
+a.right:active{ background-position:-38px -19px;}
+/*left*/
+a.left{ margin-right: 10px;}
+a.left:hover{ background-position:-19px 0;}
+a.left:active{ background-position:-38px 0;}
+/*scrollable*/
+.scrollable .ad_small a.btn_more{color:#CF7428; font-size:14px; float:right; position:absolute; bottom: 50px; left:213px; width:150px}
+.scrollable .ad_big a.btn_more{color:#CF7428; font-size:14px; float:right; position:absolute; bottom: 50px; left:524px; width:150px}
+.orange_text{color:#CF7428}
+.green_text{color:#81C92E}
+.black_text{color:#000}
+.orange_text,.green_text,.black_text{font-family: 'Questrial', sans-serif;}
+.big_text{font-size:24px; line-height:24px; float:left}
+.scrollable .ad_big .medium_text{font-size:22px; line-height:22px; float:left;}
+.scrollable .ad_small .medium_text{font-size:21px; line-height:22px; float:left; font-family: 'Questrial', sans-serif;}
+p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 15px;}
+
+/**/
+.level {border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-top-style: double;
+    border-top-color: #E1A60A;
+    border-bottom-color: #E1A60A;
+    padding: 8px 0px;}
+/**/
+.left{float: left;}
+.right{float: right;}
+.clearer{clear: both}
+
+/**/
+.mainText{
+    font-size: 12px;
+    padding: 0 20px 0 20px;
+    text-align: justify;
+}
+.levels-buy{margin-top: 25px;}
+.levels-buy .row {line-height: 34px; background-color:#E1EBF1; height:34px; margin:0 23px 1px 23px;}
+.levels-buy .row .field{color:#19849A; float: left; padding-left: 15px; text-align: center;}
+.levels-buy .row .button{padding-top: 4px;}
+
+.levels-buy .row-header{line-height: 26px; height:26px; margin:0 23px 0 23px; background-color:#19849A;}
+.levels-buy .row-header .title{color: #fff; font-weight: bold; float: left; border-right: solid 1px white; padding-left: 15px; text-align: center;}
+
+/**/
+.loginContainer{
+    border: solid 1px #E1EBF1;
+    margin:0 23px 0 16px;
+    padding: 10px 10px 10px 10px;
+    width: 429px;
+}
+.loginContainerInternal{
+    background-color:#E1EBF1; margin:0 23px 0 23px;
+    padding-bottom: 20px;
+    width: 429px;
+}
+.loginContainer h1{
+    margin-bottom:5px;
+    background-image:url('../images/bg-triangulo.png');
+    background-repeat:repeat-x;
+    height:52px; line-height: 42px; color:#19849A; font-size: 21px; padding-left: 15px;
+}
+.loginContainer .mainText{
+    font-size: 12px;
+    padding: 0 20px 0 20px;
+    text-align: justify;
+}
+
+.formErrors{
+    font-size: 10px;
+    color: red;
+    text-align: right;
+    width: 100%;
+}
+
+/* UNIT PAGE */
+#activities_container{
+    padding: 0 23px 0 23px;
+}
+.activity {
+    border: solid 1px #E1EBF1;
+    width: 400px;
+    margin-top: 50px;
+    float: left;
+    margin-left: 45px;
+    height: 175px;
+}
+.activity h1{
+     margin-bottom:5px;
+     background-image:url('../images/bg-triangulo.png');
+     background-repeat:repeat-x;
+     height:52px; line-height: 42px; color:#19849A; font-size: 21px; padding-left: 15px;
+ }
+.activity p{
+    line-height: 22px;
+    font-size: 12px;
+    margin: 10px;
+}
+.activity a{
+    margin-right: 15px;margin-left: 15px;
+    font-weight: bold;
+    font-size: 12px;
+}
+/* UNIT PAGE END */
+
+/* USER BOX STYLES */
+#boxAccount{
+    border: solid 1px #E1EBF1;
+    margin:0 23px 25px 23px;
+    padding: 10px 10px 10px 10px;
+    height: 120px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 3px 3px #E1EBF1;
+    box-shadow: 2px 2px 3px 3px #E1EBF1;
+}
+
+#boxAccount .avatar{
+    width: 100px;
+    height: 100px;
+    border: solid 1px #000;
+    float: left;
+    margin-right: 25px;
+}
+#boxAccount .info{
+    float: left;
+    font-size: 12px;
+    width: 400px;
+    line-height: 26px;
+}
+#boxAccount .username{
+    font-size: 12px;
+    font-weight: bold;
+}
+#boxAccount .logout{
+    background-image:url('../images/icon_logout.png');
+    background-repeat: no-repeat;
+    width: 20px;
+    padding-left: 30px;
+    font-size: 12px;
+    line-height: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* END USER BOX STYLES */
+
+/**/
+#aboutnav ul{ margin: 0; padding: 0; list-style-type: none;}
+#aboutnav ul li { display: inline; }
+#aboutnav ul li a{ text-decoration: none; padding: .2em 1em; color: #fff; background-color: #036;}
+#aboutnav ul li a:hover{ color: #fff; background-color: #369;}
+
+.idea{position: relative; background-image: url("../images/big_green_background.png"); width: 726px; height: 534px;  padding: 20px; margin-left: 84px;}
+.idea h1 {color: #FEB80A; font-size: 40px; font-weight: bold; text-align: center; margin-bottom: 20px;}
+.idea p {color: #fff; font-size: 23px; margin-bottom: 15px; text-align: justify; font-family: Comic Sans MS, cursive;}
+
+.idea .title-box {border: 4px solid #fff; font-size: 48px; color: #fff; font-weight: bold; text-align: center;
+    width: 240px; height: 175px; font-family: Comic Sans MS, cursive;line-height: 175px;
+    vertical-align: middle;position: absolute;}
+
+.idea .vision{ top: 55px; left: 75px; background-color: #EA157A; }
+.idea .mission{ top: 325px; left: 75px; background-color: #FEB80A;}
+
+.idea .text_box{font-family: Comic Sans MS, cursive; z-index: 1; text-align: justify; padding-left: 10px; background-color: #fff; width: 315px; height: 150px; line-height: 26px; float: left; position: absolute;}
+
+.idea .text-mission{top: 340px; left: 325px;}
+.idea .text-vision{top: 70px; left: 325px;}
+
+/* Presentations */
+.presentation-slide{width: 600px; height: 450px; }
+.btn-next, .btn-before {cursor: move;}
+
+
+.rounded-corners {
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -khtml-border-radius: 20px;
+    border-radius: 20px;
+    behavior: url(border-radius.htc);
+}
+
+.arrow {
+    /*
+    * In Internet Explorer, The"border-style: dashed" will never be
+    * rendered unless "(width * 5) >= border-width" is true.
+    * Since "width" is set to "0", the "dashed-border" remains
+    * invisible to the user, which renders the border just like how
+    * "border-color: transparent" renders.
+    */
+    border-style: dashed;
+    border-color: transparent;
+    border-width: 1.3em;
+    display: -moz-inline-box;
+    display: inline-block;
+    /* Use font-size to control the size of the arrow. */
+    font-size: 100px;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: middle;
+    width: 0;
+
+    border-left-width: 1em;
+    border-left-style: solid;
+    border-left-color: #fff;
+    left: 0.25em;
+
+    position: absolute;
+}
+
+.arrow-vision{top: 20px; left: 630px;}
+.arrow-mission{top: 290px; left: 630px;}

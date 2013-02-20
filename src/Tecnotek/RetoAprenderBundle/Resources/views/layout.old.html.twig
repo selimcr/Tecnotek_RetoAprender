@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>RetoAprender</title>
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/slide.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/forms.css') }}" type="text/css" media="screen"/>
+
+    <!--GoogleFonts-->
+    <link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+
+    <!-- jQuery - the core -->
+    <script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Sliding effect -->
+    <script src="{{ asset('js/slideLogin.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Scrollable effect -->
+    <script src="{{ asset('js/jquery.tools.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Menu effect -->
+    <script type="text/javascript">
+        function mainmenu() {
+            $(" #nav ul ").css({display:"none"});
+            $(" #nav li").hover(function () {
+                $(this).find('ul:first:hidden').css({visibility:"visible", display:"none"}).slideDown(400);
+            }, function () {
+                $(this).find('ul:first').slideUp(400);
+            });
+        }
+        $(document).ready(function () {
+            mainmenu();
+        });
+    </script>
+
+    <!-- InFieldLabel effect -->
+    <script src="{{ asset('js/jquery.infieldlabel.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("label").inFieldLabels();
+        });
+    </script>
+    <!--[if lte IE 6]>
+    <style type="text/css" media="screen">
+        form label {
+            background: #f0efee;
+        }
+    </style>
+    <![endif]-->
+
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
+</head>
+
+<body>
+<!-- Panel -->
+<div id="toppanel">
+    <div id="panel">
+        <div class="content">
+            <div>
+                <div id="login_container">
+                    <div class="left">
+                        <h1>Bienvenido</h1>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse et augue ante.
+                            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed
+                            non dolor nec urna tempor dictum sit amet eu nisi. </p>
+                    </div>
+                    <div class="right box_login">
+                        <h2>Ingrese al sistema</h2>
+
+                        <form action="default.html" method="get" accept-charset="utf-8">
+                            <p>
+                                <label for="userteacher">Nombre de Usuario</label><br/>
+                                <input type="text" name="userteacher" value="" id="userteacher">
+                            </p>
+
+                            <p>
+                                <label for="passteacher">Contrase&ntilde;a</label><br/>
+                                <input type="password" name="passteacher" value="" id="passteacher">
+                            </p>
+                            <a class="btn_green_medium" href="#"><span>Entrar</span></a><br/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/login -->
+
+    <!-- The tab on top -->
+    <div class="tab">
+        <ul class="login">
+            <li class="left">&nbsp;</li>
+            <li id="toggle">
+                <a id="open" class="open" href="#">Ingresar</a>
+                <a id="close" style="display: none;" class="close" href="#">Cerrar</a>
+            </li>
+            <li class="right">&nbsp;</li>
+        </ul>
+    </div>
+    <!--/ top -->
+</div>
+<!--panel -->
+
+<div id="container">
+    <div id="wrapper">
+        <div id="top">
+            <div class="pageTitle left">RetoAprender.com</div>
+            <p>+506 5555 5555</p>
+
+            <div class="clearer"></div>
+        </div>
+        <div id="menu"><!--menu-->
+            <ul id="nav">
+                <li><a class="active first_link" href="{{ path('reto_aprender_homepage')}}">{% trans %} reto.aprender.menu.home {% endtrans %}</a></li>
+                <li><a href="#">{% trans %} reto.aprender.menu.news {% endtrans %}</a></li>
+                <li><a href="{{ path('reto_aprender_resources')}}">{% trans %} reto.aprender.menu.resources {% endtrans %}</a></li>
+                <li><a href="{{ path('reto_aprender_about_us')}}">{% trans %} reto.aprender.menu.about {% endtrans %}</a>
+                    <ul class="submenu">
+                        <li><a href="{{ path('reto_aprender_about_us')}}">{% trans %} reto.aprender.menu.mission {% endtrans %}</a></li>
+                        <li><a href="{{ path('reto_aprender_history')}}">{% trans %} reto.aprender.menu.history {% endtrans %}</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ path('reto_aprender_contact')}}">{% trans %} reto.aprender.menu.contact {% endtrans %}</a></li>
+                <li><a href="#">AYUDA</a></li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li><a href="{{ path('reto_aprender_about_us')}}">{% trans %} reto.aprender.menu.account {% endtrans %}</a>
+                    <ul class="submenu">
+                        <li><a href="{{ path('reto_aprender_about_us')}}">{% trans %} reto.aprender.menu.history {% endtrans %}</a></li>
+                        <li><a href="{{ path('reto_aprender_logout')}}">{% trans %} reto.aprender.menu.logout {% endtrans %}</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!--menu-->
+        <div class="clearer"></div>
+
+        <div style="width: 100%; text-align: center;">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<div id="footer"><!--footer-->
+    <div class="footer_content">
+        <div class="left">&copy; Copyright 2012–2013 RetoAprender</div>
+        <div class="right">Powered by <a href="http://www.tecnotekcr.net/" target="_blank">Tecnotek</a></div>
+        <div class="clearer"></div>
+    </div>
+</div>
+<!--/footer-->
+</body>
+</html>

@@ -1,0 +1,12 @@
+Tecnotek\RetoAprenderBundle\Form\ContactType:
+    properties:
+        name:
+            - NotBlank: ~
+        phone:
+            - NotBlank: ~
+        email:
+            - NotBlank: ~
+            - Email:
+                message: The email "{{ value }}" is not a valid email.
+        message:
+            - NotBlank: ~

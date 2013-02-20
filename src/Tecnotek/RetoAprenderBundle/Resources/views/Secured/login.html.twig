@@ -1,0 +1,99 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="loginContainer left">
+    <h1>Ya estás registrado?</h1>
+    {% if error is defined and error.message is defined %}
+    <div class="formErrors">{{ error.message }}</div>
+    {% endif %}
+    <form id="login" action="{{ path("reto_aprender_security_check") }}" method="post" style="text-align: right;">
+
+        <label for="username">{%trans%}label.username{%endtrans%}:</label>
+        <input class="inputText" style="width: 300px;" type="text" id="username" name="_username" value="{% if last_username is defined %}{{ last_username }}{% endif %}">
+        <br/>
+
+        <label for="password">{%trans%}label.password{%endtrans%}:</label>
+        <input class="inputText" style="width: 300px;" type="password" id="password" name="_password">
+        <br/>
+
+        <input class="btnGreen" type="submit" style="margin: 0 4px 0 0;" value="Entrar" />
+        <div class="clear"></div>
+    </form>
+</div>
+
+<div class="loginContainer right">
+    <h1>Registrarse al sistema</h1>
+    {% if form is defined %}
+        <form id="registerUser" action="{{ path('reto_aprender_register') }}" method="post" {{ form_enctype(form) }}  style="text-align: right;">
+            {{ form_errors(form) }}
+
+            {{ form_widget(form._token) }}
+
+            <div class="formErrors">{{ form_errors(form.firstname) }}</div>
+            <label for="username">{%trans%}label.firstname{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_firstname" name="tecnotek_retoaprender_userformtype[firstname]" required="required" value="{{ entity.firstname }}">
+            <br/>
+
+            <div class="formErrors">{{ form_errors(form.lastname) }}</div>
+            <label for="username">{%trans%}label.lastname{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_lastname" name="tecnotek_retoaprender_userformtype[lastname]" required="required" value="{{ entity.lastname }}">
+            <br/>
+
+            <div class="formErrors">{{ form_errors(form.username) }}</div>
+            <label for="username">{%trans%}label.username{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_username" name="tecnotek_retoaprender_userformtype[username]" required="required" value="{{ entity.username }}">
+            <br/>
+
+            <div class="formErrors">{{ form_errors(form.email) }}</div>
+            <label for="username">{%trans%}label.email{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_email" name="tecnotek_retoaprender_userformtype[email]" required="required" value="{{ entity.email }}">
+            <br/>
+
+
+            {% for passwordField in form.password %}
+            <div class="formErrors">{{ form_errors(passwordField) }}</div>
+            {% endfor %}
+            <label for="username">{%trans%}label.password{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="password" id="tecnotek_retoaprender_userformtype_password_pass" name="tecnotek_retoaprender_userformtype[password][pass]" required="required" value="">
+            <br/>
+            <label for="username">{%trans%}label.password.reenter{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="password" id="tecnotek_retoaprender_userformtype_password_confirm" name="tecnotek_retoaprender_userformtype[password][confirm]" required="required" value="">
+            <br/>
+
+            <input class="btnGreen" type="submit" style="margin: 0 4px 0 0;" value="Registrarse" />
+            <div class="clear"></div>
+        </form>
+    {% else %}
+        <form id="registerUser" action="{{ path('reto_aprender_register') }}" method="post" style="text-align: right;">
+            <input type="hidden" id="tecnotek_retoaprender_userformtype__token" name="tecnotek_retoaprender_userformtype[_token]" value="2cdc816e6605aa1e8a3e041703969a813f01ff79">
+
+            <label for="username">{%trans%}label.firstname{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_firstname" name="tecnotek_retoaprender_userformtype[firstname]" required="required" value="">
+            <br/>
+
+            <label for="username">{%trans%}label.lastname{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_lastname" name="tecnotek_retoaprender_userformtype[lastname]" required="required" value="">
+            <br/>
+
+            <label for="username">{%trans%}label.username{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_username" name="tecnotek_retoaprender_userformtype[username]" required="required" value="">
+            <br/>
+
+            <label for="username">{%trans%}label.email{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_email" name="tecnotek_retoaprender_userformtype[email]" required="required" value="">
+            <br/>
+
+            <label for="username">{%trans%}label.password{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="password" id="tecnotek_retoaprender_userformtype_password_pass" name="tecnotek_retoaprender_userformtype[password][pass]" required="required">
+            <br/>
+            <label for="username">{%trans%}label.password.reenter{%endtrans%}:</label>
+            <input class="inputText" style="width: 300px;" type="password" id="tecnotek_retoaprender_userformtype_password_confirm" name="tecnotek_retoaprender_userformtype[password][confirm]" required="required">
+            <br/>
+
+            <input class="btnGreen" type="submit" style="margin: 0 4px 0 0;" value="Registrarse" />
+            <div class="clear"></div>
+        </form>
+    {% endif %}
+</div>
+<div class="clearer"></div>
+{% endblock %}

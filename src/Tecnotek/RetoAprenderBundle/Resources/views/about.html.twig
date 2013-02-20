@@ -1,0 +1,58 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ asset('js/about.js') }}"></script>
+<script type="text/javascript">
+    Tecnotek.module = "about";
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="newsContainer cf">
+    <div id="aboutnav" style="padding-left: 84px;">
+        <ul>
+            <li><a class="tab-about" href="#" rel="origen_idea">Idea</a></li>
+            <li><a class="tab-about" href="#" rel="mission_vision">Misi&oacute;n y Visi&oacute;n</a></li>
+            <li><a class="tab-about" href="#" rel="valores">Valores</a></li>
+        </ul>
+    </div>
+
+    <div style="text-align: center;">
+        <div id="origen_idea" class="idea">
+            <h1>Origen de la Idea</h1>
+            <p>&#9786; Nacimos  de una necesidad, a nivel nacional, para contribuir con la comunidad estudiantil costarricense en el desarrollo de educandos más críticos y comprometidos con sus obligaciones escolares en la construcción de un mejor futuro.</p>
+
+            <p>&#9786; Estamos convencidos de que la mejor manera de aprender es por medio de la tecnología y el juego donde el estudiante disfrute y logre interiorizar los conocimientos adquiridos aplicándolos  correctamente.</p>
+
+            <p>&#9786; Ofrecemos un servicio totalmente PERSONALIZADO e innovador de acuerdo a las exigencias del Ministerio de Educación Pública</p>
+        </div>
+
+        <div id="mission_vision" class="idea" style="display: none;">
+            <div class="title-box vision rounded-corners">Visi&oacute;n</div>
+            <div>
+                <div class="text_box text-vision">
+                    Somos una empresa que brinda herramientas innovadoras para construir un aprendizaje significativo a trav&eacute;s de la tecnolog&iacute;a.
+
+                </div>
+                <span class="arrow arrow-vision"></span>
+            </div>
+
+            <div class="title-box mission rounded-corners">Misi&oacute;n</div>
+            <div>
+                <div class="text_box text-mission">
+                    Confeccionar material educativo de alta calidad que permita a los estdiantes interiorizar los temas b&aacute;sicos de cada nivel utilizando tecnolog&iacute;a de punta.
+                </div>
+                <span class="arrow arrow-mission"></span>
+            </div>
+
+        </div>
+
+        <div id="valores" class="idea" style="display: none;">
+            <img src="{{ asset('images/valores.png') }}" alt="VALORES" style="width: 100%; padding-top: 50px;">
+        </div>
+    </div>
+
+
+    <div class="clearer"></div>
+</div>
+{% endblock %}

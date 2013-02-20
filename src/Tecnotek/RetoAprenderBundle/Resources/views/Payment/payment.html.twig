@@ -1,0 +1,43 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="boxContainer">
+    <h1>Acceso Premium</h1>
+    <p class="mainText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent neque ipsum, dignissim quis molestie ac, lacinia in nisi. Vivamus mi mauris, iaculis id mattis in, tempor vitae leo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec mauris enim. Vivamus fringilla, nibh a condimentum volutpat, lectus sem tristique elit, non malesuada est dui eget dui. Praesent iaculis semper accumsan. In lobortis porttitor nisi nec accumsan.</p>
+</div>
+
+<div class="levels-buy">
+    <div class="row-header">
+        <div class="title" style="width: 386px">Materiales de Nivel </div>
+        <div class="title" style="width: 250px">6 Meses de Acceso</div>
+        <div class="title" style="width: 250px">1 A&ntilde;o de Acceso</div>
+        <div class="clearer"></div>
+    </div>
+    <div class="row">
+        <div class="field" style="width: 386px; text-align: left;">Acceso General</div>
+        <div class="field button" style="width: 250px">
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
+                <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+        <div class="field button" style="width: 250px">
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
+                <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+        <div class="clearer"></div>
+
+    </div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+</div>
+
+{% endblock %}

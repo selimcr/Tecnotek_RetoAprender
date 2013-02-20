@@ -1,0 +1,11 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+Usuario: {{ app.user.username }}
+
+{% if is_granted('ROLE_PREMIUM') %}
+Ya es usuario PREMIUM!!!
+{% else %}
+<a href="{{ path('reto_aprender_payment')}}">Comprar Acceso Premium</a></li>
+{% endif %}
+{% endblock %}

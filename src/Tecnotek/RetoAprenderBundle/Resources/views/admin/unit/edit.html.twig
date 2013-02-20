@@ -1,0 +1,62 @@
+{% extends 'RetoAprenderBundle:admin:layout.html.twig' %}
+
+{% block content %}
+<div id="center-column">
+    <div class="top-bar">
+        <a href="{{ path('reto_aprender_admin_unit_new') }}" class="button">NUEVO </a>
+        <h1>Unidades</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_unit') }}">Unidades</a></div>
+    </div><br /><br />
+
+    <div class="table">
+        <img src="{{ asset("admin/img/bg-th-left.gif") }}" width="8" height="7" alt="" class="left" />
+        <img src="{{ asset('admin/img/bg-th-right.gif') }}" width="7" height="7" alt="" class="right" />
+
+        <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_unit_update') }}" method="post" {{ form_enctype(form) }}>
+            <input type="hidden" id="id" name="id" value="{{ entity.id }}">
+
+            {{ form_errors(form) }}
+
+            {{ form_widget(form._token) }}
+
+            <table class="listing form" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th class="full" colspan="3">Nuevo Nivel</th>
+                </tr>
+                <tr class="bg">
+                    <td class="first" width="172"><strong>Nombre</strong></td>
+                    <td>{{ form_widget(form.name) }}</td>
+                    <td class="last">{{ form_errors(form.name) }}</td>
+                </tr>
+                <tr class="bg">
+                    <td class="first"><strong>Description</strong></td>
+                    <td><textarea id="tecnotek_retoaprender_unitformtype_description" name="tecnotek_retoaprender_unitformtype[description]" cols="50">{{ entity.description }}</textarea></td>
+                    <td class="last">{{ form_errors(form.description) }}</td>
+                </tr>
+                <tr>
+                    <td class="first"><strong>Orden</strong></td>
+                    <td>{{ form_widget(form.number) }}</td>
+                    <td class="last">{{ form_errors(form.number) }}</td>
+                </tr>
+                <tr class="bg">
+                    <td class="first"><strong>Nivel</strong></td>
+                    <td>{{ form_widget(form.level) }}</td>
+                    <td class="last">{{ form_errors(form.level) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button style="margin-left: 15px; margin-top: 0px;" type="submit" class="left btn save" name="save"><span></span>Guardar</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+        <p>&nbsp;</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+
+{% endblock %}

@@ -1,0 +1,231 @@
+/***Autor: Autor: Emilio Vidal Ponce G.  /  Date: 2011-11-30***/
+
+/***Reset***/
+html, body, div, span,iframe,h1, h2, h3, h4, h5, h6, p,
+a,font, img,strong,ol, ul, li,fieldset, form, label, legend,
+table, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline}
+ol, ul {list-style: none}
+table {border-collapse: separate; border-spacing: 0}
+caption,th, td {text-align: left;font-weight: normal;}
+a img {border: none;}
+a{ text-decoration:none}
+
+/***layout***/
+html, body{height: 100%;}
+body {background: #F1EFEF url(../images/old/bg.jpg) repeat-x; /*width: 100%; min-width: 960px;*/ font: 10pt "arial"; color:#494848}
+div#container{height: auto !important; height: 100%; min-height: 100%; width:1024px; margin:0 auto; background: url(../images/old/bg_min.jpg) repeat-x top left; background-color:#FFF;/* border:1px solid #000*/}
+#wrapper{ width:100%; margin:0; min-height: 100%; padding-bottom:35px}
+#top{width:960px;/*960px*/ height:55px;/*95px*/ padding:20px 0 5px 0; margin:14px auto 0 auto; background: url(../images/old/bg_top.jpg) repeat-x; position: relative}
+#top p{width: 200px; float:left; color:white; text-align:right; font-size:15pt; font-weight: lighter; padding-top: 20px; position:absolute; right:0}
+.logo{background-image:url(../images/old/logo.png); width:339px; height:54px; float:left}
+.clearer{clear: both}
+#imageContainer{width: 960px; height:340px; margin: 0 auto 20px auto; position:relative;}
+.textContent{width:960px; margin: 0 auto;}
+.textContent .left{width:470px; float:left; margin-right:10px}
+.textContent .right{width:470px; float:left; padding-left:10px}
+.textContent .right p,.textContent .left p{font-size:15px; color:#474747; text-align:justify; margin-bottom:20px}
+h1{font-size: 22pt; color: #81C92E;letter-spacing: 3px; margin-bottom:15px; font-family:"Questrial", sans-serif}
+
+/***footer***/
+#footer{height:35px;padding: 5px 0px;background-color:#949699; overflow-x: hidden;overflow-y: hidden;}
+.footer_content{width: 958px; margin:0px auto;line-height:35px; overflow-x: hidden; overflow-y: hidden; color:#5B5D5F; font-size:14px;}
+form p label { position: absolute; top: 0; left: 0;width: 240px;display: block;margin: 5px 5px 5px 6px;padding: 0;color: #777;}
+
+/***form Log In***/
+form p { position: relative; margin: 10px 0;}
+.box_login form p label { position:absolute; top:0; left:0; width:240px; display:block; margin: 5px 5px 5px 6px; padding-top:5px; color: #777;}
+.box_login form p br {display: none;}
+.box_login form p input{display: block; height:30px; padding:4px; width:280px; margin: 0 0 10px 0; border:2px solid #777; background-color:#CCC;}
+.box_login form p input:hover, form p input:focus{border:2px solid #068206; background-color:#FFF;}
+.box_login form input, .box_login form label {font-size: 16px}
+
+/***menu***/
+#menu{clear: both; height: 34px; width: 960px; margin: 0 auto 15px auto; position:relative; z-index:1;}
+#nav li {float:left;}
+#nav li a , #nav li a.first_link{display:block; padding:10px 15px; text-decoration:none; color:#CCCCCC; font-family: 'Arial'; font-size:12px}
+#nav li a.first_link{padding-left:0px}
+#nav li a:hover, #nav li a.active{color:#FFFFFF;}
+#nav ul.submenu {border:1px solid #666666; border-top:none; padding:5px 5px 0px 5px; position:absolute; background-color:#272727; list-style:none;}
+#nav ul.submenu li {float:none; background-image:none; border-bottom:1px solid #666666; width:190px;}
+#nav ul.subsubmenu { border:1px solid #666666; padding:5px 5px 0px 5px; position:absolute; list-style:none; background-color:#272727; margin-left:150px; margin-top:-30px;}
+#nav ul.subsubmenu li { float:none; background-image:none; border-bottom:1px solid #666666; min-width:190px;}
+#nav ul.submenu li.last, #nav ul.subsubmenu li.last{ float:none; background-image:none; border-bottom:none; min-width:190px;}
+
+/***social icons***/
+.social{display:block; float:left; width:26px; height:25px; margin-right:4px; margin-top:15px; background: url(../images/icons_social.jpg) no-repeat}
+.facebook{background-position: 0px 0px !important;}
+.twitter{background-position: -30px 0px !important;}
+.youtube{background-position: -60px 0px !important;}
+
+/***smalls buttons***/
+a.btn_green_small,a.btn_green_small span,a.btn_red_small,a.btn_red_small span{background: url(../images/prueba_sprite.png) no-repeat} 
+/***big buttons***/
+a.btn_orange_big, a.btn_orange_big span, .btn_green_big, .btn_green_big span,.btn_red_big, .btn_red_big span, a.btn_green_medium, a.btn_green_medium span{background: url(../images/old/sprites_btn_big.png) no-repeat}
+a.btn_red_big, a.btn_green_big, a.btn_orange_big{float: left; padding-right:30px; height: 70px; cursor: pointer; text-align: center; text-decoration:none; width:260px}
+a.btn_orange_big span, a.btn_red_big span, a.btn_green_big span{display: block; padding-left:55px; height: 70px; line-height: 70px; color: #FFF; 
+																font-family: "Questrial", sans-serif; font-weight:lighter; font-size:28px;}
+/*buttom green small*/
+a.btn_green_small{float: left; padding-right:20px; height: 26px; cursor: pointer; text-align: center; background-position: right 0px; text-decoration:none; margin-right:20px}    
+a.btn_green_small span {display: block; padding-left:20px; height: 26px; line-height: 26px; background-position: left -26px; color: #FFF} 
+a.btn_green_small:hover{background-position: right -52px;}
+a.btn_green_small:hover span{background-position: left -78px}
+/*buttom red small*/
+a.btn_red_small{float: left; padding-right:20px; height: 26px; cursor: pointer; text-align: center; background-position: right -104px; text-decoration:none}    
+a.btn_red_small span {display: block; padding-left:20px; height: 26px; line-height: 26px; background-position: left -130px; color: #FFF} 
+a.btn_red_small:hover{background-position: right -156px;}
+a.btn_red_small:hover span{background-position: left -182px}
+/*buttom green medium*/
+a.btn_green_medium{float:left; padding-right:20px; height: 43px; cursor: pointer; text-align: center; background-position: right -840px; text-decoration:none; margin-right:20px}    
+a.btn_green_medium span {display: block; padding-left:20px; height: 43px; line-height: 43px; background-position: left -883px; color: #FFF} 
+a.btn_green_medium:hover{background-position: right -926px;}
+a.btn_green_medium:hover span{background-position: left -969px}
+/*buttom orange big*/   
+a.btn_orange_big{background-position: right 0px} 
+a.btn_orange_big span {background-position: left -70px} 
+a.btn_orange_big:hover{background-position: right -140px;}
+a.btn_orange_big:hover span{background-position: left -210px}
+/*buttom green big*/   
+a.btn_green_big{background-position: right -280px}
+a.btn_green_big span {background-position: left -350px} 
+a.btn_green_big:hover{background-position: right -420px;}
+a.btn_green_big:hover span{background-position: left -490px}
+/*buttom red big*/ 
+a.btn_red_big{background-position: right -560px}
+a.btn_red_big span {background-position: left -630px;} 
+a.btn_red_big:hover{background-position: right -700px;}
+a.btn_red_big:hover span{background-position: left -770px}
+
+/***Scrollable***/
+.container_scroll{width:960px; margin: 0px auto; padding-top:25px; margin-bottom:35px}
+.scrollable {position:relative;overflow:hidden;	width: 375px; height:216px; padding-left:12px; float:left; margin-right:10px}
+.scrollable .ads {width:20000em;position:absolute;clear:both;}
+.ads .set {float:left; width:400px;}
+.ads .set .pic{float:left}
+.scrollable .ad_small, .scrollable .ad_big {float:left; margin:0px 10px 0px 0px; padding:45px 20px 35px 20px; height:170px; background: url(../images/old/ads.png) no-repeat;
+											position:relative; font-family: 'Arial';}
+.scrollable .ad_small{width:283px;/*304*/ background-position: left 0px}
+.scrollable .ad_big {width:587px;/*608*/ background-position: left -216px}
+/*prev, next, prevPage and nextPage buttons*/
+.container_btns{width:48px; padding-left:0px}
+a.browse {background:url(../images/old/hori_large.png) no-repeat; display:block; width:19px; height:19px; float:right; cursor:pointer;}
+/*right*/
+a.right{ background-position: 0 -19px; /*clear:right;*/}
+a.right:hover{ background-position:-19px -19px;}
+a.right:active{ background-position:-38px -19px;}
+/*left*/
+a.left{ margin-right: 10px;}
+a.left:hover{ background-position:-19px 0;}
+a.left:active{ background-position:-38px 0;}
+/*scrollable*/
+.scrollable .ad_small a.btn_more{color:#CF7428; font-size:14px; float:right; position:absolute; bottom: 50px; left:213px; width:150px}
+.scrollable .ad_big a.btn_more{color:#CF7428; font-size:14px; float:right; position:absolute; bottom: 50px; left:524px; width:150px}
+.orange_text{color:#CF7428}
+.green_text{color:#81C92E}
+.black_text{color:#000}
+.orange_text,.green_text,.black_text{font-family: 'Questrial', sans-serif;}
+.big_text{font-size:24px; line-height:24px; float:left}
+.scrollable .ad_big .medium_text{font-size:22px; line-height:22px; float:left;}
+.scrollable .ad_small .medium_text{font-size:21px; line-height:22px; float:left; font-family: 'Questrial', sans-serif;}
+p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 15px;}
+
+/***Image Slider***/
+.images {position:relative; height:340px; width:960px; float:left;}/* container for slides */
+.images .slide {border:1px solid #FFF; display:none; position:absolute; top:0; left:0; height:338px; width:958px;}/* single slide */
+.content_slide{padding:20px;}
+.content_slide h1{font-size: 24pt; color: #FFF;letter-spacing: 3px; margin-bottom:20px; text-align:right}
+.content_slide p{margin-bottom:20px; text-align:right; font: 18px "Questrial", sans-serif; color:#FFF}
+.content_slide a.btn_more{color:#FFF; font-size:19px; float:right; position:absolute; bottom: 10px; left:635px; text-align:right; width:300px; text-decoration:underline}
+/* tabs (those little circles below slides) */
+.slidebtns{width:174px; margin-left:393px; float:left; position:absolute; bottom: 8px; text-align:center}
+.slidetabs{width:auto}
+.slidetabs a.item {width:11px; height:10px; float:left; margin:5px 15px 0 0; background:url(../images/old/navigator.png) 0 0 no-repeat; display:block; font-size:1px;}/* single tab */
+.slidetabs a.item:hover {background-position:0 -10px;}/* mouseover state */
+/* active state (current page state) */
+.slidetabs a.item.current {background-position:0 -20px;} 	
+/* prev and next buttons */
+.forward, .backward {float:left;background:url(../images/old/fwd_bwd.png) no-repeat; display:block; width:20px; height:19px; cursor:pointer; margin-right:15px}
+/* next */
+.forward{ background-position: 0 -19px; clear:right;}
+.forward:hover{ background-position:-40px -19px;}
+.forward:active{ background-position:-20px -19px;}
+/* prev */
+.backward:hover{ background-position:-40px 0;}
+.backward:active{ background-position:-20px 0;}
+/* disabled navigational button. is not needed when tabs are configured with rotate: true */
+.disabled {visibility:hidden !important;}
+
+/***info***/
+.info{width:898px;/*960*/ border:1px solid #ccc; margin:0 auto 25px auto; padding:0px 30px 20px 30px; display:none}
+.info .p_header{border-bottom:1px solid #ccc; margin: 8px 0 25px 0px; font-weight:bold; padding-bottom:10px}
+.info .address{width:220px; padding-right:56px; border-right:1px solid #ccc; margin-right:56px; float:left}
+
+/***form contact***/
+.info .frm_contactUs{float:left; width:565px; margin-bottom:20px}
+.frm_left, .frm_right{float:left; width:270px;}
+.frm_right{padding-left:25px}
+.frm_contactUs form p { position: relative; margin: 10px 0;}
+.frm_contactUs form p label { position: absolute; top: 0; left: 0;width: 240px;display: block;margin: 6px 5px 5px 6px;padding: 0;color: #777;}
+form p br {display: none;}
+.frm_contactUs form .frm_left p input{display: block; height:20px; padding: 4px;width: 250px;margin: 0 0 15px 0;border:1px solid #666; background-color:#fff}
+.frm_contactUs form .frm_left p input:hover, .frm_contactUs form .frm_left p input:focus{border:1px solid #666; background-color:#fff;}
+form p textarea {width: 252px;height:119px; display: block; padding: 4px;margin:0;border:1px solid #666; background-color:#fff}
+form p textarea:hover,form p textarea:focus{border:1px solid #666; background-color:#fff}
+form input, form textarea, form label {font: 10pt "Arial"}
+
+/***menu_footer***/
+.menu_footer{width: 900px; margin: 0 auto; border-top:1px solid #ccc; padding:10px 0}
+.menu_footer li {float:right;}
+.menu_footer li a , .menu_footer li a.first_link{display:block; padding:0 10px; text-decoration:none; color:#3494F4; border-left:1px solid #3494F4}
+.menu_footer li a.first_link{padding-left:0px; border-left:none}
+.menu_footer li a:hover{text-decoration:underline}
+
+.clear{clear:both;line-height:0;font-size:0;overflow:hidden;height:0;width:100%;}
+.left{float: left;}
+.right{float: right;}
+.pageTitle{font-size: 30px; color: #ffffff; font-weight: bold;}
+
+/**/
+.customForm{}
+.customForm label{ display:block; position:relative; min-height:40px;}
+.customForm input[type="text"],[type="password"], [type="email"] { border-radius:3px; width:270px; box-shadow:inset 0 0 5px rgba(0,0,0,.1);}
+.customForm textarea{ resize:none;border-radius:3px; height:120px; box-shadow:inset 0 0 5px rgba(0,0,0,.1);}
+.customForm span.text-form{ display:inline-block; padding:5px 0 0; min-width:90px;}
+.customForm div.text-form{ padding:5px 0 10px 0; min-width:90px;}
+.customForm .text-form2{ margin:3px 0 0 5px;}
+.customForm .text-form3{ padding:8px 0px 5px 5px;}
+.customForm .btns{ padding:10px 0 0 0;}
+/**/
+
+#ex3 {
+    width: 730px;
+    height: 133px;
+    line-height: 0px;
+    color: transparent;
+    font-size: 50px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+#ex3:hover {
+    line-height: 133px;
+    color: #575858;
+}
+
+#ex3 img{
+    float: left;
+    margin: 0 15px;
+}
+
+/**/
+.level {border-top-width: 4px;
+    border-bottom-width: 4px;
+    border-top-style: double;
+    border-bottom-style: double;
+    border-top-color: #E1A60A;
+    border-bottom-color: #E1A60A;
+    padding: 8px 0px;}
+

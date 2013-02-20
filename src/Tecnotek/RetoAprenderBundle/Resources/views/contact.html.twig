@@ -1,0 +1,39 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="mainContainer">
+    <h1>Contacto</h1>
+    <div class="child cf">
+        <form action="{{ path('reto_aprender_contact') }}" method="post" {{ form_enctype(form) }}>
+            {{ form_errors(form) }}
+
+            {{ form_widget(form._token) }}
+
+            <div class="left">
+                <label for="reto_aprender_contact_name">{% trans %}label.name{% endtrans %}: </label><br/>
+                <div class="formErrors">{{ form_errors(form.name) }}</div>
+                <input class="inputText" type="text" id="reto_aprender_contact_name" name="reto_aprender_contact[name]">
+
+                <label for="reto_aprender_contact_email">{% trans %}label.email{% endtrans %}: </label><br/>
+                <div class="formErrors">{{ form_errors(form.email) }}</div>
+                <input class="inputText" type="text" id="reto_aprender_contact_email" name="reto_aprender_contact[email]">
+
+                <label for="reto_aprender_contact_phone">{% trans %}label.phone{% endtrans %}: </label><br/>
+                <div class="formErrors">{{ form_errors(form.phone) }}</div>
+                <input class="inputText" type="text" id="reto_aprender_contact_phone" name="reto_aprender_contact[phone]">
+
+                <label for="reto_aprender_contact_subject">{% trans %}label.subject{% endtrans %}: </label><br/>
+                <div class="formErrors">{{ form_errors(form.subject) }}</div>
+                <input class="inputText" type="text" id="reto_aprender_contact_subject" name="reto_aprender_contact[subject]">
+
+            </div>
+            <div class="right">
+                <label for="reto_aprender_contact_message">{% trans %}label.message{% endtrans %}: </label><br/>
+                <textarea type="text" id="reto_aprender_contact_message" name="reto_aprender_contact[message]"></textarea>
+                <input class="btnGray" type="submit" value="Cancelar" />
+                <input class="btnGreen" type="submit" value="Enviar" />
+            </div>
+        </form>
+    </div>
+</div><!--End imageContainer-->
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="mainContainer">
+    <h1>{{ unit.level ~ " :: " ~ unit.name }}</h1>
+    <p style="padding-left: 20px;">{{ unit.description }}</p>
+
+</div><!--End imageContainer-->
+<div id="activities_container">
+
+    {% for activity in unit.activities %}
+    <div class="activity">
+        <h1>{{activity.name}}</h1>
+        <p>{{ activity.description }}</p>
+        <div class="right">
+            <a href="#">Preview</a> | <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}">Ver</a>
+        </div>
+        <div class="clearer"></div>
+    </div>
+    {% if loop.index % 2 == 0 %}
+    <div class="clearer"></div>
+    {% endif %}
+    {% else %}
+    Las actividades de esta unidad todav&iacute;a se encuentran en desarrollo y muy pronto estar&aacute;n listas para su utilizaci&oacute;n.
+    {% endfor %}
+</div>
+{% endblock %}

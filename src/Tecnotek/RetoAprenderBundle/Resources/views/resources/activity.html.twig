@@ -1,0 +1,46 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ asset('js/resources_activities.js') }}"></script>
+<script type="text/javascript">
+    Tecnotek.module = "showActivity";
+    Tecnotek.ShowActivity.maximunSlide = {{ slides_total }};
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="mainContainer">
+    <h1>{{ activity.name }}</h1>
+    <div class="child cf">
+        <p>{{ activity.description }}</p><br/>
+        {% if activity.type == 1 %}
+        <div style="border: 1px; text-align: center;">
+            <object id="objSwf" name="objSwf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="770" height="550"><param name="movie" value="{{ asset("flash/" ~ activity.includeText)}}" />        <param name="quality" value="high" />        <param name="allowFullScreen" value="true" />        	<param name="FlashVars" value="actividad=697661" />        <embed  id="objSwf" name="objSwf" allowFullScreen="true" src="{{ asset("flash/" ~ activity.includeText)}}" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="770" height="550" flashvars="actividad=697661"></embed></object>
+        </div>
+
+        {% else %}
+            {% if activity.type == 2 %}
+            <div style="text-align: center; padding-left: 144px;">
+                {% for i in 1..slides_total %}
+                <div id="slide{{ i }}" class="presentation-slide" style="{% if i > 1 %}display: none; {% endif %}background-image: url('{{ asset("presentation/" ~ activity.id ~ "/" ~ slides_name ~  i ~ ".jpg") }}')">
+                </div>
+                {% endfor %}
+
+
+                <div style="width: 600px; margin-top: 10px; margin-bottom: 10px;">
+                    <div id="btn-next" style="float:left; width:131px; height:45px; background-image: url('{{ asset("presentation/b1.png") }}')"></div>
+                    <div id="btn-before" style="display: none; float: right; width:131px; height:45px; background-image: url('{{ asset("presentation/b2.png") }}')"></div>
+                    <div class="clearer"></div>
+                </div>
+            </div>
+
+            {% else %}
+                {% if activity.type == 3 %}
+                {% else %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

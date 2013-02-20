@@ -1,0 +1,50 @@
+/*** clearfix ***/
+.clear {clear: both;height: 0;line-height: 0;}
+.clearfix:after {content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clearfix {display: inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */
+.clearfix {height: 1%;}
+.clearfix {display: block;}
+
+/* Panel Tab/button */
+.tab {background: url(../images/old/tab_b.png) repeat-x 0 0; height: 57px; position: relative; top: 0; z-index: 999}
+.tab ul.login {display: block; position: relative; float: right; clear: right; height: 42px; width: auto; font-weight:lighter; 
+line-height: 42px;	margin: 0;right: 150px; color: white; font-size: 80%; text-align: center}
+.tab ul.login li.left {background: url(../images/old/tab_l.png) no-repeat left 0; height: 57px; width: 19px; padding: 0; margin: 0; display: block;float: left;}
+.tab ul.login li.right {background: url(../images/old/tab_r.png) no-repeat left 0; height: 57px; width: 30px; padding: 0; margin: 0; display: block; float: left;}
+.tab ul.login li {text-align: center;line-height:57px; display: block; float: left; height: 57px;background: url(../images/old/tab_m.png) repeat-x 0 0;font: 10pt "Arial";}
+.tab ul.login li a {color: white;}
+.tab ul.login li a:hover {color: #cccccc}
+.tab a.open, .tab a.close {height: 20px; line-height: 20px !important; padding-left: 20px !important; cursor: pointer; display: block; width: 50px; position: relative; top: 20px}
+.tab a.open {background: url(../images/old/btn_icons.png) no-repeat left -73px;}
+.tab a.close {background: url(../images/old/btn_icons.png) no-repeat left 0;}
+.tab a:hover.open {background: url(../images/old/btn_icons.png) no-repeat left -91px;}
+.tab a:hover.close {background: url(../images/old/btn_icons.png) no-repeat left -19px;}
+
+/* sliding panel */
+#panel h1, #panel h2, #panel p, #panel .content .left{background:transparent}
+#toppanel {position: absolute; top: 0; width: 100%; z-index: 999; text-align: center; margin-left: auto; margin-right: auto}
+#panel {width: 100%; /*height: 150px;*/ color: #999999; overflow: hidden;position: relative;z-index: 3;display: none;background:#272727}
+#panel h1 {font-size: 22pt; padding: 5px 0 10px; margin: 0 0 15px 0; color: #FBAD18;letter-spacing: 6px}
+#panel h2{font-size: 30px; padding: 10px 0 5px; margin: 0 0 10px 0; color: #CCCCCC; font-weight:lighter}
+#panel p {margin: 5px 0;padding: 0; color:#CCCCCC; text-align:justify; font: 18px "Questrial",sans-serif}
+#panel a {text-decoration: none;color: white;}
+#panel a:hover {color: #67D367;}
+#panel .content {width: 960px; margin: 0 auto; padding-top: 15px; text-align: left; font-size: 18px; min-height:101px}
+#panel .content .left {width: 600px;/*630*/ float:left; margin-right:30px; height:215px; background: url(../images/old/isotipo.png) no-repeat top left;}
+#panel .content .right {width: 289px; /*330*/padding-left:40px; float:left; border-left: 1px dashed #949699; height:215px}
+#login_student, #login_teacher, #login_principal{display:none;/*padding-top:20px*/}
+#div_btns{display:inline-block; width:960px}
+
+/***buttons selection log in***/
+#panel .content .btn_left, #panel .content .btn_center, #panel .content .btn_right{width:260px; float:left; padding-top:15px; height:84px; background: transparent}
+#panel .content .btn_left{padding-right:60px}
+#panel .content .btn_center{padding-right:10px; padding-left:10px}
+#panel .content .btn_right{padding-left:60px; margin-right:40px}
+ 
+/* Login button */
+#panel .content input.bt_login{display: block; float: left; clear:left; height:43px; text-align:center; line-height:43px; cursor:pointer; border:none; margin: 10px 0; color:#FFF; font-size:14pt}
+#panel .content input.bt_login {width: 97px; background: transparent url(../images/bt_login.png) no-repeat 0 0;}

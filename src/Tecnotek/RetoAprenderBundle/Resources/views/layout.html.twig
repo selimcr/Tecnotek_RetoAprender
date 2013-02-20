@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Reto Aprender</title>
+    <meta name="description" content="" />
+    <meta name="author" content="eponce" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="screen"/>
+
+    <!-- jQuery - the core -->
+    <script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Sliding effect -->
+    <script src="{{ asset('js/slideLogin.js') }}" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Scrollable effect -->
+    <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+
+    {% block extrajs %}
+    {% endblock %}
+
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
+</head>
+
+<body>
+<header>
+    <div class="content cf">
+        <div class="logo"><a href="{{ path('reto_aprender_homepage')}}"><img src="{{ asset('images/logo-reto-aprender2.png') }}" alt="logo de reto aprender" /></a></div>
+        <div id="flashContent" style="float:left; width: 610px; height:104px">
+            <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="610" height="104" id="banner-610x104" align="middle">
+                <param name="movie" value="swf/banner-610x104.swf">
+                <param name="quality" value="high">
+                <param name="bgcolor" value="#ffffff">
+                <param name="play" value="true">
+                <param name="loop" value="true">
+                <param name="wmode" value="transparent">
+                <param name="scale" value="showall">
+                <param name="menu" value="true">
+                <param name="devicefont" value="false">
+                <param name="salign" value="">
+                <param name="allowScriptAccess" value="sameDomain">
+                <!--[if !IE]>-->
+                <object type="application/x-shockwave-flash" data="{{ asset('flash/banner-610x104.swf') }}" width="610" height="104">
+                    <param name="movie" value="swf/banner-610x104.swf">
+                    <param name="quality" value="high">
+                    <param name="bgcolor" value="#ffffff">
+                    <param name="play" value="true">
+                    <param name="loop" value="true">
+                    <param name="wmode" value="transparent">
+                    <param name="scale" value="showall">
+                    <param name="menu" value="true">
+                    <param name="devicefont" value="false">
+                    <param name="salign" value="">
+                    <param name="allowScriptAccess" value="sameDomain">
+                    <!--<![endif]-->
+                    <a href="http://www.adobe.com/go/getflash">
+                        <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Obtener Adobe Flash Player">
+                    </a>
+                    <!--[if !IE]>-->
+                </object>
+                <!--<![endif]-->
+            </object>
+        </div>
+        <ul id="menu">
+            <a class="itemGreen" href="{{ path('reto_aprender_homepage')}}"><li>{% trans %}reto.aprender.menu.home{% endtrans %}</li></a>
+            <a class="itemRed" href="{{ path('reto_aprender_homepage')}}"><li>{% trans %}reto.aprender.menu.news{% endtrans %}</li></a>
+            <a class="itemBlue" href="{{ path('reto_aprender_resources')}}"><li>{% trans %}reto.aprender.menu.resources{% endtrans %}</li></a>
+            <a class="itemYellow" href="{{ path('reto_aprender_about_us')}}"><li>{% trans %}reto.aprender.menu.about{% endtrans %}</li></a>
+            <a class="itemGreen" href="{{ path('reto_aprender_contact')}}"><li>{% trans %}reto.aprender.menu.contact{% endtrans %}</li></a>
+        </ul>
+    </div>
+</header><!--End header-->
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<!-- Box Account -->
+<div id="boxAccount">
+    <div class="avatar">
+        <img src="{{ asset('images/user.png') }}" width="100%" height="100%">
+    </div>
+    <div class="info">
+        <p>Bienvenido <span class="username">{{ app.user.username }}</span></p>
+        <p>Tipo de Usuario: <span class="username">Regular</span></p>
+        <p>Ultima Visita: <span class="username">31 de Agosto de 2012</span></p>
+        <p><a href="#">Editar mis datos</a></p>
+    </div>
+    <div class="right">
+       <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
+    </div>
+</div>
+<!-- Box Account End -->
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer>
+    <div class="links"><a href="#">Uno </a> | <a href="#">Dos </a> | <a href="#">Tres </a> | &copy; Copyright 2012–2013 RetoAprender</div>
+    <div class="powered">Powered by <a href="http://www.tecnotekcr.net/" target="_blank" >Tecnotek</a></div>
+</footer><!--End footer-->
+</body>
+</html>

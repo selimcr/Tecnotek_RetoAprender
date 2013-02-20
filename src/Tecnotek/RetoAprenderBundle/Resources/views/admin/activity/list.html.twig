@@ -1,0 +1,47 @@
+{% extends 'RetoAprenderBundle:admin:layout.html.twig' %}
+
+{% block content %}
+<div id="center-column">
+    <div class="top-bar">
+        <a href="{{ path('reto_aprender_admin_activity_new') }}" class="button">NUEVO </a>
+        <h1>Actividades</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_activity') }}">Actividades</a></div>
+    </div><br /><br />
+    <div class="table">
+        <img src="{{ asset('admin/img/bg-th-left.gif')}}" width="8" height="7" alt="" class="left" />
+        <img src="{{ asset('admin/img/bg-th-right.gif')}}" width="7" height="7" alt="" class="right" />
+        <table class="listing" cellpadding="0" cellspacing="0">
+            <tr>
+                <th class="first" width="250px">Actividad</th>
+                <th>Unidad</th>
+                <th>Nivel - Tema</th>
+                <th></th>
+                <th class="last"></th>
+            </tr>
+            {% for entity in entities %}
+            <tr {% if loop.index % 2 == 0 %}class="bg"{% endif %}>
+                <td class="first style2">- {{ entity }} </td>
+                <td class="first style2"> {{ entity.unit }} </td>
+                <td class="first style2"> {{ entity.unit.level }} </td>
+                <td><a href="{{ path('reto_aprender_admin_activity_edit', {'id': entity.id}) }}"><img src="{{ asset('admin/img/edit-icon.gif') }}" width="16" height="16" alt="Editar" /></a></td>
+                <td class="last">
+                    <a href="{{ path('reto_aprender_admin_activity_delete', {'id': entity.id}) }}" onclick="return confirm('Esta seguro que desea eliminarlo?');">
+                        <img src="{{ asset('admin/img/hr.gif') }}" width="16" height="16" alt="Eliminar" />
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="select">
+            <strong>Other Pages: </strong>
+            <select>
+                <option>1</option>
+            </select>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+
+{% endblock %}

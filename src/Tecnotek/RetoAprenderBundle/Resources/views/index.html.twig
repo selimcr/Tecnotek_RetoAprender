@@ -1,0 +1,60 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+
+<script language="JavaScript1.1">
+var specifyimage=new Array() //Your images
+specifyimage[0]="images/image1.png"
+specifyimage[1]="images/image2.png"
+
+var delay=5000 //5 seconds
+
+//Counter for array 
+var count =1;
+
+var cubeimage=new Array()
+for (i=0;i<specifyimage.length;i++){
+cubeimage[i]=new Image()
+cubeimage[i].src=specifyimage[i]
+}
+
+function movecube(){
+if (window.createPopup)
+cube.filters[0].apply()
+document.images.cube.src=cubeimage[count].src;
+if (window.createPopup)
+cube.filters[0].play()
+count++;
+if (count==cubeimage.length)
+count=0;
+setTimeout("movecube()",delay)
+}
+
+window.onload=new Function("setTimeout('movecube()',delay)")
+</script>
+
+<div class="imageContainer">
+    <img src="images/image1.png" name="cube"  border=0 style="filter:progid:DXImageTransform.Microsoft.Stretch(stretchStyle='PUSH')">
+</div><!--End imageContainer
+<!--<div class="imageContainer">
+    <img src="{{ asset('images/image1.png')}}" />
+</div>--><!--End imageContainer-->
+
+<div class="newsContainer cf">
+    <div class="news bgRed">
+        <h2><A HREF="http://retoaprender.com/about/">Quienes Somos</A></h2>
+        <p>Materiales Personalizados para facilitar el aprendizaje.</p>
+        <img src="{{ asset('images/image2.jpg')}}" alt="" />
+    </div>
+    <div class="news bgGreen">
+        <h2><A HREF="http://retoaprender.com/about/">Quienes Somos</A></h2>
+        <p>Materiales Personalizados para facilitar el aprendizaje.</p>
+        <img src="{{ asset('images/image2.jpg')}}" alt="" />
+    </div>
+    <div class="news bgYellow lastNews">
+        <h2><A HREF="http://retoaprender.com/about/">Quienes Somos</A></h2>
+        <p>Materiales Personalizados para facilitar el aprendizaje.</p>
+        <img src="{{ asset('images/image2.jpg')}}" alt="" />
+    </div>
+</div>
+{% endblock %}

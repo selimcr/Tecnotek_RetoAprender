@@ -1,0 +1,5 @@
+Un mensaje ha sido enviado desde el WebSite por "{{ contact.get('name').getData() }}" el {{ "now" | date("Y-m-d H:i") }}.
+
+Responder a: {{ contact.get('email').getData() }}
+Asunto: {{ contact.get('subject').getData() }}
+Mensaje: {{ contact.get('message').getData() }}

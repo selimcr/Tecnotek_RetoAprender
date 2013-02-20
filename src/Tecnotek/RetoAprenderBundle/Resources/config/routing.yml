@@ -1,0 +1,138 @@
+reto_aprender_secured:
+    resource: "@RetoAprenderBundle/Controller/SecuredController.php"
+    type:     annotation
+
+reto_aprender_payment:
+    resource: "@RetoAprenderBundle/Controller/PaymentController.php"
+    type:     annotation
+
+reto_aprender_payment_order:
+    pattern:  /payment/order/
+    defaults: { _controller: RetoAprenderBundle:Payment:orders }
+
+reto_aprender_homepage:
+    pattern:  /
+    defaults: { _controller: RetoAprenderBundle:Default:index }
+
+reto_aprender_logout:
+    pattern:  /logout
+
+reto_aprender_contact:
+    pattern:  /contact/
+    defaults: { _controller: RetoAprenderBundle:Default:contact }
+
+reto_aprender_about_us:
+    pattern:  /about/
+    defaults: { _controller: RetoAprenderBundle:Default:about }
+
+reto_aprender_history:
+    pattern:  /history/
+    defaults: { _controller: RetoAprenderBundle:Default:history }
+
+reto_aprender_resources:
+    pattern:  /resources/
+    defaults: { _controller: RetoAprenderBundle:Resource:index }
+
+reto_aprender_unit:
+    pattern:  /unit/{id}
+    defaults: { _controller: RetoAprenderBundle:Resource:unit }
+
+reto_aprender_activity:
+    pattern:  /activity/{id}
+    defaults: { _controller: RetoAprenderBundle:Resource:activity }
+
+#User Routes
+reto_aprender_user:
+    pattern:  /user/
+    defaults: { _controller: RetoAprenderBundle:User:index }
+
+reto_aprender_register:
+    pattern:  /register
+    defaults: { _controller: RetoAprenderBundle:User:register }
+
+reto_aprender_payment:
+    pattern:  /user/payment/
+    defaults: { _controller: RetoAprenderBundle:User:payment }
+
+#ADMIN ROUTING
+reto_aprender_admin:
+    pattern:  /admin/
+    defaults: { _controller: RetoAprenderBundle:Admin:index }
+
+reto_aprender_admin_topic:
+    pattern:  /admin/topic/
+    defaults: { _controller: RetoAprenderBundle:Admin:topicList }
+
+reto_aprender_admin_level:
+    pattern:  /admin/level/
+    defaults: { _controller: RetoAprenderBundle:Admin:levelList }
+
+reto_aprender_admin_level_new:
+    pattern:  /admin/level/new
+    defaults: { _controller: RetoAprenderBundle:Admin:levelNew }
+
+reto_aprender_admin_level_save:
+    pattern:  /admin/level/save
+    defaults: { _controller: RetoAprenderBundle:Admin:levelSave }
+
+reto_aprender_admin_level_edit:
+    pattern:  /admin/level/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:levelEdit }
+
+reto_aprender_admin_level_update:
+    pattern:  /admin/level/update
+    defaults: { _controller: RetoAprenderBundle:Admin:levelUpdate }
+
+reto_aprender_admin_level_delete:
+    pattern:  /admin/level/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:levelDelete }
+
+#
+reto_aprender_admin_unit:
+    pattern:  /admin/unit/
+    defaults: { _controller: RetoAprenderBundle:Admin:unitList }
+
+reto_aprender_admin_unit_new:
+    pattern:  /admin/unit/new
+    defaults: { _controller: RetoAprenderBundle:Admin:unitNew }
+
+reto_aprender_admin_unit_save:
+    pattern:  /admin/unit/save
+    defaults: { _controller: RetoAprenderBundle:Admin:unitSave }
+
+reto_aprender_admin_unit_edit:
+    pattern:  /admin/unit/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:unitEdit }
+
+reto_aprender_admin_unit_update:
+    pattern:  /admin/unit/update
+    defaults: { _controller: RetoAprenderBundle:Admin:unitUpdate }
+
+reto_aprender_admin_unit_delete:
+    pattern:  /admin/unit/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:unitDelete }
+
+#
+reto_aprender_admin_activity:
+    pattern:  /admin/activity/
+    defaults: { _controller: RetoAprenderBundle:Admin:activityList }
+
+reto_aprender_admin_activity_new:
+    pattern:  /admin/activity/new
+    defaults: { _controller: RetoAprenderBundle:Admin:activityNew }
+
+reto_aprender_admin_activity_save:
+    pattern:  /admin/activity/save
+    defaults: { _controller: RetoAprenderBundle:Admin:activitySave }
+
+reto_aprender_admin_activity_edit:
+    pattern:  /admin/activity/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:activityEdit }
+
+reto_aprender_admin_activity_update:
+    pattern:  /admin/activity/update
+    defaults: { _controller: RetoAprenderBundle:Admin:activityUpdate }
+
+reto_aprender_admin_activity_delete:
+    pattern:  /admin/activity/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:activityDelete }

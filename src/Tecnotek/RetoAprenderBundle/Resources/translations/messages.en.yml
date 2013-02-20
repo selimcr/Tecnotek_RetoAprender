@@ -1,0 +1,135 @@
+#System
+system.title: Tecnotek :: Expediente
+system.description: Sistema_de_Expediente_Electronico_para_Escuelas_y_Colegios
+system.tags: tecnotek, expediente, escuela, colegios, electronico
+
+#Labels
+label.loginTitle: Ingrese su usuario y password
+label.name: Name
+label.firstname: Firstname
+label.lastname: Lastname
+label.username: Username
+label.password: Password
+label.password.reenter: Reingrese el Password
+label.active: Activo
+label.email: Email
+label.status: Estado
+label.logout: Logout
+label.home: Home
+label.back.list: Volver a la lista
+label.add: Agregar
+label.cancelar: Cancelar
+label.save: Guardar
+label.view: Ver
+label.volver: Volver
+label.edit: Editar
+label.eliminar: Eliminar
+label.usuarios: Usuarios
+label.actualizar: Actualizar
+label.routes: Rutas
+label.route: Ruta
+label.licensePlate: Placa
+label.color: Color
+label.driver: Conductor
+label.capacity: Capacidad
+label.general: General
+label.riteve: R.T.V.
+label.permission: Permiso
+label.ins: I.N.S.
+label.coordinator: Coordinador
+label.day: Día
+label.timeI: Time I
+label.timeO: Time O
+
+label.bus: Buseta
+label.buses: Busetas
+label.transport: Transporte
+label.estudiantado: Estudiantado
+label.clubs: Clubes
+label.students: Estudiantes
+label.tickets: Boletas
+
+label.code: Codigo
+label.description: Descripcion
+
+label.password.cambiar: Cambiar Password
+label.usuarios.admin: Administradores
+label.usuarios.coordinador: Coordinadores
+label.usuarios.profesor: Profesor
+
+label.usuarios.admin.new: Crear nuevo administrador
+label.usuarios.coordinador.new: Crear nuevo Coordinador
+label.usuarios.profesor.new: Crear nuevo Profesor
+
+label.usuarios.admin.show: Información de Administrador
+label.usuarios.coordinador.show: Información de Coordinador
+label.usuarios.profesor.show: Información de Profesor
+
+label.usuarios.admin.listar: Lista de Usuarios Administradores
+label.usuarios.coordinador.listar: Lista de Coordinadores
+label.usuarios.profesor.listar: Lista de Profesores
+
+label.student.new: Ingresar nuevo Estudiante
+label.student.show: Información de Estudiante
+label.student.listar: Lista de Estudiantes
+messages.confirmation.student.delete: ¿Está seguro que desea eliminar el estudiante?
+
+label.route.new: Crear nueva Ruta
+label.route.show: Información de Ruta
+label.route.listar: Lista de Ruta
+messages.confirmation.route.delete: ¿Está seguro que desea eliminar la ruta?
+
+label.bus.new: Crear nueva Buseta
+label.bus.show: Información de Buseta
+label.bus.listar: Lista de Busetas
+messages.confirmation.bus.delete: ¿Está seguro que desea eliminar la buseta?
+
+label.club.new: Crear nuevo Club
+label.club.show: Información de Club
+label.club.listar: Lista de Clubes
+messages.confirmation.club.delete: ¿Está seguro que desea eliminar el club?
+
+label.ticket.new: Ingresar nueva boleta de salida
+
+label.students.in.club: Estudiantes Asociados
+club.include.students: Incluir estudiantes a este club
+club.include.help: Ingrese el nombre y seleccione el estudiante de la lista de sugeridos.
+
+label.new.password: Nuevo Password
+label.confirm.password: Confirmar password
+button.label.login: LOGIN
+
+usuarios.estado.1: Activo
+usuarios.estado.2: Inactivo
+
+messages.confirmation.password.change: El password ha sido actualizado correctamente.
+messages.confirmation.user.delete: ¿Está seguro que desea eliminar el usuario?
+messages.confirmation.club.remove.student: ¿Está seguro que desea desasociar el estudiante?
+
+error.entity.not.found: El objeto no se ha encontrado.
+error.passwords.dont.match: Los passwords no coinciden.
+error.password.emtpy: El password no puede estar en blanco.
+
+#USER ROLES
+user.roles.1: Administrador del Sistema
+user.roles.2: Administrador
+user.roles.3: Profesor
+
+#Days
+monday: Lunes
+tuesday: Martes
+wednesday: Miercoles
+thrusday: Jueves
+friday: Viernes
+saturday: Sabado
+sunday: Domingo
+
+#Validation
+not.blank.name: Probando proband.
+not:
+  blank:
+    name: El nombre no puede estar en blanco.
+    last_name: last name can not be blank!
+    email: E-mail can not be blank!
+    username: Username field can not be blank!
+    password: Password field can not be blank!

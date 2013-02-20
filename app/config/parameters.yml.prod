@@ -1,0 +1,14 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: '3306'
+    database_name: retoapre_tecnotek
+    database_user: retoapre_root
+    database_password: soporte5501
+    mailer_transport: gmail
+    mailer_host: localhost
+    mailer_user: selim@retoaprender.com
+    mailer_password: selim
+    locale: es
+    secret: 34e701b0e28f420de2f07ca199e7795928666590
+    database_path: null
