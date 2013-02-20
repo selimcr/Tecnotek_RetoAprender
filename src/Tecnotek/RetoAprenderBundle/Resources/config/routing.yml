@@ -22,7 +22,7 @@ reto_aprender_contact:
     defaults: { _controller: RetoAprenderBundle:Default:contact }
 
 reto_aprender_about_us:
-    pattern:  /about/
+    pattern:  /about/{o}
     defaults: { _controller: RetoAprenderBundle:Default:about }
 
 reto_aprender_history:

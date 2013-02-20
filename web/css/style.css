@@ -25,18 +25,15 @@ body{width: 980px; margin:0 auto 0 auto; background-color: #FFF; font-family: Ar
 header{height:218px; background-image:url('../images/bg-header-green.jpg'); background-repeat:repeat-x;}
 header .content{width:934px; margin:0 23px 0 23px;}
 .logo{width:307px; float:left; margin-right: 17px;}
-/* menu */
-#menu{margin-top:111px}
-.itemGreen, .itemYellow, .itemBlue, .itemRed{background:url('../images/sprite-nav.png'); width:118px; height:88px; display:block; float:left;
-    margin-left:4px; font: 16px/76px bold normal Arial, Helvetica, sans-serif; color:#FFF; text-align:center }
-.itemGreen{background-position:0 0;}
-.itemGreen:hover , .itemGreenActive{background-position:0 88px;}
-.itemRed{background-position:-123px 0;}
-.itemRed:hover, .itemRedActive{background-position:-123px 88px;}
-.itemBlue{background-position:-245px 0;}
-.itemBlue:hover, .itemBlueActive{background-position:-245px 88px;}
-.itemYellow{background-position:-368px 0;}
-.itemYellow:hover, .itemYellowActive{background-position:-368px 88px;}
+
+#headerTitle{
+    margin-left: 84px;
+    font-size: 28px;
+    color: #006633;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 footer{width:980px; margin:0 auto 0 auto; height:158px; background-image:url('../images/bg-foot.png'); background-repeat:no-repeat; color: #fff; font-weight: bold; font-size: 12px;}
 footer a{color: #fff; font-weight: bold;}
 footer .links{float: left;padding-left: 15px;padding-top: 140px;}
@@ -232,7 +229,7 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
 /**/
 #aboutnav ul{ margin: 0; padding: 0; list-style-type: none;}
 #aboutnav ul li { display: inline; }
-#aboutnav ul li a{ text-decoration: none; padding: .2em 1em; color: #fff; background-color: #036;}
+#aboutnav ul li a{ text-decoration: none; color: #fff; background-color: #036;}
 #aboutnav ul li a:hover{ color: #fff; background-color: #369;}
 
 .idea{position: relative; background-image: url("../images/big_green_background.png"); width: 726px; height: 534px;  padding: 20px; margin-left: 84px;}

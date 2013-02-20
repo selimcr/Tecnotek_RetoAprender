@@ -19,7 +19,18 @@ class DefaultController extends Controller
 
     public function aboutAction()
     {
-        return $this->render('RetoAprenderBundle::about.html.twig');
+        $option = $this->getRequest()->get("o");
+
+        if($option == "idea"){
+            return $this->render('RetoAprenderBundle::about.html.twig');
+        } else {
+            if($option == "valores"){
+                return $this->render('RetoAprenderBundle::values.html.twig');
+            } else {
+                return $this->render('RetoAprenderBundle::mision.html.twig');
+            }
+        }
+
     }
 
     public function historyAction()

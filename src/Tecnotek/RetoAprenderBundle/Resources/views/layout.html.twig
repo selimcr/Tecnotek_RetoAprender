@@ -10,6 +10,7 @@
     <meta name="author" content="eponce" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}" type="text/css" media="screen"/>
 
     <!-- jQuery - the core -->
     <script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
@@ -65,13 +66,23 @@
                 <!--<![endif]-->
             </object>
         </div>
-        <ul id="menu">
-            <a class="itemGreen" href="{{ path('reto_aprender_homepage')}}"><li>{% trans %}reto.aprender.menu.home{% endtrans %}</li></a>
-            <a class="itemRed" href="{{ path('reto_aprender_homepage')}}"><li>{% trans %}reto.aprender.menu.news{% endtrans %}</li></a>
-            <a class="itemBlue" href="{{ path('reto_aprender_resources')}}"><li>{% trans %}reto.aprender.menu.resources{% endtrans %}</li></a>
-            <a class="itemYellow" href="{{ path('reto_aprender_about_us')}}"><li>{% trans %}reto.aprender.menu.about{% endtrans %}</li></a>
-            <a class="itemGreen" href="{{ path('reto_aprender_contact')}}"><li>{% trans %}reto.aprender.menu.contact{% endtrans %}</li></a>
-        </ul>
+
+        <div id="cssmenu">
+            <ul >
+                <li><a class="itemGreen" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.home{% endtrans %}</a></li>
+                <li><a class="itemRed" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.news{% endtrans %}</a></li>
+                <li><a class="itemBlue" href="{{ path('reto_aprender_resources')}}">{% trans %}reto.aprender.menu.resources{% endtrans %}</a></li>
+                <li class='has-sub '><a class="itemYellow" href="{{ path('reto_aprender_about_us',{'o': "idea"} )}}">{% trans %}reto.aprender.menu.about{% endtrans %}</a>
+                    <ul>
+                        <li class='has-sub '><a href="{{ path('reto_aprender_about_us',{'o': "idea"} )}}"><span>Idea</span></a></li>
+                        <li class='has-sub '><a href="{{ path('reto_aprender_about_us',{'o': "mision"} )}}"><span>Misi&oacute;n y Visi&oacute;n</span></a></li>
+                        <li class='has-sub '><a href="{{ path('reto_aprender_about_us',{'o': "valores"} )}}"><span>Valores</span></a></li>
+                    </ul>
+                </li>
+                <a class="itemGreen" href="{{ path('reto_aprender_contact')}}"><li>{% trans %}reto.aprender.menu.contact{% endtrans %}</li></a>
+            </ul>
+        </div>
+
     </div>
 </header><!--End header-->
 
