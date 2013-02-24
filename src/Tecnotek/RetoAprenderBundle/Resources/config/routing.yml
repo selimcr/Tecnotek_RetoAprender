@@ -33,6 +33,14 @@ reto_aprender_resources:
     pattern:  /resources/
     defaults: { _controller: RetoAprenderBundle:Resource:index }
 
+reto_aprender_topic:
+    pattern:  /topic/{id}
+    defaults: { _controller: RetoAprenderBundle:Resource:topic }
+
+reto_aprender_level:
+    pattern:  /level/{id}
+    defaults: { _controller: RetoAprenderBundle:Resource:level }
+
 reto_aprender_unit:
     pattern:  /unit/{id}
     defaults: { _controller: RetoAprenderBundle:Resource:unit }

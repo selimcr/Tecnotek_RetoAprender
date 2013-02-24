@@ -5,3 +5,9 @@ services:
 #    reto_aprender.example:
 #        class: %reto_aprender.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    tecnotek.reto_aprender.twig.resources_menu_extension:
+            class: Tecnotek\RetoAprenderBundle\Twig\Extensions\ResourcesMenuExtension
+            tags:
+                - { name: twig.extension }
+            arguments:
+                em: "@doctrine.orm.entity_manager"

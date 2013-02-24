@@ -1,0 +1,67 @@
+{% extends 'RetoAprenderBundle::layout.html.twig' %}
+
+{% block content %}
+<div class="mainContainer">
+    <h1> {{ level }}</h1>
+    <div class="child cf">
+
+        <div class="level">
+            <div class="" style="float: left;">
+                <img src="{{ asset('images/level' ~ level.id ~ '.png') }}" height="200px" width="200px">
+            </div>
+
+            <div class="" style="float: left; padding-left: 30px; width: 280px;">
+                <h2>Unidades</h2>
+                {% for unit in level.units %}
+                <p style="line-height: 26px;">&#8226; <a href="{{ path('reto_aprender_unit',{'id': unit.id} )}}" class="btn_more">{{ unit }}<span>&nbsp;&nbsp;<img src="{{ asset('images/arrow_small_orange.png')}}" alt=""/></span></a></p>
+                {% else %}
+                <p>Este nivel no cuenta con unidades todav&iacute;a.</p>
+                {% endfor %}
+            </div>
+
+            <div class="container_scroll" style="float: left; padding-left: 28px; width: 350px; padding-top: 0px; margin-bottom: 0px;"><!--container_scroll-->
+                <div class="scrollable" id="scroller_{{ level.id }}">
+                    <!-- root element for the items -->
+                    <div class="ads">
+                        {% for unit in level.units %}
+                        <div class="set" >
+                            <div class="ad_small"><!--1-->
+                                <p class="big_text">
+                                    <span class="green_text">{{ unit.name }}</span><br />
+                                    <span class="orange_text">{{ unit.description }} </span>
+                                </p>
+                                <a href="{{ path('reto_aprender_unit',{'id': unit.id} )}}" class="btn_more">Ver m&aacute;s <span><img src="{{ asset('images/arrow_small_orange.png')}}" alt=""/></span></a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="set" >
+                            <div class="ad_small"><!--1-->
+                                <p class="big_text">
+                                    <span class="green_text">RetoAprender.com</span><br />
+                                    <span class="black_text">los mejores </span><span class="orange_text">materiales y juegos</span>
+                                    <span class="black_text">para que el estudio se vuelva un hobbie.</span>
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div><!--ads-->
+                </div><!--Scrollable-->
+                <div class="clearer"></div>
+                <div class="container_btns">
+                    <a class="next browse right" style="float: right; width: 15px;"></a><!--btn right-->
+                    <a class="prev browse left" style="margin-right: 0px; float:left; width: 15px;"></a><!--btn left-->
+                </div>
+            </div><!--container_scroll-->
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    var root = $("#scroller_{{ level.id }}").scrollable({circular: true, easing:'swing', speed:750}).autoscroll({interval:5000});
+                });
+            </script>
+            <div class="clearer"></div>
+        </div>
+
+        <br /><br />
+    </div>
+</div><!--End imageContainer-->
+{% endblock %}

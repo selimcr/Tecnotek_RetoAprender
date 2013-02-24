@@ -18,6 +18,20 @@ class ResourceController extends Controller
         return $this->render('RetoAprenderBundle:resources:index.html.twig', array('topic'=> $entity));
     }
 
+    public function topicAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Topic")->find($id);
+        return $this->render('RetoAprenderBundle:resources:index.html.twig', array('topic'=> $entity));
+    }
+
+    public function levelAction($id)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Level")->find($id);
+        return $this->render('RetoAprenderBundle:resources:level.html.twig', array('level'=> $entity));
+    }
+
     public function unitAction($id)
     {
         $em = $this->getDoctrine()->getEntityManager();

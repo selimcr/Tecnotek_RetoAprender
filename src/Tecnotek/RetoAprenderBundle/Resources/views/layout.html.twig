@@ -71,7 +71,20 @@
             <ul >
                 <li><a class="itemGreen" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.home{% endtrans %}</a></li>
                 <li><a class="itemRed" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.news{% endtrans %}</a></li>
-                <li><a class="itemBlue" href="{{ path('reto_aprender_resources')}}">{% trans %}reto.aprender.menu.resources{% endtrans %}</a></li>
+                <li class='has-sub '><a class="itemBlue" href="{{ path('reto_aprender_resources')}}">{% trans %}reto.aprender.menu.resources{% endtrans %}</a>
+                    <ul>
+                        {% for topic in topics() %}
+                        <li class='has-sub '><a href="{{ path('reto_aprender_topic', {'id': topic.id} )}}"><span>{{ topic.name }}</span></a>
+                            <ul>
+                                {% for level in levels(topic.id) %}
+                                <li class='has-sub '><a href="{{ path('reto_aprender_level', {'id': level.id} )}}"><span>{{ level.name }}</span></a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </li>
                 <li class='has-sub '><a class="itemYellow" href="{{ path('reto_aprender_about_us',{'o': "idea"} )}}">{% trans %}reto.aprender.menu.about{% endtrans %}</a>
                     <ul>
                         <li class='has-sub '><a href="{{ path('reto_aprender_about_us',{'o': "idea"} )}}"><span>Idea</span></a></li>
