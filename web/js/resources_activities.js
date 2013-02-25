@@ -151,37 +151,152 @@ var Tecnotek = {
 		},
         ShowActivity : {
             imageIndex: 1,
+            imageIndexS: 1,
             maximunSlide: 0,
+            lastDiap: "",
+            lastDiapS: "",
+            fromNext: false,
             init : function() {
                 Tecnotek.ShowActivity.initComponents();
                 Tecnotek.ShowActivity.initButtons();
             },
             initComponents : function() {
-                $('#btn-next').click(function(event){
-                    if(Tecnotek.ShowActivity.imageIndex < Tecnotek.ShowActivity.maximunSlide) {
-                        $('#slide' + Tecnotek.ShowActivity.imageIndex).fadeOut(function(){
-                            $("#btn-before").show();
-                            Tecnotek.ShowActivity.imageIndex++;
-                            if(Tecnotek.ShowActivity.imageIndex == Tecnotek.ShowActivity.maximunSlide) {
-                                $("#btn-next").hide();
-                            } else {
-                                $("#btn-next").show();
-                            }
-                            $('#slide' + Tecnotek.ShowActivity.imageIndex).fadeIn();
-                        });
+                /*$("#fullscreenContainer").dialog({
+                    height: 140,
+                    modal: true
+                });*/
+
+
+                $("img[rel]").overlay({
+
+                    // one configuration property
+                    color: '#ccc',
+                    closeOnClick: false,
+                    mask: {
+                        color: '#ebecff',
+                        loadSpeed: 200,
+                        opacity: 0.9
                     }
+
+                    // ... the rest of the configuration properties
                 });
-                $('#btn-before').click(function(event){
-                    if(Tecnotek.ShowActivity.imageIndex > 1) {
+
+                $(".diapButton").click(function(event){
+                    event.preventDefault();
+                    var $this = $(this);
+                    $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeOut(function(){
+                        $('#btn-before-2').hide();
+                        $("#btn-next-2").show();
+                        Tecnotek.ShowActivity.lastDiap = $this.attr("href");
+                        $($(Tecnotek.ShowActivity.lastDiap)).fadeIn();
+                    });
+                });
+
+                $(".diapButton_s").click(function(event){
+                    event.preventDefault();
+                    var $this = $(this);
+                    $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeOut(function(){
+                        $('#btn-before').hide();
                         $("#btn-next").show();
-                        $('#slide' + Tecnotek.ShowActivity.imageIndex).fadeOut(function(){
-                            Tecnotek.ShowActivity.imageIndex--;
-                            if(Tecnotek.ShowActivity.imageIndex == 1) {
+                        Tecnotek.ShowActivity.lastDiapS = $this.attr("href");
+                        $($(Tecnotek.ShowActivity.lastDiapS)).fadeIn();
+                    });
+                });
+
+                $('#btn-next').click(function(event){
+                    if(Tecnotek.ShowActivity.lastDiapS === "") {
+                        if(Tecnotek.ShowActivity.imageIndexS < Tecnotek.ShowActivity.maximunSlide) {
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeOut(function(){
+                                $("#btn-before").show();
+                                Tecnotek.ShowActivity.imageIndexS++;
+                                if(Tecnotek.ShowActivity.imageIndexS == Tecnotek.ShowActivity.maximunSlide) {
+                                    $("#btn-next").hide();
+                                } else {
+                                    $("#btn-next").show();
+                                }
+                                $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeIn();
+                            });
+                        }
+                    } else {
+                        $($(Tecnotek.ShowActivity.lastDiapS)).fadeOut(function(){
+                            if(Tecnotek.ShowActivity.imageIndexS == 1) {
                                 $("#btn-before").hide();
                             } else {
                                 $("#btn-before").show();
                             }
-                            $('#slide' + Tecnotek.ShowActivity.imageIndex).fadeIn();
+                            if(Tecnotek.ShowActivity.imageIndexS == Tecnotek.ShowActivity.maximunSlide) {
+                                $("#btn-next").hide();
+                            } else {
+                                $("#btn-next").show();
+                            }
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeIn();
+                            Tecnotek.ShowActivity.lastDiapS = "";
+                        });
+                    }
+
+                });
+                $('#btn-before').click(function(event){
+                    Tecnotek.ShowActivity.lastDiap = "";
+                    if(Tecnotek.ShowActivity.imageIndexS > 1) {
+                        $("#btn-next").show();
+                        $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeOut(function(){
+                            Tecnotek.ShowActivity.imageIndexS--;
+                            if(Tecnotek.ShowActivity.imageIndexS == 1) {
+                                $("#btn-before").hide();
+                            } else {
+                                $("#btn-before").show();
+                            }
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndexS + "_s").fadeIn();
+                        });
+                    }
+                });
+
+                $('#btn-next-2').click(function(event){
+                    console.debug("-> " + (Tecnotek.ShowActivity.lastDiap === ""));
+                    if(Tecnotek.ShowActivity.lastDiap === "") {
+
+                        if(Tecnotek.ShowActivity.imageIndex < Tecnotek.ShowActivity.maximunSlide) {
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeOut(function(){
+                                $("#btn-before-2").show();
+                                Tecnotek.ShowActivity.imageIndex++;
+                                if(Tecnotek.ShowActivity.imageIndex == Tecnotek.ShowActivity.maximunSlide) {
+                                    $("#btn-next-2").hide();
+                                } else {
+                                    $("#btn-next-2").show();
+                                }
+                                $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeIn();
+                            });
+                        }
+                    } else {
+                        $($(Tecnotek.ShowActivity.lastDiap)).fadeOut(function(){
+                            if(Tecnotek.ShowActivity.imageIndex == 1) {
+                                $("#btn-before-2").hide();
+                            } else {
+                                $("#btn-before-2").show();
+                            }
+                            if(Tecnotek.ShowActivity.imageIndex == Tecnotek.ShowActivity.maximunSlide) {
+                                $("#btn-next-2").hide();
+                            } else {
+                                $("#btn-next-2").show();
+                            }
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeIn();
+                            Tecnotek.ShowActivity.lastDiap = "";
+                        });
+                    }
+
+                });
+                $('#btn-before-2').click(function(event){
+                    Tecnotek.ShowActivity.lastDiap = "";
+                    if(Tecnotek.ShowActivity.imageIndex > 1) {
+                        $("#btn-next-2").show();
+                        $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeOut(function(){
+                            Tecnotek.ShowActivity.imageIndex--;
+                            if(Tecnotek.ShowActivity.imageIndex == 1) {
+                                $("#btn-before-2").hide();
+                            } else {
+                                $("#btn-before-2").show();
+                            }
+                            $('#slideB' + Tecnotek.ShowActivity.imageIndex).fadeIn();
                         });
                     }
                 });
@@ -194,6 +309,14 @@ var Tecnotek = {
                 });
                 $('#btnPrint').click(function(event){
                     $("#report").printElement({printMode:'iframe', pageTitle:$(this).attr('rel')});
+                });
+                $('#btn-fs').click(function(event){
+                    event.preventDefault();
+                    $("#normalContainer").hide();
+
+                    //$("#mies1").overlay();
+                    //$("#fullscreenContainer").html($("#normalContainer").html());
+                    //$( "#fullscreenContainer" ).dialog("open");
                 });
 
             }

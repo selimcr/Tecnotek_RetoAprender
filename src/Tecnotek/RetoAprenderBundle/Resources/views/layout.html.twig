@@ -15,6 +15,10 @@
     <!-- jQuery - the core -->
     <script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
     <!-- Sliding effect -->
     <script src="{{ asset('js/slideLogin.js') }}" type="text/javascript" charset="utf-8"></script>
 
@@ -101,7 +105,19 @@
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <!-- Box Account -->
-<div id="boxAccount">
+{% if menuSmall is defined %}
+<div class="boxAccount" style="height: 20px;">
+    <div class="info" style="width: 600px;">
+        <div style="width: 250px; float: left;">Bienvenido <span class="username">{{ app.user.username }}</span></div>
+        <div style="width: 250px; float: left;"><a href="#">Editar mis datos</a></div>
+    </div>
+
+    <div class="right">
+        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
+    </div>
+</div>
+{% else %}
+<div class="boxAccount">
     <div class="avatar">
         <img src="{{ asset('images/user.png') }}" width="100%" height="100%">
     </div>
@@ -112,9 +128,11 @@
         <p><a href="#">Editar mis datos</a></p>
     </div>
     <div class="right">
-       <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
+        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
     </div>
 </div>
+{% endif %}
+
 <!-- Box Account End -->
 {% endif %}
 

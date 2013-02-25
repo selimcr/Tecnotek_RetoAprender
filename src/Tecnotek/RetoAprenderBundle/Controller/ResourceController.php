@@ -52,6 +52,6 @@ class ResourceController extends Controller
             list($slides_name, $total_slides) = explode(",", $entity->getIncludeText(), 2);
         }
         return $this->render('RetoAprenderBundle:resources:activity.html.twig', array(
-            'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides));
+            'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides, "menuSmall" => true));
     }
 }
