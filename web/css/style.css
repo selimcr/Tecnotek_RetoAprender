@@ -373,3 +373,6 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
     height:35px;
     width:35px;
 }
+
+/* Edicion de Perfil */
+.usuarioFormLabel{height: 45px; line-height: 45px; width: 150px;}

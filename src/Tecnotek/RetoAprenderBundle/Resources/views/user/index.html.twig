@@ -1,7 +1,42 @@
 {% extends 'RetoAprenderBundle::layout.html.twig' %}
 
 {% block content %}
-Usuario: {{ app.user.username }}
+<div class="boxAccount" style="height: 140px;">
+    <div class="avatar">
+        <img src="{{ asset('images/user.png') }}" width="100%" height="100%">
+    </div>
+
+    <form id="updateUser" action="{{ path('reto_aprender_register') }}" method="post" {{ form_enctype(form) }} class="left" style="width: 500px;">
+        {{ form_errors(form) }}
+
+        {{ form_widget(form._token) }}
+
+        <div class="formErrors">{{ form_errors(form.firstname) }}</div>
+        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_firstname">{%trans%}label.firstname{%endtrans%}:</label></div>
+        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_firstname" name="tecnotek_retoaprender_userformtype[firstname]" required="required" value="{{ entity.firstname }}"></div>
+        <div class="clearer"></div>
+
+        <div class="formErrors">{{ form_errors(form.lastname) }}</div>
+        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_lastname">{%trans%}label.lastname{%endtrans%}:</label></div>
+        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_lastname" name="tecnotek_retoaprender_userformtype[lastname]" required="required" value="{{ entity.lastname }}"></div>
+        <div class="clearer"></div>
+
+        <div class="formErrors">{{ form_errors(form.email) }}</div>
+        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_email">{%trans%}label.email{%endtrans%}:</label></div>
+        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_email" name="tecnotek_retoaprender_userformtype[email]" required="required" value="{{ entity.email }}"></div>
+        <div class="clearer"></div>
+
+        <input class="btnGreen right" type="submit" style="margin: 0 4px 0 0;" value="Guardar" />
+        <div class="clear"></div>
+    </form>
+
+    <div class="right">
+        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
+    </div>
+
+
+
+</div>
 
 {% if is_granted('ROLE_PREMIUM') %}
 Ya es usuario PREMIUM!!!

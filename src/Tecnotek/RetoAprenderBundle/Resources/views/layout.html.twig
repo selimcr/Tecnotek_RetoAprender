@@ -103,13 +103,13 @@
     </div>
 </header><!--End header-->
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+{% if is_granted('IS_AUTHENTICATED_FULLY') and (showAccountBox is not defined or showAccountBox==true )%}
 <!-- Box Account -->
 {% if menuSmall is defined %}
 <div class="boxAccount" style="height: 20px;">
     <div class="info" style="width: 600px;">
         <div style="width: 250px; float: left;">Bienvenido <span class="username">{{ app.user.username }}</span></div>
-        <div style="width: 250px; float: left;"><a href="#">Editar mis datos</a></div>
+        <div style="width: 250px; float: left;"><a href="{{ path('reto_aprender_user') }}">Editar mis datos</a></div>
     </div>
 
     <div class="right">
@@ -125,7 +125,7 @@
         <p>Bienvenido <span class="username">{{ app.user.username }}</span></p>
         <p>Tipo de Usuario: <span class="username">Regular</span></p>
         <p>Ultima Visita: <span class="username">31 de Agosto de 2012</span></p>
-        <p><a href="#">Editar mis datos</a></p>
+        <p><a href="{{ path('reto_aprender_user') }}">Editar mis datos</a></p>
     </div>
     <div class="right">
         <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
