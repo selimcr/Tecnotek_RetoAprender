@@ -81,7 +81,27 @@ class User implements AdvancedUserInterface
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
-    
+
+    /**
+     * @ORM\Column(name="last_login", type="datetime", nullable = true)
+     */
+    private $lastLogin;
+
+    /**
+     * @ORM\Column(name="last_password_update", type="datetime", nullable = true)
+     */
+    private $lastPasswordUpdate;
+
+    /**
+     * @ORM\Column(name="premium_access_experitation", type="datetime", nullable = true)
+     */
+    private $premiumAccessExpiration;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     /**
      * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      *
@@ -267,6 +287,98 @@ class User implements AdvancedUserInterface
     public function doStuffOnPrePersist()
     {
         $this->password = sha1($this->password);
+    }
+
+    public function getEncryptedPassword($password){
+        return sha1($password);
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param date $lastLogin
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return date
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * Set lastPasswordUpdate
+     *
+     * @param date $lastPasswordUpdate
+     */
+    public function setLastPasswordUpdate($lastPasswordUpdate)
+    {
+        $this->lastPasswordUpdate = $lastPasswordUpdate;
+    }
+
+    /**
+     * Get lastPasswordUpdate
+     *
+     * @return date
+     */
+    public function getLastPasswordUpdate()
+    {
+        return $this->lastPasswordUpdate;
+    }
+
+    /**
+     * Set premiumAccessExpiration
+     *
+     * @param date $premiumAccessExpiration
+     */
+    public function setPremiumAccessExpiration($premiumAccessExpiration)
+    {
+        $this->premiumAccessExpiration = $premiumAccessExpiration;
+    }
+
+    /**
+     * Get premiumAccessExpiration
+     *
+     * @return date
+     */
+    public function getPremiumAccessExpiration()
+    {
+        return $this->premiumAccessExpiration;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setAvatar($avatar)
+    {
+        return $this->avatar = $avatar;
+    }
+
+    public function getAvatarWebPath()
+    {
+        return null === $this->avatar
+            ? "/images/user.png"
+            : $this->getUploadDir().'/'.$this->avatar;
+    }
+
+    public function getUploadDir()
+    {
+        return '/uploads/avatars';
     }
 }
 ?>

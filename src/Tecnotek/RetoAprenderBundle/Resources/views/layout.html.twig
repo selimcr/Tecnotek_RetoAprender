@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css" media="screen"/>
     <link rel="stylesheet" href="{{ asset('css/menu.css') }}" type="text/css" media="screen"/>
 
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css">
+
+
     <!-- jQuery - the core -->
     <script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
@@ -28,10 +32,46 @@
     {% block extrajs %}
     {% endblock %}
 
+    {% block extracss %}
+    {% endblock %}
+
+
     {% include "GoogleBundle:Analytics:async.html.twig" %}
 </head>
 
 <body>
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+<style type="text/css">
+    html {
+        margin-top: 26px;
+    }
+</style>
+
+<div class="fixed contain-to-grid">
+    <nav class="top-bar">
+
+        <div class="info" style="width: 600px;">
+            <div style="float: left; width: 30px;"><img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" alt="User Avatar" height="25px"></div>
+            <div style="width: 150px; float: left;">Bienvenido <a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}"><span class="username">{{ app.user.username }}</span></a></div>
+            <div style="float: left; width: 110px;">Tipo de Usuario:</div>
+            {% if app.user.premiumAccessExpiration %}
+            <div style="float: left; width: 65px;"><img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"></div>
+            {% else %}
+            <div style="float: left; width: 65px;"><img src="{{ asset('images/star_regular.png') }}" alt="Usuario Premium" height="25px"></div>
+            {% endif %}
+            <div style="width: 150px; float: left;"><a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}">Ver Mi Cuenta</a></div>
+        </div>
+
+        <div class="right">
+            <div class="logout"><a href="/Tecnotek_RetoAprender/web/logout">Desconectar</a></div>
+        </div>
+    </nav>
+</div>
+{% endif %}
+
+
+
 <header>
     <div class="content cf">
         <div class="logo"><a href="{{ path('reto_aprender_homepage')}}"><img src="{{ asset('images/logo-reto-aprender2.png') }}" alt="logo de reto aprender" /></a></div>
@@ -102,39 +142,6 @@
 
     </div>
 </header><!--End header-->
-
-{% if is_granted('IS_AUTHENTICATED_FULLY') and (showAccountBox is not defined or showAccountBox==true )%}
-<!-- Box Account -->
-{% if menuSmall is defined %}
-<div class="boxAccount" style="height: 20px;">
-    <div class="info" style="width: 600px;">
-        <div style="width: 250px; float: left;">Bienvenido <span class="username">{{ app.user.username }}</span></div>
-        <div style="width: 250px; float: left;"><a href="{{ path('reto_aprender_user') }}">Editar mis datos</a></div>
-    </div>
-
-    <div class="right">
-        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
-    </div>
-</div>
-{% else %}
-<div class="boxAccount">
-    <div class="avatar">
-        <img src="{{ asset('images/user.png') }}" width="100%" height="100%">
-    </div>
-    <div class="info">
-        <p>Bienvenido <span class="username">{{ app.user.username }}</span></p>
-        <p>Tipo de Usuario: <span class="username">Regular</span></p>
-        <p>Ultima Visita: <span class="username">31 de Agosto de 2012</span></p>
-        <p><a href="{{ path('reto_aprender_user') }}">Editar mis datos</a></p>
-    </div>
-    <div class="right">
-        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
-    </div>
-</div>
-{% endif %}
-
-<!-- Box Account End -->
-{% endif %}
 
 {% block content %}{% endblock %}
 

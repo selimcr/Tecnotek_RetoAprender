@@ -1,46 +1,180 @@
 {% extends 'RetoAprenderBundle::layout.html.twig' %}
 
+{% block extrajs %}
+<script type="text/javascript" src="{{ asset('js/tek_reto.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/tek_reto_account.js') }}"></script>
+<script type="text/javascript">
+    Tecnotek.module = "userAccount";
+    Tecnotek.UI.urls["updateUserInfo"] = "{{ path('reto_aprender_user_update_info')}}";
+    Tecnotek.UI.urls["updatePassword"] = "{{ path('reto_aprender_user_update_password')}}";
+</script>
+{% endblock %}
+
+
 {% block content %}
-<div class="boxAccount" style="height: 140px;">
-    <div class="avatar">
-        <img src="{{ asset('images/user.png') }}" width="100%" height="100%">
-    </div>
-
-    <form id="updateUser" action="{{ path('reto_aprender_register') }}" method="post" {{ form_enctype(form) }} class="left" style="width: 500px;">
-        {{ form_errors(form) }}
-
-        {{ form_widget(form._token) }}
-
-        <div class="formErrors">{{ form_errors(form.firstname) }}</div>
-        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_firstname">{%trans%}label.firstname{%endtrans%}:</label></div>
-        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_firstname" name="tecnotek_retoaprender_userformtype[firstname]" required="required" value="{{ entity.firstname }}"></div>
+<div  style="width: 600px; float: left;margin-left: 25px; ">
+    <div id="accountInfo">
+        <div style="border-bottom: 1px solid #ebebeb;">
+            <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5; float: left;">Mis datos</div>
+            <div style="float: left; height: 30px; padding-left: 10px;">
+                <a id="editLink" href="#" style="font: normal 13px arial,sans-serif; color: #15c; vertical-align: middle; line-height: 30px;">Editar mis datos</a>
+            </div>
+            <div style="float: left; height: 30px; padding-left: 10px;">
+                <a id="editPassword" href="#" style="font: normal 13px arial,sans-serif; color: #15c; vertical-align: middle; line-height: 30px;">Cambiar mi password</a>
+            </div>
+            <div class="clearer"></div>
+        </div>
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; width: 150px;">Nombre:</div>
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;" id="labelFirstname">{{ entity.firstname }}</div> &nbsp;&nbsp;
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; margin-left: 5px;" id="labelLastname">{{ entity.lastname }}</div>
         <div class="clearer"></div>
 
-        <div class="formErrors">{{ form_errors(form.lastname) }}</div>
-        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_lastname">{%trans%}label.lastname{%endtrans%}:</label></div>
-        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_lastname" name="tecnotek_retoaprender_userformtype[lastname]" required="required" value="{{ entity.lastname }}"></div>
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; width: 150px;"> Nombre de Usuario: </div>
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;" id="labelUsername">{{ entity.username }}</div>
         <div class="clearer"></div>
 
-        <div class="formErrors">{{ form_errors(form.email) }}</div>
-        <div class="left usuarioFormLabel"><label for="tecnotek_retoaprender_userformtype_email">{%trans%}label.email{%endtrans%}:</label></div>
-        <div class="left"><input class="inputText" style="width: 300px;" type="text" id="tecnotek_retoaprender_userformtype_email" name="tecnotek_retoaprender_userformtype[email]" required="required" value="{{ entity.email }}"></div>
-        <div class="clearer"></div>
-
-        <input class="btnGreen right" type="submit" style="margin: 0 4px 0 0;" value="Guardar" />
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; width: 150px;"> Email:</div>
+        <div class="left" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;" id="labelEmail">{{ entity.email }}</div>
         <div class="clear"></div>
-    </form>
+    </div>
+    <div id="accountUpdate" style="display: none;">
+        <div style="border-bottom: 1px solid #ebebeb;">
+            <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5; float: left;">Actualizar la informaci&oacute;n</div>
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Nombre:</div>
+            <input class="formInputText" id="user_firstname" name="user_firstname" value="">
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Apellidos:</div>
+            <input class="formInputText" id="user_lastname" name="user_lastname" value="">
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Email:</div>
+            <input class="formInputText" id="user_email" name="user_email" value="">
+            <div class="clearer"></div>
+        </div>
+        <div class="left">
+            <input id="buttonCancelSaveInfo" class="btnGray" type="submit" value="Cancelar" />
+            <input id="buttonSaveInfo" class="btnGreen" type="submit" value="Guardar" />
+        </div>
+        <div class="clearer"></div>
+    </div>
+    <div id="passwordUpdate" style="display: none;">
+        <div style="border-bottom: 1px solid #ebebeb;">
+            <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5; float: left;">Cambiar el password</div>
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Password actual:</div>
+            <input class="formInputText" type="password" id="user_current" name="user_current" value="">
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Nuevo password:</div>
+            <input class="formInputText" type="password" id="user_new" name="user_new" value="">
+            <div class="clearer"></div>
+        </div>
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <div class="formLabel">Confirmar password:</div>
+            <input class="formInputText" type="password" id="user_confirmation" name="user_confirmation" value="">
+            <div class="clearer"></div>
+        </div>
+        <div class="left">
+            <input id="buttonCancelSavePassword" class="btnGray" type="submit" value="Cancelar" />
+            <input id="buttonSavePassword" class="btnGreen" type="submit" value="Cambiar" />
+        </div>
+        <div class="clearer"></div>
+    </div>
+    <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
+        <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Tipo de Cuenta</div>
+    </div>
+    {% if entity.premiumAccessExpiration and is_granted('ROLE_PREMIUM')  %}
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"> <span>Premium hasta: {{ entity.premiumAccessExpiration|date("d/m/Y") }} </span>
+        </div>
+        <div class="clear"></div>
+    {% else %}
+        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+            <img src="{{ asset('images/star_regular.png') }}" alt="Usuario Premium" height="25px"> <span>Regular</span>
+        </div>
+    {% endif %}
 
-    <div class="right">
-        <div class="logout"><a href="{{ path('reto_aprender_logout')}}">Salir</a></div>
+    <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
+        <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Comprar acceso premium</div>
     </div>
 
+    <div class="levels-buy">
+        <div class="row-header">
+            <div class="title" style="width: 200px;">Materiales de Nivel </div>
+            <div class="title" style="width: 150px;">6 Meses</div>
+            <div class="title" style="width: 155px;">1 A&ntilde;o</div>
+            <div class="clearer"></div>
+        </div>
+        <div class="row">
+            <div class="field" style="width: 200px; text-align: left;">Acceso General</div>
+            <div class="field button" style="width: 150px">
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
+                    <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
+            <div class="field button" style="width: 155px">
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
+                    <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
+            <div class="clearer"></div>
+        </div>
+    </div>
 
+    <div class="clearer"></div>
 
 </div>
 
-{% if is_granted('ROLE_PREMIUM') %}
-Ya es usuario PREMIUM!!!
-{% else %}
-<a href="{{ path('reto_aprender_payment')}}">Comprar Acceso Premium</a></li>
-{% endif %}
+<div style="float: right; width: 275px">
+    <div id="avatarContainer" class="boxAccount" style="width: 220px;  padding-left: 10px; height: 100%;">
+        <div style="padding-left: 10px;">
+            <img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" width="200px" height="200px">
+        </div>
+        <div style="padding-left: 10px;"><a id="cambiarAvatarLink" href="#" style="font: normal 13px arial,sans-serif; color: #15c;">Cambiar mi avatar</a></div>
+    </div>
+
+    <div id="uploadAvatar" style="display:none; border: 1px solid #ebebeb; padding: 16px; margin-top: 25px; width: 215px; margin-left: 22px; height: 100px;">
+        <form action="{{ path('reto_aprender_user_upload_avatar') }}" method="post" enctype="multipart/form-data" style="width: 225px;">
+
+            <div style="color: #666; font-family: arial,sans-serif; font-size: 16px; line-height: 2.5;">Seleccionar el avatar</div>
+
+            <input type="file" id="avatar" name="avatar">
+
+            <div class="clearer"></div>
+
+            <input id="buttonCancelUploadAvatar" class="btnGray left" type="submit" value="Cancelar" />
+            <input class="btnGreen right" type="submit" value="Subir" />
+        </form>
+    </div>
+
+
+    <div style="border: 1px solid #ebebeb; padding: 16px; margin-top: 25px; width: 215px; margin-left: 22px;">
+        <div style="color: #666; font-family: arial,sans-serif; font-size: 16px; line-height: 2.5;">Actividad de la cuenta</div>
+        <div>
+            <p style="font: normal 13px arial,sans-serif; color: #222; line-height: 18px;">&Uacute;ltimo ingreso</p>
+            <p style="color: #777; font: normal 13px arial,sans-serif; line-height: 18px;">{{ entity.lastLogin|date("d/m/Y") }}</p>
+        </div>
+        <div>
+            <p style="font: normal 13px arial,sans-serif; color: #222; line-height: 18px;">Password</p>
+            <p style="color: #777; font: normal 13px arial,sans-serif; line-height: 18px;">&Uacute;ltimo cambio: {{ entity.lastPasswordUpdate|date("d/m/Y") }}</p>
+        </div>
+    </div>
+</div>
+<div class="clearer"></div>
+
 {% endblock %}

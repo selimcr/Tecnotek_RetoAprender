@@ -5,6 +5,8 @@ namespace Tecnotek\RetoAprenderBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Tecnotek\RetoAprenderBundle\Entity\User;
 
@@ -49,5 +51,118 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $entity = $em->getRepository("RetoAprenderBundle:Topic")->find(1);
         return $this->render('RetoAprenderBundle:user:payment.html.twig', array('topic'=> $entity));
+    }
+
+    public function updateBasicInfoAction()
+    {
+        $logger = $this->get('logger');
+        if ($this->get('request')->isXmlHttpRequest())// Is the request an ajax one?
+        {
+            try {
+                $request = $this->get('request')->request;
+                $firstname = $request->get('firstname');
+                $lastname = $request->get('lastname');
+                $email = $request->get('email');
+
+                $translator = $this->get("translator");
+
+                if( isset($firstname) && isset($lastname) && isset($email)) {
+
+                    $user= $this->getUser();
+                    $user->setFirstname($lastname);
+                    $user->setLastname($firstname);
+                    $user->setEmail($email);
+
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($user);
+                    $em->flush();
+
+                    return new Response(json_encode(array('error' => false)));
+                } else {
+                    return new Response(json_encode(array('error' => true, 'message' =>$translator->trans("error.paramateres.missing"))));
+                }
+            }
+            catch (Exception $e) {
+                $info = toString($e);
+                $logger->err('SuperAdmin::saveStudentQualificationAction [' . $info . "]");
+                return new Response(json_encode(array('error' => true, 'message' => $info)));
+            }
+        }// endif this is an ajax request
+        else
+        {
+            return new Response("<b>Not an ajax call!!!" . "</b>");
+        }
+    }
+
+    public function updatePasswordAction()
+    {
+        $logger = $this->get('logger');
+        if ($this->get('request')->isXmlHttpRequest())// Is the request an ajax one?
+        {
+            try {
+                $request = $this->get('request')->request;
+                $currentPassword = $request->get('current');
+                $newPassword = $request->get('new');
+
+                $translator = $this->get("translator");
+
+                if( isset($currentPassword) && isset($newPassword) ) {
+
+                    $user= $this->getUser();
+
+                    if($user->getPassword() != $user->getEncryptedPassword($currentPassword) ){
+                        return new Response(json_encode(array('error' => true, 'message' =>$translator->trans("error.password.not.match") )));
+                    } else {
+                        $user->setPassword($user->getEncryptedPassword($newPassword));
+                        $user->setLastPasswordUpdate(new \DateTime());
+
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($user);
+                        $em->flush();
+
+                        return new Response(json_encode(array('error' => false)));
+                    }
+
+                } else {
+                    return new Response(json_encode(array('error' => true, 'message' =>$translator->trans("error.paramateres.missing"))));
+                }
+            }
+            catch (Exception $e) {
+                $info = toString($e);
+                $logger->err('SuperAdmin::saveStudentQualificationAction [' . $info . "]");
+                return new Response(json_encode(array('error' => true, 'message' => $info)));
+            }
+        }// endif this is an ajax request
+        else
+        {
+            return new Response("<b>Not an ajax call!!!" . "</b>");
+        }
+    }
+
+    public function uploadAvatarAction()
+    {
+        $logger = $this->get('logger');
+        $request = $this->get('request');
+        //$file = new UploadedFile("", "");
+        $file = $request->files->get('avatar');
+
+        $user  = $this->getUser();
+        $dir = '../web' . $user->getUploadDir() . "/";
+
+        //$logger->err("---> AVATAR: " . $file->getClientOriginalName() . " :: " . $user->getUploadDir() .  "/avatar_" . $user->getId());
+        //var_dump($request->files->get('avatar') );
+
+        $file->move($dir, "avatar_" . $user->getId() . ".png");
+
+        $user->setAvatar("avatar_" . $user->getId() . ".png");
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $user);
+
+        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user, 'form'=> $form->createView(),
+            'showAccountBox' => false));
+
     }
 }

@@ -54,6 +54,18 @@ reto_aprender_user:
     pattern:  /user/
     defaults: { _controller: RetoAprenderBundle:User:index }
 
+reto_aprender_user_update_info:
+    pattern:  /user/updateInfo
+    defaults: { _controller: RetoAprenderBundle:User:updateBasicInfo }
+
+reto_aprender_user_update_password:
+    pattern:  /user/updatePassword
+    defaults: { _controller: RetoAprenderBundle:User:updatePassword }
+
+reto_aprender_user_upload_avatar:
+    pattern:  /user/uploadAvatar
+    defaults: { _controller: RetoAprenderBundle:User:uploadAvatar }
+
 reto_aprender_register:
     pattern:  /register
     defaults: { _controller: RetoAprenderBundle:User:register }

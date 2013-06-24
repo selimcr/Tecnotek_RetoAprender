@@ -184,48 +184,6 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
 }
 /* UNIT PAGE END */
 
-/* USER BOX STYLES */
-.boxAccount{
-    border: solid 1px #E1EBF1;
-    margin:0 23px 25px 23px;
-    padding: 10px 10px 10px 10px;
-    height: 120px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 2px 2px 3px 3px #E1EBF1;
-    box-shadow: 2px 2px 3px 3px #E1EBF1;
-}
-
-.boxAccount .avatar{
-    width: 100px;
-    height: 100px;
-    border: solid 1px #000;
-    float: left;
-    margin-right: 25px;
-}
-.boxAccount .info{
-    float: left;
-    font-size: 12px;
-    width: 400px;
-    line-height: 26px;
-}
-.boxAccount .username{
-    font-size: 12px;
-    font-weight: bold;
-}
-.boxAccount .logout{
-    background-image:url('../images/icon_logout.png');
-    background-repeat: no-repeat;
-    width: 20px;
-    padding-left: 30px;
-    font-size: 12px;
-    line-height: 24px;
-    height: 24px;
-    vertical-align: middle;
-}
-
-/* END USER BOX STYLES */
-
 /**/
 #aboutnav ul{ margin: 0; padding: 0; list-style-type: none;}
 #aboutnav ul li { display: inline; }
@@ -376,3 +334,71 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
 
 /* Edicion de Perfil */
 .usuarioFormLabel{height: 45px; line-height: 45px; width: 150px;}
+
+/**/
+/* Foundation Top Bar
+ Requires: -jquery.foundation.topbar.js
+ Notes: - <nav class="top-bar"> can have .fixed added to make it stick to the top of viewport. Can add .contain-to-grid to top-bar to make it full width but content on grid. - <li class="name"> creates a branding area that can be linked to homepage - Can include text, image or both inside this <li>. - <li class="divider"> creates a divider between nav items, add margins for space - <li class="search"> Needs to hold a <form> which can use .row.collapse and pre/postfix buttons or default type="search"
+*/
+
+/* Wrapped around .top-bar to contain to grid width */
+.contain-to-grid { width: 100%; background-image:url(../images/block_yellow_bg.gif); }
+
+/* Wrapped around .top-bar to make it fixed at the top */
+.fixed { width: 100%; left: 0; position: fixed; top: 0; z-index: 99; }
+
+/* <nav> */
+.top-bar {
+    background-image:url(../images/block_yellow_bg.gif); height: 26px; line-height: 26px; margin: 0 0 30px; padding: 0; width: 100%;
+/* Contain width to .row width */ /* First <ul> for branding, title, name, etc */ /* topbar global <ul> styles */
+}
+.contain-to-grid .top-bar { width: 980px; max-width: 980px;  margin: 0 auto; width: auto;}
+
+.contain-to-grid { z-index: 99; filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100); opacity: 1; }
+
+.logout{
+    font-family: 'Droid Serif', Georgia, Times, serif;
+    background-repeat: no-repeat;
+    font-size: 14px;
+    line-height: 26px;
+    height: 26px;
+    vertical-align: middle;
+    width: 83px;
+    padding-left: 30px;
+    background-image: url('../images/icon_logout.png');
+}
+
+.logout a { color: #006633;}
+.logout a:hover { font-weight: bold;}
+.boxAccount{
+    border: solid 1px #E1EBF1;
+    margin:0 23px 25px 23px;
+    padding: 10px 10px 10px 10px;
+    height: 120px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 2px 3px 3px #E1EBF1;
+    box-shadow: 2px 2px 3px 3px #E1EBF1;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border: solid 1px #000;
+    float: left;
+    margin-right: 25px;
+}
+.info{
+    float: left;
+    font-size: 12px;
+    width: 400px;
+    line-height: 26px;
+}
+.username{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.formLabel{
+    color: #666; font-family: arial,sans-serif; font-size: 13px; line-height: 1.5; width: 150px; float: left;
+}

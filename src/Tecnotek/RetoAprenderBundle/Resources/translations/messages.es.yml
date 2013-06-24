@@ -155,6 +155,9 @@ friday: Viernes
 saturday: Sabado
 sunday: Domingo
 
+error.paramateres.missing: Faltan datos
+error.password.not.match: El password actual no coincide
+
 #Validation
 not.blank.name: Probando proband.
 not:
