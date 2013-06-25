@@ -41,17 +41,24 @@ class ResourceController extends Controller
 
     public function activityAction($id)
     {
-        if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            return $this->render('RetoAprenderBundle:Payment:payment.html.twig', array('activity'=> ""));
+        $user = $this->getUser();
+        $expirationDate = $user->getPremiumAccessExpiration();
+
+        if( isset($expirationDate) ) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
+            $slides_name = "";
+            $total_slides = 0;
+            if($entity->getType() == 2){
+                list($slides_name, $total_slides) = explode(",", $entity->getIncludeText(), 2);
+            }
+            return $this->render('RetoAprenderBundle:resources:activity.html.twig', array(
+                'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides, "menuSmall" => true));
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_user',
+                array()));
+            //return $this->render('RetoAprenderBundle:Payment:payment.html.twig', array('activity'=> ""));
         }
-        $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
-        $slides_name = "";
-        $total_slides = 0;
-        if($entity->getType() == 2){
-            list($slides_name, $total_slides) = explode(",", $entity->getIncludeText(), 2);
-        }
-        return $this->render('RetoAprenderBundle:resources:activity.html.twig', array(
-            'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides, "menuSmall" => true));
+
     }
 }

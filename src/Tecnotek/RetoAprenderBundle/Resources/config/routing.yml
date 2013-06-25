@@ -21,6 +21,10 @@ reto_aprender_contact:
     pattern:  /contact/
     defaults: { _controller: RetoAprenderBundle:Default:contact }
 
+reto_aprender_news:
+    pattern:  /news/
+    defaults: { _controller: RetoAprenderBundle:News:news }
+
 reto_aprender_about_us:
     pattern:  /about/{o}
     defaults: { _controller: RetoAprenderBundle:Default:about }
@@ -73,6 +77,14 @@ reto_aprender_register:
 reto_aprender_payment:
     pattern:  /user/payment/
     defaults: { _controller: RetoAprenderBundle:User:payment }
+
+reto_aprender_payment_sucess:
+    pattern:  /payment/success
+    defaults: { _controller: RetoAprenderBundle:Payment:success }
+
+reto_aprender_payment_process:
+    pattern:  /payment/process
+    defaults: { _controller: RetoAprenderBundle:Payment:process }
 
 #ADMIN ROUTING
 reto_aprender_admin:

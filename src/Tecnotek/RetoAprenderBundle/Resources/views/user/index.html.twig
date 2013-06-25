@@ -3,6 +3,7 @@
 {% block extrajs %}
 <script type="text/javascript" src="{{ asset('js/tek_reto.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/tek_reto_account.js') }}"></script>
+
 <script type="text/javascript">
     Tecnotek.module = "userAccount";
     Tecnotek.UI.urls["updateUserInfo"] = "{{ path('reto_aprender_user_update_info')}}";
@@ -12,7 +13,19 @@
 
 
 {% block content %}
+
+
+
 <div  style="width: 600px; float: left;margin-left: 25px; ">
+
+    {% if infoMessage is defined %}
+    <div data-alert="" class="alert-box radius">
+        {{ infoMessage }}
+        <a href="" class="close closeAlertBox">×</a>
+    </div>
+    {% endif %}
+
+
     <div id="accountInfo">
         <div style="border-bottom: 1px solid #ebebeb;">
             <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5; float: left;">Mis datos</div>
@@ -92,7 +105,7 @@
     <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
         <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Tipo de Cuenta</div>
     </div>
-    {% if entity.premiumAccessExpiration and is_granted('ROLE_PREMIUM')  %}
+    {% if entity.premiumAccessExpiration  %}
         <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
             <img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"> <span>Premium hasta: {{ entity.premiumAccessExpiration|date("d/m/Y") }} </span>
         </div>
@@ -114,21 +127,21 @@
             <div class="title" style="width: 155px;">1 A&ntilde;o</div>
             <div class="clearer"></div>
         </div>
-        <div class="row">
+        <div class="row" style="height: 58px; line-height: 58px;">
             <div class="field" style="width: 200px; text-align: left;">Acceso General</div>
             <div class="field button" style="width: 150px">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
-                    <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <input type="hidden" name="hosted_button_id" value="H7WXYPK67PECW">
+                    <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
                     <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                 </form>
             </div>
             <div class="field button" style="width: 155px">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="U66ZH37CVUNWE">
-                    <input type="image" src="https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <input type="hidden" name="hosted_button_id" value="6JF2HEGGU4BXQ">
+                    <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
                     <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                 </form>
             </div>

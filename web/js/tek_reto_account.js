@@ -54,6 +54,13 @@ Tecnotek.Account = {
             $("#uploadAvatar").hide();
             $("#avatarContainer").show();
         });
+
+        $(".closeAlertBox").click(function(event){
+            event.preventDefault();
+            $(".alert-box").hide('slide', function() {
+            });
+        });
+
     },
     saveAccountBasicInfo : function(){
         var $firstname = $("#user_firstname").val();

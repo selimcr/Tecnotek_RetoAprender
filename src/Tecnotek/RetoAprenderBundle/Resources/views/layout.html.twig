@@ -114,7 +114,7 @@
         <div id="cssmenu">
             <ul >
                 <li><a class="itemGreen" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.home{% endtrans %}</a></li>
-                <li><a class="itemRed" href="{{ path('reto_aprender_homepage')}}">{% trans %}reto.aprender.menu.news{% endtrans %}</a></li>
+                <li><a class="itemRed" href="{{ path('reto_aprender_news')}}">{% trans %}reto.aprender.menu.news{% endtrans %}</a></li>
                 <li class='has-sub '><a class="itemBlue" href="{{ path('reto_aprender_resources')}}">{% trans %}reto.aprender.menu.resources{% endtrans %}</a>
                     <ul>
                         {% for topic in topics() %}
@@ -146,7 +146,7 @@
 {% block content %}{% endblock %}
 
 <footer>
-    <div class="links"><a href="#">Uno </a> | <a href="#">Dos </a> | <a href="#">Tres </a> | &copy; Copyright 2012–2013 RetoAprender</div>
+    <div class="links"> &copy; Copyright 2012–2013 RetoAprender</div>
     <div class="powered">Powered by <a href="http://www.tecnotekcr.net/" target="_blank" >Tecnotek</a></div>
 </footer><!--End footer-->
 </body>

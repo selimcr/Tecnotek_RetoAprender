@@ -141,19 +141,11 @@ class UserController extends Controller
 
     public function uploadAvatarAction()
     {
-        $logger = $this->get('logger');
         $request = $this->get('request');
-        //$file = new UploadedFile("", "");
         $file = $request->files->get('avatar');
-
         $user  = $this->getUser();
         $dir = '../web' . $user->getUploadDir() . "/";
-
-        //$logger->err("---> AVATAR: " . $file->getClientOriginalName() . " :: " . $user->getUploadDir() .  "/avatar_" . $user->getId());
-        //var_dump($request->files->get('avatar') );
-
         $file->move($dir, "avatar_" . $user->getId() . ".png");
-
         $user->setAvatar("avatar_" . $user->getId() . ".png");
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
@@ -163,6 +155,5 @@ class UserController extends Controller
 
         return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user, 'form'=> $form->createView(),
             'showAccountBox' => false));
-
     }
 }
