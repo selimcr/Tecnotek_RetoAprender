@@ -41,7 +41,6 @@
 
 <body>
 
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <style type="text/css">
     html {
         margin-top: 26px;
@@ -50,6 +49,8 @@
 
 <div class="fixed contain-to-grid">
     <nav class="top-bar">
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
 
         <div class="info" style="width: 600px;">
             <div style="float: left; width: 30px;"><img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" alt="User Avatar" height="25px"></div>
@@ -64,12 +65,16 @@
         </div>
 
         <div class="right">
-            <div class="logout"><a href="/Tecnotek_RetoAprender/web/logout">Desconectar</a></div>
+            <div class="logout"><a href="{{ path("reto_aprender_logout") }}">Desconectar</a></div>
         </div>
+
+{% else %}
+        <div class="right">
+            <div class="login"><a href="{{ app.request.getBaseURL() }}/login">Entrar al sistema</a></div>
+        </div>
+{% endif %}
     </nav>
 </div>
-{% endif %}
-
 
 
 <header>

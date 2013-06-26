@@ -151,6 +151,32 @@
         </div>
     </div>
 
+    <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
+        <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Historial de pagos</div>
+    </div>
+
+    <div class="levels-buy" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; margin-bottom: 25px;">
+        <div class="row-header">
+            <div class="title" style="width: 200px;">Fecha </div>
+            <div class="title" style="width: 150px;">Transacci&oacute;n</div>
+            <div class="title" style="width: 155px;">D&iacute;as Premium</div>
+            <div class="clearer"></div>
+        </div>
+        {% for payment in entity.payments %}
+        <div class="row" style="height: 26px; line-height: 26px;">
+            <div class="field" style="width: 200px; text-align: left;">{{ payment.date|date("d/m/Y")  }}</div>
+            <div class="field" style="width: 150px">{{ payment.transactionId }}</div>
+            <div class="field" style="width: 155px">{{ payment.type }}</div>
+            <div class="clearer"></div>
+        </div>
+        {% else %}
+        <div class="row" style="height: 26px; line-height: 26px;">
+            <div class="field" style="width: 505px; text-align: left;">No se ha registrado ning&uacute;n pago hasta ahora.</div>
+            <div class="clearer"></div>
+        </div>
+        {% endfor %}
+    </div>
+
     <div class="clearer"></div>
 
 </div>

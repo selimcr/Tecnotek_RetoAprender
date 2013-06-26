@@ -17,8 +17,7 @@ class UserController extends Controller
         $entity  = $this->getUser();
         $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $entity);
 
-        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $entity, 'form'=> $form->createView(),
-            'showAccountBox' => false));
+        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $entity));
     }
 
     public function registerAction(){
@@ -145,15 +144,29 @@ class UserController extends Controller
         $file = $request->files->get('avatar');
         $user  = $this->getUser();
         $dir = '../web' . $user->getUploadDir() . "/";
-        $file->move($dir, "avatar_" . $user->getId() . ".png");
-        $user->setAvatar("avatar_" . $user->getId() . ".png");
+
+        $now = new \DateTime();
+        $newName = "avatar_" . $user->getId() . "_" . $now->getTimestamp() . ".png";
+        $file->move($dir, $newName);
+
+        $oldAvatar = $user->getAvatar();
+
+        if( isset($oldAvatar) && $oldAvatar!="" ){//delete if exists
+            $oldAvatarPath = $this->getRequest()->server->get('DOCUMENT_ROOT') .
+                $this->getRequest()->getBasePath() . $user->getUploadDir() . "/" . $oldAvatar;
+            if (file_exists($oldAvatarPath) &&
+                is_writable($oldAvatarPath))
+            {
+                unlink ( $oldAvatarPath );
+            }
+        }
+
+        $user->setAvatar($newName);
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
 
         $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $user);
-
-        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user, 'form'=> $form->createView(),
-            'showAccountBox' => false));
+        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user));
     }
 }

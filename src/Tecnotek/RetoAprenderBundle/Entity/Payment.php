@@ -29,7 +29,7 @@ class Payment{
      * @Assert\MinLength(limit = 3)
      * @Assert\MaxLength(limit = 255)
      */
-    private $transaccionId;
+    private $transactionId;
 
     /**
      * @ORM\Column(type="integer", nullable = true)
@@ -55,7 +55,7 @@ class Payment{
 
     public function __toString()
     {
-        return $this->transaccionId;
+        return $this->transactionId;
     }
 
 
@@ -110,23 +110,23 @@ class Payment{
     }
 
     /**
-     * Set transaccionId
+     * Set transactionId
      *
-     * @param string $transaccionId
+     * @param string $transactionId
      */
-    public function setTransaccionId($transaccionId)
+    public function setTransactionId($transactionId)
     {
-        $this->transaccionId = $transaccionId;
+        $this->transactionId = $transactionId;
     }
 
     /**
-     * Get transaccionId
+     * Get transactionId
      *
      * @return string 
      */
-    public function getTransaccionId()
+    public function getTransactionId()
     {
-        return $this->transaccionId;
+        return $this->transactionId;
     }
 
     /**

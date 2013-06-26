@@ -370,7 +370,24 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
 }
 
 .logout a { color: #006633;}
-.logout a:hover { font-weight: bold;}
+.logout a:hover { fon}
+
+.login{
+    font-family: 'Droid Serif', Georgia, Times, serif;
+    background-repeat: no-repeat;
+    font-size: 14px;
+    line-height: 26px;
+    height: 26px;
+    vertical-align: middle;
+    width: 120px;
+    padding-left: 30px;
+    background-image: url('../images/icon_login.png');
+}
+
+.login a { color: #006633;}
+.login a:hover { color: #003366;}
+
+
 .boxAccount{
     border: solid 1px #E1EBF1;
     margin:0 23px 25px 23px;

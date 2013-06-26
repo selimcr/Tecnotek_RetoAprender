@@ -58,9 +58,13 @@ class PaymentController extends Controller
             . $request->get('invoice') . "]");
 
         $status = $request->get('payment_status');
+        /**************************/ // $status = "Completed";
+
         if(isset($status)){
             if ($status == "Completed"){//Is a valid transaction
                 $transaccionId = $request->get('txn_id');
+                /**************************/ //$transaccionId = "9U601677AY8601065";
+
                 $em = $this->getDoctrine()->getManager();
 
                 //Check if the transaction is already register
@@ -69,11 +73,13 @@ class PaymentController extends Controller
                 if(isset($transaction)){//Do nothing; already process it.
                 } else {
                     $custom = $request->get('custom');
+                    /**************************/ //$custom = "4-12";
+
                     if(isset($custom) && $custom!=""){
                         $words = explode("-", $custom);
                         $payment = new Payment();
                         $payment->setDate(new \DateTime());
-                        $payment->setTransaccionId($transaccionId);
+                        $payment->setTransactionId($transaccionId);
                         $payment->setType($words[1]);
 
                         $user = $em->getRepository("RetoAprenderBundle:User")->find($words[0]);
@@ -90,14 +96,12 @@ class PaymentController extends Controller
                                 findOneBy(array('role' => 'ROLE_PREMIUM'));
                             $user->getUserRoles()->add($role);
                         }
-                        date_add($workDate, date_interval_create_from_date_string($words[1] . ' days'));
-                        $user->setPremiumAccessExpiration($workDate);
-
+                        //$workDate = date_add($workDate, date_interval_create_from_date_string($words[1] . ' days'));
+                        $newDate = $workDate->add(new \DateInterval('P' . $words[1] . 'D'));
+                        $d = new \DateTime($newDate->format('Y-m-d'));
+                        $user->setPremiumAccessExpiration($d);
                         $em->persist($user);
-
                         $em->flush();
-
-
                     }
                 }
             } else {

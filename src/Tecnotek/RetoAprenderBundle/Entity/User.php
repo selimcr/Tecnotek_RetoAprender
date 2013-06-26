@@ -108,6 +108,12 @@ class User implements AdvancedUserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Payment", mappedBy="user")
+     * @ORM\OrderBy({"date" = "ASC"})
+     */
+    private $payments;
+
     public function __construct()
     {
         $this->isActive = true;
@@ -379,6 +385,14 @@ class User implements AdvancedUserInterface
     public function getUploadDir()
     {
         return '/uploads/avatars';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPayments()
+    {
+        return $this->payments;
     }
 }
 ?>
