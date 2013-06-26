@@ -93,7 +93,7 @@ class User implements AdvancedUserInterface
     private $lastPasswordUpdate;
 
     /**
-     * @ORM\Column(name="premium_access_experitation", type="datetime", nullable = true)
+     * @ORM\Column(name="premium_access_expiration", type="datetime", nullable = true)
      */
     private $premiumAccessExpiration;
 
