@@ -36,6 +36,8 @@ var Tecnotek = {
                     Tecnotek.ShowActivity.init(); break;
                 case "userAccount":
                     Tecnotek.Account.init(); break;
+                case "adminNews":
+                    Tecnotek.AdminNews.init(); break;
                 default:
 					break;
 				}

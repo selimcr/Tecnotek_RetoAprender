@@ -168,3 +168,28 @@ reto_aprender_admin_activity_update:
 reto_aprender_admin_activity_delete:
     pattern:  /admin/activity/delete/{id}
     defaults: { _controller: RetoAprenderBundle:Admin:activityDelete }
+
+# NEWS
+reto_aprender_admin_news:
+    pattern:  /admin/news/
+    defaults: { _controller: RetoAprenderBundle:News:newsList }
+
+reto_aprender_admin_news_new:
+    pattern:  /admin/news/new
+    defaults: { _controller: RetoAprenderBundle:News:newsNew }
+
+reto_aprender_admin_news_save:
+    pattern:  /admin/news/save
+    defaults: { _controller: RetoAprenderBundle:News:newsSave }
+
+reto_aprender_admin_news_edit:
+    pattern:  /admin/news/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:News:newsEdit }
+
+reto_aprender_admin_news_update:
+    pattern:  /admin/news/update
+    defaults: { _controller: RetoAprenderBundle:News:newsUpdate }
+
+reto_aprender_admin_news_delete:
+    pattern:  /admin/news/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:News:newsDelete }

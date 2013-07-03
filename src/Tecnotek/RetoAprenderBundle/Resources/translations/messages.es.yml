@@ -155,6 +155,9 @@ friday: Viernes
 saturday: Sabado
 sunday: Domingo
 
+boolean.afirmation.1: Si
+boolean.afirmation.0: No
+
 error.paramateres.missing: Faltan datos
 error.password.not.match: El password actual no coincide
 

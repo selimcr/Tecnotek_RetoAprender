@@ -67,6 +67,7 @@ security:
 
     access_control:
         #- { path: ^/.*, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin.*, role: ROLE_ADMIN }
         - { path: ^/history.*, role: ROLE_ADMIN }
         - { path: ^/user.*, role: ROLE_USER }
         - { path: ^/activity.*, role: IS_AUTHENTICATED_FULLY }

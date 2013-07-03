@@ -4,6 +4,9 @@
     <title>RetoAprender :: Administraci&oacute;n</title>
     <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
     <link rel="stylesheet" href="{{ asset('admin/css/all.css') }}" type="text/css" media="screen"/>
+
+    {% block extracss %}
+    {% endblock %}
 </head>
 <body>
 <style type="text/css">
@@ -18,10 +21,6 @@
         <div class="info" style="width: 600px;">
             <div style="float: left; width: 30px;"><img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" alt="User Avatar" height="25px"></div>
             <div style="width: 150px; float: left;">Bienvenido <a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}"><span class="username">{{ app.user.username }}</span></a></div>
-
-            <div style="width: 150px; float: left;"><a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}">Ver Mi Cuenta</a></div>
-
-            <div style="width: 150px; float: left;"><a alt="Volver al Sitio" href="{{ path('reto_aprender_homepage') }}">Volver al Sitio</a></div>
         </div>
 
         <div style="float: right;">
@@ -52,18 +51,22 @@
                 <li><a href="{{ path('reto_aprender_admin_topic')}}">Temas</a></li>
                 <li><a href="{{ path('reto_aprender_admin_level')}}">Niveles</a></li>
                 <li><a href="{{ path('reto_aprender_admin_unit')}}">Unidades</a></li>
-                <li><a href="{{ path('reto_aprender_admin_activity')}}">Actividades</a></li>
-                <li class="last"><a href="#">Usuarios</a></li>
+                <li class="last"><a href="{{ path('reto_aprender_admin_activity')}}">Actividades</a></li>
             </ul>
 
             <h3>Usuarios</h3>
             <ul class="nav">
                 <li><a href="{{ path('reto_aprender_admin_topic')}}">Administradores</a></li>
-                <li><a href="{{ path('reto_aprender_admin_level')}}">Usuarios</a></li>
-                <li class="last"><a href="#">Usuarios</a></li>
+                <li class="last"><a href="{{ path('reto_aprender_admin_level')}}">Usuarios</a></li>
             </ul>
-            <a href="#" class="link">Link here</a>
-            <a href="#" class="link">Link here</a>
+
+            <h3>Otros</h3>
+            <ul class="nav">
+                <li class="last"><a href="{{ path('reto_aprender_admin_news')}}">Noticias</a></li>
+            </ul>
+
+            <a href="{{ path('reto_aprender_homepage') }}" class="link">Volver al sitio</a>
+            <a href="{{ path('reto_aprender_user') }}" class="link">Mi cuenta</a>
         </div>
 
         {% block content %}
@@ -80,7 +83,20 @@
     </div>
     <div id="footer"></div>
 </div>
+<!-- jQuery - the core -->
+<script src="{{ asset('js/jquery-1.3.2.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+
+<script src="{{ asset('js/tek_reto.js') }}" type="text/javascript" charset="utf-8"></script>
+
+<!-- HTML Editor -->
+<script src="{{ asset('js/jHtmlArea-0.7.5.min.js') }}" type="text/javascript" charset="utf-8"></script>
+
+{% block extrajs %}
+{% endblock %}
 
 </body>
 </html>

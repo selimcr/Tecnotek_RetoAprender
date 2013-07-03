@@ -10,8 +10,8 @@
         {{ new.content|raw }}
     </div>
 
-    <div class="right" style="font: normal 13px arial,sans-serif; color: #222; vertical-align: middle; line-height: 30px; padding-right: 5px;">
-        Por <b>{{ new.user.username }}</b> el <b>{{ new.date|date("d/m/Y h:i:s")}}</b>
+    <div class="right" style="font: normal 11px arial,sans-serif; color: #222; vertical-align: middle; line-height: 30px; padding-right: 5px;">
+        Creado el <b>{{ new.date|date("d/m/Y h:i:s")}}</b>, &uacute;ltima edici&oacute;n por <b>{{ new.lastUserEditor.username }}</b>
     </div>
 
     <div class="clearer"></div>

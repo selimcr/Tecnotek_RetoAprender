@@ -44,7 +44,9 @@ class ResourceController extends Controller
         $user = $this->getUser();
         $expirationDate = $user->getPremiumAccessExpiration();
 
-        if( isset($expirationDate) ) {
+        $securityContext = $this->container->get('security.context');
+
+        if( isset($expirationDate) || $securityContext->isGranted('ROLE_ADMIN') ) {
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
             $slides_name = "";

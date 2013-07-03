@@ -32,8 +32,7 @@ class News{
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable = true)
-     * @Assert\MaxLength(limit = 255)
+     * @ORM\Column(type="text", nullable = true)
      */
     private $content;
 
@@ -43,15 +42,27 @@ class News{
     private $date;
 
     /**
+     * @ORM\Column(name="enabled", type="boolean", nullable = true)
+     */
+    private $enabled;
+
+    /**
      * @ManyToOne(targetEntity="User", inversedBy="news")
      * @JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @JoinColumn(name="last_user_editor_id", referencedColumnName="id")
+     */
+    private $lastUserEditor;
+
     public function __construct()
     {
         $this->content = "";
         $this->date = new \DateTime();
+        $this->enabled = false;
     }
 
     public function __toString()
@@ -88,6 +99,26 @@ class News{
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set lastUserEditor
+     *
+     * @param \Tecnotek\RetoAprenderBundle\Entity\User $lastUserEditor
+     */
+    public function setLastUserEditor(\Tecnotek\RetoAprenderBundle\Entity\User $lastUserEditor)
+    {
+        $this->lastUserEditor = $lastUserEditor;
+    }
+
+    /**
+     * Get lastUserEditor
+     *
+     * @return \Tecnotek\RetoAprenderBundle\Entity\User
+     */
+    public function getLastUserEditor()
+    {
+        return $this->lastUserEditor;
     }
 
     /**
@@ -148,5 +179,25 @@ class News{
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param string $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return string
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 }
