@@ -3,9 +3,9 @@
 {% block content %}
 <div id="center-column">
     <div class="top-bar">
-        <a href="{{ path('reto_aprender_admin_users_new',{'type': 'admin'} )}}" class="button">NUEVO </a>
-        <h1>Administradores</h1>
-        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_users',{'type': 'admin'}) }}">Administradores</a></div>
+        <a href="{{ path('reto_aprender_admin_users_new',{'type': 'regular'} )}}" class="button">NUEVO </a>
+        <h1>Usuarios</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_users',{'type': 'regular'}) }}">Usuarios</a></div>
     </div><br /><br />
     <div class="table">
         <img src="{{ asset('admin/img/bg-th-left.gif')}}" width="8" height="7" alt="" class="left" />
@@ -30,9 +30,9 @@
                 <td class="first style2">{% if entity.active %} {{ 'boolean.afirmation.1'|trans }} {% else %} {{ 'boolean.afirmation.0'|trans }} {% endif %}</td>
                 <td class="first style2"> {{ entity.lastLogin|date('d-m-Y') }} </td>
 
-                <td><a href="{{ path('reto_aprender_admin_users_edit',{'id': entity.id, 'type': 'admin'} )}}"><img src="{{ asset('admin/img/edit-icon.gif') }}" width="16" height="16" alt="Editar" /></a></td>
+                <td><a href="{{ path('reto_aprender_admin_users_edit',{'id': entity.id, 'type': 'regular'} )}}"><img src="{{ asset('admin/img/edit-icon.gif') }}" width="16" height="16" alt="Editar" /></a></td>
                 <td class="last">
-                    <a href="{{ path('reto_aprender_admin_users_delete',{'type': 'admin', 'id': entity.id} )}}" onclick="return confirm('Esta seguro que desea eliminarlo?');">
+                    <a href="{{ path('reto_aprender_admin_users_delete',{'type': 'regular', 'id': entity.id} )}}" onclick="return confirm('Esta seguro que desea eliminarlo?');">
                         <img src="{{ asset('admin/img/hr.gif') }}" width="16" height="16" alt="Eliminar" />
                     </a>
                 </td>
@@ -50,5 +50,5 @@
 {% endblock %}
 
 {% block info %}
-Este m&oacute;dulo permite la edici&oacute;n y administraci&oacute;n de los usuarios de tipo administrador del sistema.
+Este m&oacute;dulo permite la edici&oacute;n y administraci&oacute;n de los usuarios regulares del sistema.
 {% endblock %}

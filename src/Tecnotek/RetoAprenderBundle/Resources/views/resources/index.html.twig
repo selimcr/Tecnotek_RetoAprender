@@ -11,11 +11,11 @@
             </div>
 
             <div class="" style="float: left; padding-left: 30px; width: 280px;">
-                <h2>Unidades</h2>
+                <h2>Temas</h2>
                 {% for unit in level.units %}
                 <p style="line-height: 26px;">&#8226; <a href="{{ path('reto_aprender_unit',{'id': unit.id} )}}" class="btn_more">{{ unit }}<span>&nbsp;&nbsp;<img src="{{ asset('images/arrow_small_orange.png')}}" alt=""/></span></a></p>
                 {% else %}
-                <p>Este nivel no cuenta con unidades todav&iacute;a.</p>
+                <p>Este nivel no cuenta con temas todav&iacute;a.</p>
                 {% endfor %}
             </div>
 

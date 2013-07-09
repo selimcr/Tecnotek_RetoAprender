@@ -16,16 +16,16 @@
 {% block content %}
 <div id="center-column">
     <div class="top-bar">
-        <a href="{{ path('reto_aprender_admin_news_new') }}" class="button">NUEVO </a>
-        <h1>Noticias</h1>
-        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_news') }}">Noticias</a></div>
+        <a href="{{ path('reto_aprender_admin_users_new',{'type': 'admin'}) }}" class="button">NUEVO </a>
+        <h1>Administradores</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_users',{'type': 'admin'}) }}">Administradores</a></div>
     </div><br /><br />
 
     <div class="table">
         <img src="{{ asset("admin/img/bg-th-left.gif") }}" width="8" height="7" alt="" class="left" />
         <img src="{{ asset('admin/img/bg-th-right.gif') }}" width="7" height="7" alt="" class="right" />
 
-        <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_news_update') }}" method="post" {{ form_enctype(form) }}>
+        <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_users_update',{'type': 'admin'}) }}" method="post" {{ form_enctype(form) }}>
             <input type="hidden" id="id" name="id" value="{{ entity.id }}">
 
             {{ form_errors(form) }}
@@ -34,27 +34,32 @@
 
             <table class="listing form" cellpadding="0" cellspacing="0">
                 <tr>
-                    <th class="full" colspan="3">Editar Noticia</th>
+                    <th class="full" colspan="3">Editar Administrador</th>
                 </tr>
                 <tr class="bg">
-                    <td class="first" width="172"><strong>T&iacute;tulo</strong></td>
-                    <td>{{ form_widget(form.title) }}</td>
-                    <td class="last">{{ form_errors(form.title) }}</td>
+                    <td class="first" width="172"><strong>Nombre</strong></td>
+                    <td>{{ form_widget(form.firstname) }}</td>
+                    <td class="last">{{ form_errors(form.lastname) }}</td>
                 </tr>
                 <tr>
-                    <td class="first"><strong>Habilitado</strong></td>
-                    <td>{{ form_widget(form.enabled) }}</td>
-                    <td class="last">{{ form_errors(form.enabled) }}</td>
+                    <td class="first"><strong>Apellidos</strong></td>
+                    <td>{{ form_widget(form.lastname) }}</td>
+                    <td class="last">{{ form_errors(form.lastname) }}</td>
                 </tr>
                 <tr>
-                    <td class="first"  colspan="3"><strong>Contenido {{ form_errors(form.content) }}</strong></td>
+                    <td class="first"><strong>Username</strong></td>
+                    <td>{{ form_widget(form.username) }}</td>
+                    <td class="last">{{ form_errors(form.username) }}</td>
                 </tr>
                 <tr>
-                    <td class="first" colspan="3">
-                        <textarea id="tecnotek_retoaprender_newsformtype_content" name="tecnotek_retoaprender_newsformtype[content]" rows="20" style="width: 600px;">
-                            {{ entity.content }}
-                        </textarea>
-                    </td>
+                    <td class="first"><strong>Email</strong></td>
+                    <td>{{ form_widget(form.email) }}</td>
+                    <td class="last">{{ form_errors(form.email) }}</td>
+                </tr>
+                <tr>
+                    <td class="first"><strong>Activo?</strong></td>
+                    <td>{{ form_widget(form.active) }}</td>
+                    <td class="last">{{ form_errors(form.active) }}</td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -71,5 +76,5 @@
 {% endblock %}
 
 {% block info %}
-Edite una noticia, si desea que la noticia aparezca en el sitio debe marcar la noticia como habilitada, el contenido ser&aacute; mostrado en formato HTML.
+Edite un usuario, para prohibir el acceso a un usuario es suficiente con NO marcar la casilla "Activo?".
 {% endblock %}

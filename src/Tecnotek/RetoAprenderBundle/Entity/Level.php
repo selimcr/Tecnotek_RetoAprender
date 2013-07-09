@@ -13,7 +13,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="tek_levels")
  * @ORM\Entity()
  * @ORM\Entity(repositoryClass="Tecnotek\RetoAprenderBundle\Repository\LevelRepository")
- * @UniqueEntity("name")
  */
 class Level
 {

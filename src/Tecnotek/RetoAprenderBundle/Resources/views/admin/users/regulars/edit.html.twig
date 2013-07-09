@@ -1,33 +1,40 @@
 {% extends 'RetoAprenderBundle:admin:layout.html.twig' %}
 
 {% block extracss %}
+<link rel="stylesheet" href="{{ asset('admin/css/jHtmlArea.css') }}" type="text/css" media="all"/>
 {% endblock %}
 
 {% block extrajs %}
+
+<script src="{{ asset('js/tek_reto_admin_news.js') }}" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
-    Tecnotek.module = "";
+    Tecnotek.module = "adminNews";
 </script>
 {% endblock %}
 
 {% block content %}
 <div id="center-column">
     <div class="top-bar">
-        <h1>Administradores</h1>
-        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_users',{'type': 'admin'}) }}">Administradores</a> / Nuevo</div>
+        <a href="{{ path('reto_aprender_admin_users_new',{'type': 'regular'}) }}" class="button">NUEVO </a>
+        <h1>Usuarios</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_users',{'type': 'regular'}) }}">Usuarios</a></div>
     </div><br /><br />
 
     <div class="table">
         <img src="{{ asset("admin/img/bg-th-left.gif") }}" width="8" height="7" alt="" class="left" />
         <img src="{{ asset('admin/img/bg-th-right.gif') }}" width="7" height="7" alt="" class="right" />
 
-        <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_users_save',{'type': 'admin'}) }}" method="post" {{ form_enctype(form) }}>
+        <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_users_update',{'type': 'regular'}) }}" method="post" {{ form_enctype(form) }}>
+            <input type="hidden" id="id" name="id" value="{{ entity.id }}">
+
             {{ form_errors(form) }}
 
             {{ form_widget(form._token) }}
 
             <table class="listing form" cellpadding="0" cellspacing="0">
                 <tr>
-                    <th class="full" colspan="3">Nuevo Administrador</th>
+                    <th class="full" colspan="3">Editar Administrador</th>
                 </tr>
                 <tr class="bg">
                     <td class="first" width="172"><strong>Nombre</strong></td>
@@ -69,6 +76,5 @@
 {% endblock %}
 
 {% block info %}
-Los administradores tienen acceso a este m&oacute;dulo y a todos los recursos del sitio principal. Una vez creado el usuario se enviar&aacute; un
-correo electr&oacute;nico al email ingresado con una clave autogenerada para el acceso inicial.
+Edite un usuario, para prohibir el acceso a un usuario es suficiente con NO marcar la casilla "Activo?".
 {% endblock %}

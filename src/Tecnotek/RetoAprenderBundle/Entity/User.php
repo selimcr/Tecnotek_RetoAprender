@@ -120,6 +120,7 @@ class User implements AdvancedUserInterface
         //$this->salt = md5(uniqid(null, true));
         $this->salt = "";
         $this->roles = new ArrayCollection();
+        $this->payments = new ArrayCollection();
     }
     
     /**

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Tecnotek\RetoAprenderBundle\Entity\User;
 
+use Tecnotek\RetoAprenderBundle\Form\UserAdminFormType;
+
 class UserController extends Controller
 {
     public function indexAction()
@@ -33,6 +35,7 @@ class UserController extends Controller
                 findOneBy(array('role' => 'ROLE_USER'));
             $entity->getUserRoles()->add($role);
             $entity->setActive(true);
+            $entity->setLastPasswordUpdate(new \DateTime());
             $em->persist($entity);
             $em->flush();
             return $this->redirect($this->generateUrl('reto_aprender_homepage',
@@ -169,4 +172,189 @@ class UserController extends Controller
         $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $user);
         return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user));
     }
+
+    /* Users in Admin Actions start */
+    public function usersListAction($type)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        if($type == "admin"){
+            $dql = "SELECT users FROM RetoAprenderBundle:User users "
+                . " JOIN users.roles roles "
+                . " WHERE roles.role = 'ROLE_ADMIN' "
+                . " AND users.id <> " . $this->getUser()->getId()
+                . " ORDER BY users.firstname";
+            $query = $em->createQuery($dql);
+
+            $entities = $query->getResult();
+            return $this->render('RetoAprenderBundle::admin/users/administrators/list.html.twig', array(
+                'entities' => $entities,
+            ));
+        } else {
+            $dql = "SELECT users FROM RetoAprenderBundle:User users "
+                . " JOIN users.roles roles "
+                . " WHERE roles.role = 'ROLE_USER' "
+                . " AND users.id <> " . $this->getUser()->getId()
+                . " ORDER BY users.firstname";
+            $query = $em->createQuery($dql);
+
+            $entities = $query->getResult();
+            return $this->render('RetoAprenderBundle::admin/users/regulars/list.html.twig', array(
+                'entities' => $entities,
+            ));
+        }
+    }
+
+    public function usersNewAction($type){
+        $entity = new User();
+        $form   = $this->createForm(new UserAdminFormType(), $entity);
+
+        if($type == "admin"){
+            return $this->render('RetoAprenderBundle:admin:users/administrators/new.html.twig', array('entity' => $entity,
+                'form'   => $form->createView()));
+        } else {
+            return $this->render('RetoAprenderBundle:admin:users/regulars/new.html.twig', array('entity' => $entity,
+                'form'   => $form->createView()));
+        }
+    }
+
+    public function usersSaveAction($type){
+        $entity  = new User();
+        $password = md5(uniqid(rand(), true));
+        $password = substr($password, 0, 8);
+
+        $entity->setLastPasswordUpdate(new \DateTime());
+        $entity->setPassword($password);
+
+        $request = $this->getRequest();
+        $form    = $this->createForm(new UserAdminFormType(), $entity);
+        $form->bindRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+
+        if($type == "admin"){
+            if ($form->isValid()) {
+                $role = $em->getRepository('RetoAprenderBundle:Role')->
+                    findOneBy(array('role' => 'ROLE_ADMIN'));
+                $entity->getUserRoles()->add($role);
+                $em->persist($entity);
+                $em->flush();
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Cuenta de Administrador Creada')
+                    ->setFrom("web-contact@retoaprender.com")
+                    ->setTo($entity->getEmail())
+                    ->setBody($this->renderView('RetoAprenderBundle:emails:adminAccountCreatedEmail.txt.twig',
+                        array('user' => $entity, 'password' => $password)),
+                    'text/html');
+
+                $this->get('mailer')->send($message);
+
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users',
+                    array('id' => $entity->getId(), 'type' => 'admin')));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:users/administrators/new.html.twig', array(
+                    'entity' => $entity,
+                    'form'   => $form->createView()
+                ));
+            }
+        } else {
+            if ($form->isValid()) {
+                $role = $em->getRepository('RetoAprenderBundle:Role')->
+                    findOneBy(array('role' => 'ROLE_USER'));
+                $entity->getUserRoles()->add($role);
+                $em->persist($entity);
+                $em->flush();
+
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Cuenta de Usuario Creada')
+                    ->setFrom("web-contact@retoaprender.com")
+                    ->setTo($entity->getEmail())
+                    ->setBody($this->renderView('RetoAprenderBundle:emails:accountCreatedEmail.txt.twig',
+                        array('user' => $entity, 'password' => $password)),
+                    'text/html');
+
+                $this->get('mailer')->send($message);
+
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users',
+                    array('id' => $entity->getId(), 'type' => 'regular')));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:users/regulars/new.html.twig', array(
+                    'entity' => $entity,
+                    'form'   => $form->createView()
+                ));
+            }
+        }
+    }
+
+    public function usersEditAction($type){
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:User")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form   = $this->createForm(new UserAdminFormType(), $entity);
+            if($type == "admin"){
+                return $this->render('RetoAprenderBundle:admin:users/administrators/edit.html.twig', array('entity' => $entity,
+                    'form'   => $form->createView()));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:users/regulars/edit.html.twig', array('entity' => $entity,
+                    'form'   => $form->createView()));
+            }
+        } else {
+            if($type == "admin"){
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'admin')));
+            } else {
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'regular')));
+            }
+        }
+    }
+
+    public function usersUpdateAction($type){
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:User")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form    = $this->createForm(new UserAdminFormType(), $entity);
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $em->persist($entity);
+                $em->flush();
+                if($type == "admin"){
+                    return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'admin')));
+                } else {
+                    return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'regular')));
+                }
+            } else {
+                if($type == "admin"){
+                    return $this->render('RetoAprenderBundle:admin:users/administrators/edit.html.twig', array('entity' => $entity,
+                        'form'   => $form->createView()));
+                } else {
+                    return $this->render('RetoAprenderBundle:admin:users/regulars/edit.html.twig', array('entity' => $entity,
+                        'form'   => $form->createView()));
+                }
+            }
+        } else {
+            if($type == "admin"){
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'admin')));
+            } else {
+                return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => 'regular')));
+            }
+        }
+    }
+
+    public function usersDeleteAction($type, $id){
+        $logger = $this->get("logger");
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:User")->find( $id );
+        if ( isset($entity) ) {
+            $logger->err("Eliminando Usuario: El administrador '" . $this->getUser() . "' ha eliminado el usuario: " . $entity->getUsername());
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => $type)));
+    }
+    /* Users in Admin Actions End */
 }

@@ -208,7 +208,7 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
 .idea .text-vision{top: 70px; left: 325px;}
 
 /* Presentations */
-.presentation-slide{width: 600px; height: 450px; }
+.presentation-slide{width: 800px; height: 600px; position: relative; }
 .btn-next, .btn-before {cursor: move;}
 
 
@@ -313,7 +313,7 @@ p.space_with_img{padding:8px 0px 0px 17px; width:420px; float: left; font-size: 
     /* styling */
     background-color:#333;
 
-    width:800px;
+    width:840px;
     min-height:600px;
     border:1px solid #666;
 
