@@ -5,10 +5,12 @@ parameters:
     database_name: retoapre_tecnotek
     database_user: retoapre_root
     database_password: soporte5501
-    mailer_transport: gmail
-    mailer_host: localhost
-    mailer_user: selim@retoaprender.com
-    mailer_password: selim
+    mailer_transport: smtp
+    mailer_auth_mode: login
+    mailer_port: 2525
+    mailer_host: mail.retoaprender.com
+    mailer_user: web-contact@retoaprender.com
+    mailer_password: r3t04pr3nd3r
     locale: es
     secret: 34e701b0e28f420de2f07ca199e7795928666590
     database_path: null

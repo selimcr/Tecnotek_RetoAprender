@@ -237,11 +237,9 @@ class UserController extends Controller
                 $role = $em->getRepository('RetoAprenderBundle:Role')->
                     findOneBy(array('role' => 'ROLE_ADMIN'));
                 $entity->getUserRoles()->add($role);
-                $em->persist($entity);
-                $em->flush();
-
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Cuenta de Administrador Creada')
+				
+				$message = \Swift_Message::newInstance()
+                    ->setSubject('RetoAprender - Cuenta de Administrador Creada')
                     ->setFrom("web-contact@retoaprender.com")
                     ->setTo($entity->getEmail())
                     ->setBody($this->renderView('RetoAprenderBundle:emails:adminAccountCreatedEmail.txt.twig',
@@ -249,6 +247,8 @@ class UserController extends Controller
                     'text/html');
 
                 $this->get('mailer')->send($message);
+                $em->persist($entity);
+                $em->flush();
 
                 return $this->redirect($this->generateUrl('reto_aprender_admin_users',
                     array('id' => $entity->getId(), 'type' => 'admin')));
@@ -263,11 +263,9 @@ class UserController extends Controller
                 $role = $em->getRepository('RetoAprenderBundle:Role')->
                     findOneBy(array('role' => 'ROLE_USER'));
                 $entity->getUserRoles()->add($role);
-                $em->persist($entity);
-                $em->flush();
-
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Cuenta de Usuario Creada')
+				
+				$message = \Swift_Message::newInstance()
+                    ->setSubject('RetoAprender - Cuenta de Usuario Creada')
                     ->setFrom("web-contact@retoaprender.com")
                     ->setTo($entity->getEmail())
                     ->setBody($this->renderView('RetoAprenderBundle:emails:accountCreatedEmail.txt.twig',
@@ -275,6 +273,9 @@ class UserController extends Controller
                     'text/html');
 
                 $this->get('mailer')->send($message);
+				
+                $em->persist($entity);
+                $em->flush();
 
                 return $this->redirect($this->generateUrl('reto_aprender_admin_users',
                     array('id' => $entity->getId(), 'type' => 'regular')));
