@@ -147,4 +147,17 @@ class PaymentController extends Controller
         $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
         return $this->render('RetoAprenderBundle:resources:activity.html.twig', array('activity'=> $entity));
     }
+
+    /**** Actions for the Admin Section ****/
+
+
+    public function adminListPaymentsAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $dql = "SELECT p FROM RetoAprenderBundle:Payment p ORDER BY p.date DESC";
+        $query = $em->createQuery($dql)->setFirstResult(0)->setMaxResults(25);
+        $payments = $query->getResult();
+
+        return $this->render('RetoAprenderBundle:admin:payment/index.html.twig', array('entities'=> $payments));
+    }
 }

@@ -218,3 +218,12 @@ reto_aprender_admin_users_update:
 reto_aprender_admin_users_delete:
     pattern:  /admin/users/{type}/delete/{id}
     defaults: { _controller: RetoAprenderBundle:User:usersDelete }
+
+reto_aprender_admin_users_reset_password:
+    pattern:  /admin/users/{type}/resetPassword/{id}
+    defaults: { _controller: RetoAprenderBundle:User:resetPassword }
+
+#PAYMENTS
+reto_aprender_admin_payments:
+    pattern:  /admin/payments/
+    defaults: { _controller: RetoAprenderBundle:Payment:adminListPayments }

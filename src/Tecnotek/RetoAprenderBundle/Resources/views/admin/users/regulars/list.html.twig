@@ -18,6 +18,8 @@
                 <th>Email</th>
                 <th>Activo?</th>
                 <th>&Uacute;ltimo login</th>
+                <th>Tipo de Cuenta</th>
+                <th></th>
                 <th></th>
                 <th class="last"></th>
             </tr>
@@ -29,9 +31,14 @@
                 <td class="first style2"> {{ entity.email }} </td>
                 <td class="first style2">{% if entity.active %} {{ 'boolean.afirmation.1'|trans }} {% else %} {{ 'boolean.afirmation.0'|trans }} {% endif %}</td>
                 <td class="first style2"> {{ entity.lastLogin|date('d-m-Y') }} </td>
-
+                <td class="first style2"> {% if entity.premiumAccessExpiration != null %} Premium {% else %} Regular {% endif %} </td>
                 <td><a href="{{ path('reto_aprender_admin_users_edit',{'id': entity.id, 'type': 'regular'} )}}"><img src="{{ asset('admin/img/edit-icon.gif') }}" width="16" height="16" alt="Editar" /></a></td>
-                <td class="last">
+                <td>
+                    <a href="{{ path('reto_aprender_admin_users_reset_password',{'type': 'regular', 'id': entity.id} )}}" onclick="return confirm('Esta seguro que desea generar un password nuevo para este usuario?');">
+                        <img src="{{ asset('admin/img/password_icon.png') }}" width="16" height="16" alt="Eliminar" />
+                    </a>
+                </td>
+                <td>
                     <a href="{{ path('reto_aprender_admin_users_delete',{'type': 'regular', 'id': entity.id} )}}" onclick="return confirm('Esta seguro que desea eliminarlo?');">
                         <img src="{{ asset('admin/img/hr.gif') }}" width="16" height="16" alt="Eliminar" />
                     </a>
@@ -50,5 +57,7 @@
 {% endblock %}
 
 {% block info %}
-Este m&oacute;dulo permite la edici&oacute;n y administraci&oacute;n de los usuarios regulares del sistema.
+Este m&oacute;dulo permite la edici&oacute;n y administraci&oacute;n de los usuarios regulares del sistema.<br/><br/>
+Si se desea cambiar el password se debe hacer click en el &iacute;cono que corresponde, el sistema generar&aacute; un nuevo password y enviar&aacute; un correo con la notificaci&oacute;n
+al usuario de acuerdo al email registrado.
 {% endblock %}

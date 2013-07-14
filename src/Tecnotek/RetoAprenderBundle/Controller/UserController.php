@@ -357,5 +357,38 @@ class UserController extends Controller
 
         return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => $type)));
     }
+
+    public function resetPasswordAction($type, $id){
+        $logger = $this->get("logger");
+        $em = $this->getDoctrine()->getManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:User")->find( $id );
+        if ( isset($entity) ) {
+            $logger->err("Resetando password de Usuario: El administrador '" . $this->getUser() . "' ha generado un nuevo password para el usuario: " . $entity->getUsername());
+
+            $password = md5(uniqid(rand(), true));
+            $password = substr($password, 0, 8);
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject('RetoAprender - Cuenta de Administrador Creada')
+                ->setFrom("web-contact@retoaprender.com")
+                ->setTo($entity->getEmail())
+                ->setBody($this->renderView('RetoAprenderBundle:emails:passwordResetEmail.txt.twig',
+                    array('user' => $entity, 'password' => $password)),
+                'text/html');
+
+            $this->get('mailer')->send($message);
+
+            $entity->setPassword($entity->getEncryptedPassword($password));
+            $entity->setLastPasswordUpdate(new \DateTime());
+            $em->persist($entity);
+            $em->flush();
+
+            /*$em->remove($entity);
+            $em->flush();*/
+        }
+
+        return $this->redirect($this->generateUrl('reto_aprender_admin_users', array('type' => $type)));
+    }
     /* Users in Admin Actions End */
 }

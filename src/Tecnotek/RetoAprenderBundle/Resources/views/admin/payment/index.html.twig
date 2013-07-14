@@ -1,0 +1,44 @@
+{% extends 'RetoAprenderBundle:admin:layout.html.twig' %}
+
+{% block content %}
+<div id="center-column">
+    <div class="top-bar">
+        <h1>Pagos</h1>
+        <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / Pagos</div>
+    </div><br /><br />
+    <div class="table">
+        <img src="{{ asset('admin/img/bg-th-left.gif')}}" width="8" height="7" alt="" class="left" />
+        <img src="{{ asset('admin/img/bg-th-right.gif')}}" width="7" height="7" alt="" class="right" />
+        <table class="listing" cellpadding="0" cellspacing="0">
+            <tr>
+                <th class="first">Fecha</th>
+                <th>Transacci&oacute;n</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>D&iacute;as Premium</th>
+                <th class="last"></th>
+            </tr>
+            {% for payment in entities %}
+            <tr {% if loop.index % 2 == 0 %}class="bg"{% endif %}>
+                <td class="first style2"> {{ payment.date|date("d/m/Y")  }} </td>
+                <td class="first style2"> {{ payment.transactionId }} </td>
+                <td class="first style2"> {{ payment.user }} </td>
+                <td class="first style2"> {{ payment.user.email }} </td>
+                <td class="first style2"> {{ payment.type }}</td>
+                <td class="last"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="select">
+            <strong>Other Pages: </strong>
+            <select>
+                <option>1</option>
+            </select>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+En esta p&aacute;gina puede revisar los &uacute;ltimos pagos registrados en el sistema.
+{% endblock %}
