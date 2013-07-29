@@ -93,11 +93,6 @@ class User implements AdvancedUserInterface
     private $lastPasswordUpdate;
 
     /**
-     * @ORM\Column(name="premium_access_expiration", type="datetime", nullable = true)
-     */
-    private $premiumAccessExpiration;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
@@ -114,13 +109,19 @@ class User implements AdvancedUserInterface
      */
     private $payments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PremiumAccess", mappedBy="user")
+     */
+    private $premiums;
+
     public function __construct()
     {
         $this->isActive = true;
         //$this->salt = md5(uniqid(null, true));
         $this->salt = "";
-        $this->roles = new ArrayCollection();
-        $this->payments = new ArrayCollection();
+        $this->roles = new \ArrayCollection();
+        $this->payments = new \ArrayCollection();
+        $this->premiums = new \ArrayCollection();
     }
     
     /**
@@ -341,26 +342,6 @@ class User implements AdvancedUserInterface
     }
 
     /**
-     * Set premiumAccessExpiration
-     *
-     * @param date $premiumAccessExpiration
-     */
-    public function setPremiumAccessExpiration($premiumAccessExpiration)
-    {
-        $this->premiumAccessExpiration = $premiumAccessExpiration;
-    }
-
-    /**
-     * Get premiumAccessExpiration
-     *
-     * @return date
-     */
-    public function getPremiumAccessExpiration()
-    {
-        return $this->premiumAccessExpiration;
-    }
-
-    /**
      * @inheritDoc
      */
     public function getAvatar()
@@ -394,6 +375,18 @@ class User implements AdvancedUserInterface
     public function getPayments()
     {
         return $this->payments;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPremiums()
+    {
+        return $this->premiums;
+    }
+
+    public function __sleep(){
+        return array('id', 'username', 'email');
     }
 }
 ?>

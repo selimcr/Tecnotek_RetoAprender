@@ -103,18 +103,22 @@
         <div class="clearer"></div>
     </div>
     <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
-        <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Tipo de Cuenta</div>
+        <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Accesos Premium</div>
     </div>
-    {% if entity.premiumAccessExpiration  %}
-        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
-            <img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"> <span>Premium hasta: {{ entity.premiumAccessExpiration|date("d/m/Y") }} </span>
-        </div>
-        <div class="clear"></div>
+    <!-- -->
+    {% for premium in entity.premiums %}
+    <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+        <img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"> <span>Acceso a nivel <b>{{ premium.level }}</b>
+        hasta: <b>{{ premium.expirationDate|date("d/m/Y") }}</b> </span>
+    </div>
+    <div class="clear"></div>
     {% else %}
-        <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
-            <img src="{{ asset('images/star_regular.png') }}" alt="Usuario Premium" height="25px"> <span>Regular</span>
-        </div>
-    {% endif %}
+    <div style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px;">
+        <img src="{{ asset('images/star_regular.png') }}" alt="Usuario Premium" height="25px"> <span>Regular, sin accesos a niveles.</span>
+    </div>
+    {% endfor %}
+
+    <!-- -->
 
     <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
         <div style="color: #666; font-size: 20px; font-family: arial,sans-serif; line-height: 1.5;">Comprar acceso premium</div>
@@ -122,33 +126,38 @@
 
     <div class="levels-buy">
         <div class="row-header">
-            <div class="title" style="width: 200px;">Materiales de Nivel </div>
-            <div class="title" style="width: 150px;">6 Meses</div>
-            <div class="title" style="width: 155px;">1 A&ntilde;o</div>
+            <div class="title" style="width: 225px;">Materiales de Nivel </div>
+            <div class="title" style="width: 140px;">6 Meses</div>
+            <div class="title" style="width: 140px;">1 A&ntilde;o</div>
             <div class="clearer"></div>
         </div>
-        <div class="row" style="height: 58px; line-height: 58px;">
-            <div class="field" style="width: 200px; text-align: left;">Acceso General</div>
-            <div class="field button" style="width: 150px">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="H7WXYPK67PECW">
-                    <input type="hidden" name="custom" value="{{ entity.id ~ '-180'}}">
-                    <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
-                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                </form>
-            </div>
-            <div class="field button" style="width: 155px">
-                <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="6JF2HEGGU4BXQ">
-                    <input type="hidden" name="custom" value="{{ entity.id ~ '-365'}}">
-                    <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
-                    <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
-                </form>
-            </div>
-            <div class="clearer"></div>
-        </div>
+        {% for topic in topics %}
+            {% for level in topic.levels %}
+                <div class="row" style="height: 58px; line-height: 58px;">
+                    <div class="field" style="width: 225px; text-align: left; font-size: 12px;">{{ level }}</div>
+                    <div class="field button" style="width: 140px">
+                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="H7WXYPK67PECW">
+                            <input type="hidden" name="custom" value="{{ entity.id ~ '-' ~ level.id ~ '-180'}}">
+                            <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                    <div class="field button" style="width: 140px">
+                        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="6JF2HEGGU4BXQ">
+                            <input type="hidden" name="custom" value="{{ entity.id ~ '-' ~ level.id ~ '-365'}}">
+                            <input type="image" src="https://www.sandbox.paypal.com/es_XC/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">
+                            <img alt="" border="0" src="https://www.sandbox.paypal.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                        </form>
+                    </div>
+                    <div class="clearer"></div>
+                </div>
+                <div class="clearer" style="margin-bottom: -15px;"></div>
+            {% endfor %}
+        {% endfor %}
     </div>
 
     <div style="border-bottom: 1px solid #ebebeb; margin-top: 50px;">
@@ -157,16 +166,18 @@
 
     <div class="levels-buy" style="color: #222; font: normal 13px arial,sans-serif; margin-top: 5px; margin-bottom: 25px;">
         <div class="row-header">
-            <div class="title" style="width: 200px;">Fecha </div>
+            <div class="title" style="width: 75px;">Fecha </div>
             <div class="title" style="width: 150px;">Transacci&oacute;n</div>
-            <div class="title" style="width: 155px;">D&iacute;as Premium</div>
+            <div class="title" style="width: 150px;">Nivel</div>
+            <div class="title" style="width: 114px;">D&iacute;as Premium</div>
             <div class="clearer"></div>
         </div>
         {% for payment in entity.payments %}
-        <div class="row" style="height: 26px; line-height: 26px;">
-            <div class="field" style="width: 200px; text-align: left;">{{ payment.date|date("d/m/Y")  }}</div>
+        <div class="row" style="height: 36px; line-height: 18px; vertical-align: middle;">
+            <div class="field" style="width: 75px; text-align: left;">{{ payment.date|date("d/m/Y")  }}</div>
             <div class="field" style="width: 150px">{{ payment.transactionId }}</div>
-            <div class="field" style="width: 155px">{{ payment.type }}</div>
+            <div class="field" style="width: 150px">{{ payment.level }}</div>
+            <div class="field" style="width: 114px">{{ payment.type }}</div>
             <div class="clearer"></div>
         </div>
         {% else %}

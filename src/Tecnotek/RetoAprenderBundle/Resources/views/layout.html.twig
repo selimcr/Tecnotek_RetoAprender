@@ -55,12 +55,6 @@
         <div class="info" style="width: 800px;">
             <div style="float: left; width: 30px;"><img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" alt="User Avatar" height="25px"></div>
             <div style="width: 150px; float: left;">Bienvenido <a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}"><span class="username">{{ app.user.username }}</span></a></div>
-            <div style="float: left; width: 110px;">Tipo de Usuario:</div>
-            {% if app.user.premiumAccessExpiration %}
-            <div style="float: left; width: 65px;"><img src="{{ asset('images/star_premium.png') }}" alt="Usuario Premium" height="25px"></div>
-            {% else %}
-            <div style="float: left; width: 65px;"><img src="{{ asset('images/star_regular.png') }}" alt="Usuario Premium" height="25px"></div>
-            {% endif %}
             <div style="width: 150px; float: left;"><a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}">Ver Mi Cuenta</a></div>
 
             {% if is_granted('ROLE_ADMIN') %}

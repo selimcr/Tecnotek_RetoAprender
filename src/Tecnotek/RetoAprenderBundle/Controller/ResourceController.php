@@ -42,13 +42,12 @@ class ResourceController extends Controller
     public function activityAction($id)
     {
         $user = $this->getUser();
-        $expirationDate = $user->getPremiumAccessExpiration();
-
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
+        $premiumAccess = $em->getRepository("RetoAprenderBundle:PremiumAccess")->findOneBy(
+            array('user' => $user, 'level' => $entity->getUnit()->getLevel()));
         $securityContext = $this->container->get('security.context');
-
-        if( isset($expirationDate) || $securityContext->isGranted('ROLE_ADMIN') ) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository("RetoAprenderBundle:Activity")->find($id);
+        if(isset($premiumAccess)  || $securityContext->isGranted('ROLE_ADMIN')){//Exists register
             $slides_name = "";
             $total_slides = 0;
             if($entity->getType() == 2){
@@ -59,8 +58,6 @@ class ResourceController extends Controller
         } else {
             return $this->redirect($this->generateUrl('reto_aprender_user',
                 array()));
-            //return $this->render('RetoAprenderBundle:Payment:payment.html.twig', array('activity'=> ""));
         }
-
     }
 }

@@ -10,11 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  *
- * @ORM\Table(name="tek_payments")
+ * @ORM\Table(name="tek_premium_access")
  * @ORM\Entity()
- * @UniqueEntity("transaccionId")
  */
-class Payment{
+class PremiumAccess{
 
     /**
      * @ORM\Column(type="integer")
@@ -24,22 +23,9 @@ class Payment{
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\MinLength(limit = 3)
-     * @Assert\MaxLength(limit = 255)
+     * @ORM\Column(name="expiration_date", type="datetime", nullable = true)
      */
-    private $transactionId;
-
-    /**
-     * @ORM\Column(type="integer", nullable = true)
-     */
-    private $type;
-
-    /**
-     * @ORM\Column(name="date", type="datetime", nullable = true)
-     */
-    private $date;
+    private $expirationDate;
 
     /**
      * @ManyToOne(targetEntity="User")
@@ -55,15 +41,12 @@ class Payment{
 
     public function __construct()
     {
-        $this->content = "";
-        $this->date = new \DateTime();
     }
 
     public function __toString()
     {
-        return $this->transactionId;
+        return "";
     }
-
 
     /**
      * Get id
@@ -116,62 +99,22 @@ class Payment{
     }
 
     /**
-     * Set date
+     * Set expirationDate
      *
-     * @param date $date
+     * @param date $expirationDate
      */
-    public function setDate($date)
+    public function setExpirationDate($expirationDate)
     {
-        $this->date = $date;
+        $this->expirationDate = $expirationDate;
     }
 
     /**
-     * Get date
+     * Get expirationDate
      *
      * @return date
      */
-    public function getDate()
+    public function getExpirationDate()
     {
-        return $this->date;
-    }
-
-    /**
-     * Set transactionId
-     *
-     * @param string $transactionId
-     */
-    public function setTransactionId($transactionId)
-    {
-        $this->transactionId = $transactionId;
-    }
-
-    /**
-     * Get transactionId
-     *
-     * @return string 
-     */
-    public function getTransactionId()
-    {
-        return $this->transactionId;
-    }
-
-    /**
-     * Get type
-     *
-     * @return integer
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set type
-     *
-     * @param type $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
+        return $this->expirationDate;
     }
 }

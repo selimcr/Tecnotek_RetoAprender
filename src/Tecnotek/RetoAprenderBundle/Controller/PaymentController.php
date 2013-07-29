@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Tecnotek\RetoAprenderBundle\Entity\Payment;
+use Tecnotek\RetoAprenderBundle\Entity\PremiumAccess;
 use Tecnotek\RetoAprenderBundle\Entity\User;
 
 class PaymentController extends Controller
@@ -38,8 +39,9 @@ class PaymentController extends Controller
 
         $user  = $this->getUser();
         $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $user);
-
-        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user, 'form'=> $form->createView(),
+        $em = $this->getDoctrine()->getManager();
+        $topics = $em->getRepository("RetoAprenderBundle:Topic")->findAll();
+        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $user,'topics'=>$topics,'form'=> $form->createView(),
             'showAccountBox' => false, "infoMessage" => "Si su pago no es procesado de inmediato el mismo lo sera en unos pocos minutos."));
     }
 
@@ -68,26 +70,50 @@ class PaymentController extends Controller
                 $em = $this->getDoctrine()->getManager();
 
                 //Check if the transaction is already register
-                $transaction = $em->getRepository("RetoAprenderBundle:Payment")->findOneByTransaccionId($transaccionId);
+                $transaction = $em->getRepository("RetoAprenderBundle:Payment")->findOneByTransactionId($transaccionId);
 
                 if(isset($transaction)){//Do nothing; already process it.
                 } else {
                     $custom = $request->get('custom');
-                    /**************************/ //$custom = "4-12";
+                    /**************************/ //$custom = "4-2-12";
 
                     if(isset($custom) && $custom!=""){
                         $words = explode("-", $custom);
                         $payment = new Payment();
                         $payment->setDate(new \DateTime());
                         $payment->setTransactionId($transaccionId);
-                        $payment->setType($words[1]);
+                        $payment->setType($words[2]);
 
                         $user = $em->getRepository("RetoAprenderBundle:User")->find($words[0]);
                         $payment->setUser($user);
-
+                        $level = $em->getRepository("RetoAprenderBundle:Level")->find($words[1]);
+                        $payment->setLevel($level);
                         $em->persist($payment);
 
-                        $expirationDate = $user->getPremiumAccessExpiration();
+                        $premiumAccess = $em->getRepository("RetoAprenderBundle:PremiumAccess")->findOneBy(array('user' => $user, 'level' => $level));
+
+                        if(isset($premiumAccess)){//Exists register
+
+                            $expirationDate = $premiumAccess->getExpirationDate();
+                            $newDate = $expirationDate->add(new \DateInterval('P' . $words[2] . 'D'));
+                            $d = new \DateTime($newDate->format('Y-m-d'));
+                            $premiumAccess->setExpirationDate($d);
+
+                        } else {
+                            $workDate = new \DateTime();
+                            $newDate = $workDate->add(new \DateInterval('P' . $words[2] . 'D'));
+                            $d = new \DateTime($newDate->format('Y-m-d'));
+
+                            $premiumAccess = new PremiumAccess();
+                            $premiumAccess->setLevel($payment->getLevel());
+                            $premiumAccess->setUser($user);
+                            $premiumAccess->setExpirationDate($d);
+                        }
+
+                        $em->persist($premiumAccess);
+                        $em->flush();
+
+                        /*$expirationDate = $user->getPremiumAccessExpiration();
                         $workDate = new \DateTime();
                         if(isset($expirationDate)) {//Date exists
                             $workDate = $expirationDate;
@@ -101,7 +127,7 @@ class PaymentController extends Controller
                         $d = new \DateTime($newDate->format('Y-m-d'));
                         $user->setPremiumAccessExpiration($d);
                         $em->persist($user);
-                        $em->flush();
+                        $em->flush();*/
                     }
                 }
             } else {

@@ -16,10 +16,10 @@ class UserController extends Controller
 {
     public function indexAction()
     {
-        $entity  = $this->getUser();
-        $form    = $this->createForm(new \Tecnotek\RetoAprenderBundle\Form\UserFormType(), $entity);
-
-        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $entity));
+        $em = $this->getDoctrine()->getManager();
+        $topics = $em->getRepository("RetoAprenderBundle:Topic")->findAll();
+        $entity = $em->getRepository("RetoAprenderBundle:User")->find($this->getUser()->getId());
+        return $this->render('RetoAprenderBundle:user:index.html.twig', array('entity' => $entity, 'topics' => $topics));
     }
 
     public function registerAction(){
