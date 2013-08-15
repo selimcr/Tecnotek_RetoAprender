@@ -10,9 +10,16 @@ use Tecnotek\RetoAprenderBundle\Entity\Activity;
 use Tecnotek\RetoAprenderBundle\Entity\Level;
 use Tecnotek\RetoAprenderBundle\Entity\Unit;
 
+use Tecnotek\RetoAprenderBundle\Entity\Answer;
+use Tecnotek\RetoAprenderBundle\Entity\Test;
+use Tecnotek\RetoAprenderBundle\Entity\Question;
+
 use Tecnotek\RetoAprenderBundle\Form\ContactType;
 use Tecnotek\RetoAprenderBundle\Form\LevelFormType;
 use Tecnotek\RetoAprenderBundle\Form\UnitFormType;
+use Tecnotek\RetoAprenderBundle\Form\AnswerFormType;
+use Tecnotek\RetoAprenderBundle\Form\QuestionFormType;
+use Tecnotek\RetoAprenderBundle\Form\TestFormType;
 use Tecnotek\RetoAprenderBundle\Form\ActivityFormType;
 
 class AdminController extends Controller
@@ -317,4 +324,250 @@ class AdminController extends Controller
     {
         return $this->render('RetoAprenderBundle::contact.html.twig');
     }*/
+
+    /* TEST */
+    public function testListAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $em->getRepository("RetoAprenderBundle:test")->findAll();
+        return $this->render('RetoAprenderBundle:admin:test/list.html.twig', array('entities'=> $entities));
+    }
+
+    public function testNewAction(){
+        $entity = new Test();
+        $form   = $this->createForm(new TestFormType(), $entity);
+        return $this->render('RetoAprenderBundle:admin:test/new.html.twig', array('entity' => $entity,
+            'form'   => $form->createView()));
+    }
+
+    public function testSaveAction(){
+        $entity  = new Test();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new TestFormType(), $entity);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($entity);
+            $em->flush();
+            return $this->redirect($this->generateUrl('reto_aprender_admin_test',
+                array('id' => $entity->getId())));
+        } else {
+            return $this->render('RetoAprenderBundle:admin:test/new.html.twig', array(
+                'entity' => $entity,
+                'form'   => $form->createView()
+            ));
+        }
+    }
+
+    public function testEditAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Test")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form   = $this->createForm(new TestFormType(), $entity);
+            return $this->render('RetoAprenderBundle:admin:test/edit.html.twig', array('entity' => $entity,
+                'form'   => $form->createView()));
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_test'));
+        }
+    }
+
+    public function testUpdateAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Test")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form    = $this->createForm(new TestFormType(), $entity);
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $em->persist($entity);
+                $em->flush();
+                return $this->redirect($this->generateUrl('reto_aprender_admin_test'));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:test/edit.html.twig', array(
+                    'entity' => $entity, 'form'   => $form->createView()
+                ));
+            }
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_level'));
+        }
+    }
+
+    public function testDeleteAction($id){
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Test")->find( $id );
+        if ( isset($entity) ) {
+            $em->remove($entity);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('reto_aprender_admin_test'));
+    }
+    /* END TEST */
+
+
+    /* QUESTION */
+    public function questionListAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $em->getRepository("RetoAprenderBundle:Question")->findAll();
+        return $this->render('RetoAprenderBundle:admin:question/list.html.twig', array('entities'=> $entities));
+    }
+
+    public function questionNewAction(){
+        $entity = new Question();
+        $form   = $this->createForm(new QuestionFormType(), $entity);
+        return $this->render('RetoAprenderBundle:admin:question/new.html.twig', array('entity' => $entity,
+            'form'   => $form->createView()));
+    }
+
+    public function questionSaveAction(){
+        $entity  = new Question();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new QuestionFormType(), $entity);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($entity);
+            $em->flush();
+            return $this->redirect($this->generateUrl('reto_aprender_admin_question',
+                array('id' => $entity->getId())));
+        } else {
+            return $this->render('RetoAprenderBundle:admin:question/new.html.twig', array(
+                'entity' => $entity,
+                'form'   => $form->createView()
+            ));
+        }
+    }
+
+    public function questionEditAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Question")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form   = $this->createForm(new QuestionFormType(), $entity);
+            return $this->render('RetoAprenderBundle:admin:question/edit.html.twig', array('entity' => $entity,
+                'form'   => $form->createView()));
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_question'));
+        }
+    }
+
+    public function questionUpdateAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Question")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form    = $this->createForm(new QuestionFormType(), $entity);
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $em->persist($entity);
+                $em->flush();
+                return $this->redirect($this->generateUrl('reto_aprender_admin_question'));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:question/edit.html.twig', array(
+                    'entity' => $entity, 'form'   => $form->createView()
+                ));
+            }
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_question'));
+        }
+    }
+
+    public function QuestionDeleteAction($id){
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Question")->find( $id );
+        if ( isset($entity) ) {
+            $em->remove($entity);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('reto_aprender_admin_question'));
+    }
+    /* END QUESTION */
+
+
+    /* ANSWER */
+    public function answerListAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entities = $em->getRepository("RetoAprenderBundle:Answer")->findAll();
+        return $this->render('RetoAprenderBundle:admin:answer/list.html.twig', array('entities'=> $entities));
+    }
+
+    public function AnswerNewAction(){
+        $entity = new Answer();
+        $form   = $this->createForm(new AnswerFormType(), $entity);
+        return $this->render('RetoAprenderBundle:admin:answer/new.html.twig', array('entity' => $entity,
+            'form'   => $form->createView()));
+    }
+
+    public function answerSaveAction(){
+        $entity  = new Answer();
+        $request = $this->getRequest();
+        $form    = $this->createForm(new AnswerFormType(), $entity);
+        $form->bindRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($entity);
+            $em->flush();
+            return $this->redirect($this->generateUrl('reto_aprender_admin_answer',
+                array('id' => $entity->getId())));
+        } else {
+            return $this->render('RetoAprenderBundle:admin:answer/new.html.twig', array(
+                'entity' => $entity,
+                'form'   => $form->createView()
+            ));
+        }
+    }
+
+    public function answerEditAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Answer")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form   = $this->createForm(new AnswerFormType(), $entity);
+            return $this->render('RetoAprenderBundle:admin:answer/edit.html.twig', array('entity' => $entity,
+                'form'   => $form->createView()));
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_answer'));
+        }
+    }
+
+    public function answerUpdateAction(){
+        $em = $this->getDoctrine()->getEntityManager();
+        $request = $this->getRequest();
+        $entity = $em->getRepository("RetoAprenderBundle:Answer")->find($request->get('id'));
+        if ( isset($entity) ) {
+            $form    = $this->createForm(new AnswerFormType(), $entity);
+            $form->bindRequest($request);
+
+            if ($form->isValid()) {
+                $em->persist($entity);
+                $em->flush();
+                return $this->redirect($this->generateUrl('reto_aprender_admin_answer'));
+            } else {
+                return $this->render('RetoAprenderBundle:admin:answer/edit.html.twig', array(
+                    'entity' => $entity, 'form'   => $form->createView()
+                ));
+            }
+        } else {
+            return $this->redirect($this->generateUrl('reto_aprender_admin_answer'));
+        }
+    }
+
+    public function answerDeleteAction($id){
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:answer")->find( $id );
+        if ( isset($entity) ) {
+            $em->remove($entity);
+            $em->flush();
+        }
+        return $this->redirect($this->generateUrl('reto_aprender_admin_answer'));
+    }
+    /* END ANSWER */
+
 }

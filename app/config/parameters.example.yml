@@ -1,0 +1,22 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: '3306'
+    database_name: reto
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_auth_mode: login
+    mailer_port: 2525
+    mailer_host: mail.retoaprender.com
+    mailer_user: web-contact@retoaprender.com
+    mailer_password: r3t04pr3nd3r
+    locale: es
+    secret: 3e551a721eab3d69c4868a15f4f4200c3378296f
+    
+    environment: Development
+    loggly_key: 1b6c8c7f-85b9-44da-9b1a-f19c5986cd30
+    simulation.games.api: http://ci.local/student/teams/webapi/
+    simulation.games.url: http://ci.local/student/teams/
+    reports_server: http://ci.local:8080/
+    nodejsqueue: http://ci.local:3327

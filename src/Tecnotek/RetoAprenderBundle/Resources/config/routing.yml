@@ -227,3 +227,77 @@ reto_aprender_admin_users_reset_password:
 reto_aprender_admin_payments:
     pattern:  /admin/payments/
     defaults: { _controller: RetoAprenderBundle:Payment:adminListPayments }
+
+#Test - Question - Answer
+
+reto_aprender_admin_test:
+    pattern:  /admin/test/
+    defaults: { _controller: RetoAprenderBundle:Admin:testList }
+
+reto_aprender_admin_test_new:
+    pattern:  /admin/test/new
+    defaults: { _controller: RetoAprenderBundle:Admin:testNew }
+
+reto_aprender_admin_test_save:
+    pattern:  /admin/test/save
+    defaults: { _controller: RetoAprenderBundle:Admin:testSave }
+
+reto_aprender_admin_test_edit:
+    pattern:  /admin/test/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:testEdit }
+
+reto_aprender_admin_test_update:
+    pattern:  /admin/test/update
+    defaults: { _controller: RetoAprenderBundle:Admin:testUpdate }
+
+reto_aprender_admin_test_delete:
+    pattern:  /admin/test/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:testDelete }
+
+reto_aprender_admin_question:
+    pattern:  /admin/question/
+    defaults: { _controller: RetoAprenderBundle:Admin:questionList }
+
+reto_aprender_admin_question_new:
+    pattern:  /admin/question/new
+    defaults: { _controller: RetoAprenderBundle:Admin:questionNew }
+
+reto_aprender_admin_question_save:
+    pattern:  /admin/question/save
+    defaults: { _controller: RetoAprenderBundle:Admin:questionSave }
+
+reto_aprender_admin_question_edit:
+    pattern:  /admin/question/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:questionEdit }
+
+reto_aprender_admin_question_update:
+    pattern:  /admin/question/update
+    defaults: { _controller: RetoAprenderBundle:Admin:questionUpdate }
+
+reto_aprender_admin_question_delete:
+    pattern:  /admin/question/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:questionDelete }
+
+reto_aprender_admin_answer:
+    pattern:  /admin/answer/
+    defaults: { _controller: RetoAprenderBundle:Admin:answerList }
+
+reto_aprender_admin_answer_new:
+    pattern:  /admin/answer/new
+    defaults: { _controller: RetoAprenderBundle:Admin:answerNew }
+
+reto_aprender_admin_answer_save:
+    pattern:  /admin/answer/save
+    defaults: { _controller: RetoAprenderBundle:Admin:answerSave }
+
+reto_aprender_admin_answer_edit:
+    pattern:  /admin/answer/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:answerEdit }
+
+reto_aprender_admin_answer_update:
+    pattern:  /admin/answer/update
+    defaults: { _controller: RetoAprenderBundle:Admin:answerUpdate }
+
+reto_aprender_admin_answer_delete:
+    pattern:  /admin/answer/delete/{id}
+    defaults: { _controller: RetoAprenderBundle:Admin:answerDelete }
