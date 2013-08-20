@@ -36,9 +36,8 @@ class Answer
      */
     private $type;
 
-
     /**
-     * @ManyToOne(targetEntity="Question", inversedBy="answers", cascade={"all"})
+     * @ManyToOne(targetEntity="Question", inversedBy="options", cascade={"all"})
      * @JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $question;

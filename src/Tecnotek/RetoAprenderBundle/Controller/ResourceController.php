@@ -52,9 +52,20 @@ class ResourceController extends Controller
             $total_slides = 0;
             if($entity->getType() == 2){
                 list($slides_name, $total_slides) = explode(",", $entity->getIncludeText(), 2);
+            } else {
+                if($entity->getType() == 3){//It's a Test, find the related test of the Unit
+                    $test = $em->getRepository("RetoAprenderBundle:Test")->findOneBy(
+                        array('unit' => $entity->getUnit()));
+
+                    $questions = $em->getRepository("RetoAprenderBundle:Question")->findBy(
+                        array('test' => $test));
+                    shuffle($questions);
+                    $questionsSlice = array_slice($questions, 0, 10);
+                }
             }
             return $this->render('RetoAprenderBundle:resources:activity.html.twig', array(
-                'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides, "menuSmall" => true));
+                'activity'=> $entity, 'slides_name' => $slides_name, 'slides_total' => $total_slides, "menuSmall" => true,
+                'test' => $test, 'questions' => $questionsSlice));
         } else {
             return $this->redirect($this->generateUrl('reto_aprender_user',
                 array()));

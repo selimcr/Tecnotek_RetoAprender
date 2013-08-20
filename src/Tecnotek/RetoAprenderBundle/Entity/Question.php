@@ -31,6 +31,10 @@ class Question
      */
     private $questionLabel;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable = true)
+     */
+    private $explanation;
 
     /**
      * @ORM\Column(type="integer", nullable = true)
@@ -48,6 +52,14 @@ class Question
      * @JoinColumn(name="test_id", referencedColumnName="id")
      */
     private $test;
+
+    /**
+     * @var Answer
+     *
+     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"all"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $options;
 
     public function __construct()
     {
@@ -90,6 +102,25 @@ class Question
         return $this->questionLabel;
     }
 
+    /**
+     * Set explanation
+     *
+     * @param string $explanation
+     */
+    public function setExplanation($explanation)
+    {
+        $this->explanation = $explanation;
+    }
+
+    /**
+     * Get explanation
+     *
+     * @return string
+     */
+    public function getExplanation()
+    {
+        return $this->explanation;
+    }
 
     /**
      * Get type
@@ -149,5 +180,9 @@ class Question
     public function getTest()
     {
         return $this->test;
+    }
+
+    public function getOptions(){
+        return $this->options;
     }
 }

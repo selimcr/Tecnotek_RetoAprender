@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="tek_tests")
  * @ORM\Entity()
- * @UniqueEntity("name")
+ * @ORM\Entity(repositoryClass="Tecnotek\RetoAprenderBundle\Repository\TestRepository")
  */
 class Test
 {
@@ -47,6 +47,14 @@ class Test
      * @JoinColumn(name="unit_id", referencedColumnName="id")
      */
     private $unit;
+
+    /**
+     * @var Question
+     *
+     * @ORM\OneToMany(targetEntity="Question", mappedBy="test", cascade={"all"})
+     * @ORM\OrderBy({"id" = "ASC"})
+     */
+    private $questions;
 
     public function __construct()
     {
@@ -147,5 +155,9 @@ class Test
     public function getUnit()
     {
         return $this->unit;
+    }
+
+    public function getQuestions(){
+        return $this->questions;
     }
 }

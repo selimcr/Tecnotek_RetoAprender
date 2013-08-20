@@ -1,6 +1,11 @@
 {% extends 'RetoAprenderBundle::layout.html.twig' %}
 
+{% block extracss %}
+<link rel="stylesheet" href="{{ asset('css/jquiz.css') }}" type="text/css" media="screen"/>
+{% endblock %}
+
 {% block extrajs %}
+<script type="text/javascript" src="{{ asset('js/jquiz.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/resources_activities.js') }}"></script>
 <script type="text/javascript">
     Tecnotek.module = "showActivity";
@@ -23,6 +28,26 @@
                 {{ include_raw("presentation/" ~ slides_name)|raw }}
             {% else %}
                 {% if activity.type == 3 %}
+                    {% if test is defined %}
+                        <div id="quizContainer">
+                        {% for question in questions %}
+                            <div class="question unaswered">
+                                <label>{{ question }}</label>
+                                <div class="options">
+                                    {% for option in question.options %}
+                                    <div class="option"><input class="optionInput{% if option.type == 2%} correct{% endif %}" type="radio" name="q_{{ question.id }}" value="{{ option }}"> {{ option }}<br></div>
+                                    {% endfor %}
+                                </div>
+                                <div class="explanation hidden">
+                                    <p>{{ question.explanation }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                        <div id="quizremarks">
+                            <p id="quiztotal">&nbsp;</p>
+                        </div>
+                    {% endif %}
                 {% else %}
                 {% endif %}
             {% endif %}

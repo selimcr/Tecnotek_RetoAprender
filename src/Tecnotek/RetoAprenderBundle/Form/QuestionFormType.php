@@ -11,6 +11,7 @@ class QuestionFormType extends AbstractType
     {
         $builder->
             add('questionLabel', 'text', array('trim' => true))->
+            add('explanation', 'text', array('trim' => true))->
             add('urlImage', 'text', array('trim' => true, 'required' => false))->
             add('type', 'choice', array(
             'choices'   => array('1' => 'Simple', '2' => 'Otro'),

@@ -24,9 +24,14 @@
                         <th class="full" colspan="3">Nueva Pregunta</th>
                     </tr>
                     <tr>
-                        <td class="first"><strong>Description</strong></td>
+                        <td class="first"><strong>Descripcion</strong></td>
                         <td><textarea id="tecnotek_retoaprender_questionformtype_questionLabel" name="tecnotek_retoaprender_questionformtype[questionLabel]" cols="50">{{ entity.questionLabel }}</textarea></td>
-                        <td class="last">{{ form_errors(form.description) }}</td>
+                        <td class="last">{{ form_errors(form.questionLabel) }}</td>
+                    </tr>
+                    <tr>
+                        <td class="first"><strong>Explicacion</strong></td>
+                        <td><textarea id="tecnotek_retoaprender_questionformtype_explanation" name="tecnotek_retoaprender_questionformtype[explanation]" cols="50">{{ entity.explanation }}</textarea></td>
+                        <td class="last">{{ form_errors(form.explanation) }}</td>
                     </tr>
                     <tr class="bg">
                         <td class="first"><strong>Contenido</strong></td>
