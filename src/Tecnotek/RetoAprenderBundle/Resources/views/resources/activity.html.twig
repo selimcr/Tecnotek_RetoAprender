@@ -33,6 +33,9 @@
                         {% for question in questions %}
                             <div class="question unaswered">
                                 <label>{{ question }}</label>
+								{% if question.urlImage != null %}
+									<div style="width: 100%; text-align: center; margin-top: 5px; margin-bottom: 5px;"><img src="{{ asset('images/test_images/' ~ question.urlImage) }}" /> </div>
+								{% endif %}
                                 <div class="options">
                                     {% for option in question.options %}
                                     <div class="option"><input class="optionInput{% if option.type == 2%} correct{% endif %}" type="radio" name="q_{{ question.id }}" value="{{ option }}"> {{ option }}<br></div>
