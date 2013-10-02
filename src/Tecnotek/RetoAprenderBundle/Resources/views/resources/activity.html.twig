@@ -1,7 +1,8 @@
 {% extends 'RetoAprenderBundle::layout.html.twig' %}
 
 {% block extracss %}
-<link rel="stylesheet" href="{{ asset('css/jquiz.css') }}" type="text/css" media="screen"/>
+<link rel="stylesheet" href="{{ asset('css/jquiz.css') }}" type="text/css" media="screen"
+      xmlns="http://www.w3.org/1999/html"/>
 {% endblock %}
 
 {% block extrajs %}
@@ -15,6 +16,7 @@
 
 {% block content %}
 <div class="mainContainer">
+    <a href="{{ path('reto_aprender_unit',{'id': activity.unit.id} )}}">Regresar a lista de actividades del nivel</a>
     <h1>{{ activity.name }}</h1>
     <div class="child cf">
         <p>{{ activity.description }}</p><br/>
@@ -31,11 +33,13 @@
                     {% if test is defined %}
                         <div id="quizContainer">
                         {% for question in questions %}
-                            <div class="question unaswered">
+                            <div style="height: 250px" class="question unaswered">
                                 <label>{{ question }}</label>
 								{% if question.urlImage != null %}
-									<div style="width: 100%; text-align: center; margin-top: 5px; margin-bottom: 5px;"><img src="{{ asset('images/test_images/' ~ question.urlImage) }}" /> </div>
-								{% endif %}
+									<div style="width: 100%; text-align: center; margin-top: 5px; margin-bottom: 5px;"><img height="125" src="{{ asset('images/test_images/' ~ question.urlImage) }}" /> </div>
+                                {% else %}
+                                    <div style="width: 100%; text-align: center; margin-top: 5px; margin-bottom: 5px;"> </br></br> </div>
+                                {% endif %}
                                 <div class="options">
                                     {% for option in question.options %}
                                     <div class="option"><input class="optionInput{% if option.type == 2%} correct{% endif %}" type="radio" name="q_{{ question.id }}" value="{{ option }}"> {{ option }}<br></div>
@@ -49,7 +53,13 @@
                         </div>
                         <div id="quizremarks">
                             <p id="quiztotal">&nbsp;</p>
+                            <p hidden id="quiztotalOpciones">
+                                </br>
+                                <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}">Volver a intentar la autoevaluación</a>
+                                | <a href="{{ path('reto_aprender_unit',{'id': activity.unit.id} )}}">Regresar a lista de actividades del nivel</a>
+                            </p>
                         </div>
+
                     {% endif %}
                 {% else %}
                 {% endif %}

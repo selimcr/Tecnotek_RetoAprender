@@ -41,6 +41,7 @@ $(document).ready(function() {
 			if ($('div.answered').length == howmanyquestions) {
 				$('#quizremarks').fadeIn('slow');
 				$('#quiztotal').html('Obtuviste '+count+' de '+howmanyquestions+' en esta oportunidad.');
+                $('#quiztotalOpciones').show();
 			}
 		}
 	});
