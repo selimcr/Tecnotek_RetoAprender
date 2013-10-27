@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  *
- * @ORM\Table(name="tek_news")
+ * @ORM\Table(name="tek_info")
  * @ORM\Entity()
  * @UniqueEntity("title")
  */
@@ -57,7 +57,7 @@ class Info{
         $this->enabled = false;
     }
 
-    public function __toString()
+    public function _toString()
     {
         return $this->title;
     }
