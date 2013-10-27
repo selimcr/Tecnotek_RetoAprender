@@ -194,6 +194,15 @@ reto_aprender_admin_news_delete:
     pattern:  /admin/news/delete/{id}
     defaults: { _controller: RetoAprenderBundle:News:newsDelete }
 
+# INFO
+reto_aprender_admin_info_edit:
+    pattern:  /admin/info/edit/{id}
+    defaults: { _controller: RetoAprenderBundle:Info:infoEdit }
+
+reto_aprender_admin_news_update:
+    pattern:  /admin/info/update
+    defaults: { _controller: RetoAprenderBundle:Info:infoUpdate }
+
 # USERS
 reto_aprender_admin_users:
     pattern:  /admin/users/{type}
