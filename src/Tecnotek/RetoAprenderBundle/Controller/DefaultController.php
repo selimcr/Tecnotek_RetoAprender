@@ -13,8 +13,10 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getEntityManager();
+        $entity = $em->getRepository("RetoAprenderBundle:Info")->find(1);
         $this->get('google.analytics')->setCustomPageView('/homepage');
-        return $this->render('RetoAprenderBundle::index.html.twig');
+        return $this->render('RetoAprenderBundle::index.html.twig', array('entity' => $entity));
     }
 
     public function aboutAction()

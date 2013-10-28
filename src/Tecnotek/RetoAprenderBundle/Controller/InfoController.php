@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-use Tecnotek\RetoAprenderBundle\Entity\News;
+use Tecnotek\RetoAprenderBundle\Entity\Info;
 
-use Tecnotek\RetoAprenderBundle\Form\NewsFormType;
+use Tecnotek\RetoAprenderBundle\Form\InfoFormType;
 
 class InfoController extends Controller
 {
@@ -16,7 +16,7 @@ class InfoController extends Controller
     public function infoEditAction(){
         $em = $this->getDoctrine()->getEntityManager();
         $request = $this->getRequest();
-        $entity = $em->getRepository("RetoAprenderBundle:Info")->find($request->get('id'));
+        $entity = $em->getRepository("RetoAprenderBundle:Info")->find(1);
         if ( isset($entity) ) {
             $form   = $this->createForm(new InfoFormType(), $entity);
             return $this->render('RetoAprenderBundle:admin:info/edit.html.twig', array('entity' => $entity,
@@ -44,9 +44,11 @@ class InfoController extends Controller
                     'entity' => $entity, 'form'   => $form->createView()
                 ));
             }
+
         } else {
             return $this->redirect($this->generateUrl('reto_aprender_admin_info'));
         }
+        return $this->redirect($this->generateUrl('reto_aprender_admin_info'));
     }
 
 

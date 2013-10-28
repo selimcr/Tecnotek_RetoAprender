@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="tek_info")
  * @ORM\Entity()
- * @UniqueEntity("title")
  */
 class Info{
 
@@ -26,17 +25,17 @@ class Info{
     /**
      * @ORM\Column(type="text", nullable = true)
      */
-    private $left;
+    private $leftSide;
 
     /**
      * @ORM\Column(type="text", nullable = true)
      */
-    private $center;
+    private $centerSide;
 
     /**
      * @ORM\Column(type="text", nullable = true)
      */
-    private $right;
+    private $rightSide;
 
     /**
      * @ManyToOne(targetEntity="User", inversedBy="info")
@@ -53,8 +52,6 @@ class Info{
     public function __construct()
     {
         $this->content = "";
-        $this->date = new \DateTime();
-        $this->enabled = false;
     }
 
     public function _toString()
@@ -115,64 +112,64 @@ class Info{
 
 
     /**
-     * Set left
+     * Set leftSide
      *
-     * @param string $left
+     * @param string $leftSide
      */
-    public function setLeft($left)
+    public function setleftSide($leftSide)
     {
-        $this->left = $left;
+        $this->leftSide = $leftSide;
     }
 
     /**
-     * Get left
+     * Get leftSide
      *
      * @return string
      */
-    public function getLeft()
+    public function getleftSide()
     {
-        return $this->left;
+        return $this->leftSide;
     }
 
 
     /**
-     * Set center
+     * Set centerSide
      *
-     * @param string $center
+     * @param string $centerSide
      */
-    public function setCenter($center)
+    public function setcenterSide($centerSide)
     {
-        $this->center = $center;
+        $this->centerSide = $centerSide;
     }
 
     /**
-     * Get center
-     *
-     * @return string
-     */
-    public function getCenter()
-    {
-        return $this->center;
-    }
-
-
-    /**
-     * Set right
-     *
-     * @param string $right
-     */
-    public function setRight($right)
-    {
-        $this->right = $right;
-    }
-
-    /**
-     * Get right
+     * Get centerSide
      *
      * @return string
      */
-    public function getRight()
+    public function getcenterSide()
     {
-        return $this->right;
+        return $this->centerSide;
+    }
+
+
+    /**
+     * Set rightSide
+     *
+     * @param string $rightSide
+     */
+    public function setrightSide($rightSide)
+    {
+        $this->rightSide = $rightSide;
+    }
+
+    /**
+     * Get rightSide
+     *
+     * @return string
+     */
+    public function getrightSide()
+    {
+        return $this->rightSide;
     }
 }

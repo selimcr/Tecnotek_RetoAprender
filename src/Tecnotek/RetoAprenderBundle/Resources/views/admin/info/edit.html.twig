@@ -16,7 +16,7 @@
 {% block content %}
     <div id="center-column">
         <div class="top-bar">
-            <h1>Noticias</h1>
+            <h1>Informacion Inicial</h1>
             <div class="breadcrumbs"><a href="{{ path('reto_aprender_admin') }}">Home</a> / <a href="{{ path('reto_aprender_admin_info') }}">Informacion Inicial</a></div>
         </div><br /><br />
 
@@ -24,7 +24,7 @@
             <img src="{{ asset("admin/img/bg-th-left.gif") }}" width="8" height="7" alt="" class="left" />
             <img src="{{ asset('admin/img/bg-th-right.gif') }}" width="7" height="7" alt="" class="right" />
 
-            <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_news_update') }}" method="post" {{ form_enctype(form) }}>
+            <form class="customForm" id="createForm" action="{{ path('reto_aprender_admin_info_update') }}" method="post" {{ form_enctype(form) }}>
                 <input type="hidden" id="id" name="id" value="{{ entity.id }}">
 
                 {{ form_errors(form) }}
@@ -36,26 +36,26 @@
                         <th class="full" colspan="3">Editar Informacion</th>
                     </tr>
                     <tr>
-                        <td class="first"  colspan="3"><strong>Contenido {{ form_errors(form.content) }}</strong></td>
+                        <td class="first"  colspan="3"><strong>Contenido</strong></td>
                     </tr>
                     <tr>
                         <td class="first" colspan="3">
-                            <textarea id="tecnotek_retoaprender_infoformtype_left" name="tecnotek_retoaprender_newsformtype[left]" rows="20" style="width: 600px;">
-                                {{ entity.content }}
+                            <textarea id="tecnotek_retoaprender_infoformtype_leftSide" name="tecnotek_retoaprender_infoformtype[leftSide]" rows="20" style="width: 600px;">
+                                {{ entity.leftSide }}
                             </textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="first" colspan="3">
-                            <textarea id="tecnotek_retoaprender_infoformtype_center" name="tecnotek_retoaprender_newsformtype[center]" rows="20" style="width: 600px;">
-                                {{ entity.content }}
+                            <textarea id="tecnotek_retoaprender_infoformtype_centerSide" name="tecnotek_retoaprender_infoformtype[centerSide]" rows="20" style="width: 600px;">
+                                {{ entity.centerSide }}
                             </textarea>
                         </td>
                     </tr>
                     <tr>
                         <td class="first" colspan="3">
-                            <textarea id="tecnotek_retoaprender_infoformtype_right" name="tecnotek_retoaprender_newsformtype[right]" rows="20" style="width: 600px;">
-                                {{ entity.content }}
+                            <textarea id="tecnotek_retoaprender_infoformtype_rightSide" name="tecnotek_retoaprender_infoformtype[rightSide]" rows="20" style="width: 600px;">
+                                {{ entity.rightSide }}
                             </textarea>
                         </td>
                     </tr>
