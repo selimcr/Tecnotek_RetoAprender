@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="tek_questions")
  * @ORM\Entity()
- * @UniqueEntity("name")
  */
 class Question
 {
@@ -48,7 +47,7 @@ class Question
     private $urlImage;
 
     /**
-     * @ManyToOne(targetEntity="Test", inversedBy="questions", cascade={"all"})
+     * @ManyToOne(targetEntity="Test", inversedBy="test")
      * @JoinColumn(name="test_id", referencedColumnName="id")
      */
     private $test;

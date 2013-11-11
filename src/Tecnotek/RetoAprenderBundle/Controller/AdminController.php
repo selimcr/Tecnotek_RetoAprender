@@ -329,7 +329,7 @@ class AdminController extends Controller
     public function testListAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
-        $entities = $em->getRepository("RetoAprenderBundle:test")->findAll();
+        $entities = $em->getRepository("RetoAprenderBundle:Test")->findAll();
         return $this->render('RetoAprenderBundle:admin:test/list.html.twig', array('entities'=> $entities));
     }
 

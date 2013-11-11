@@ -38,6 +38,16 @@
                     <td><textarea id="tecnotek_retoaprender_activityformtype_includeText" name="tecnotek_retoaprender_activityformtype[includeText]" cols="50" rows="25">{{ entity.includeText }}</textarea></td>
                     <td class="last">{{ form_errors(form.includeText) }}</td>
                 </tr>
+                <tr class="bg">
+                    <td class="first" width="172"><strong>Orden</strong></td>
+                    <td>{{ form_widget(form.orderA) }}</td>
+                    <td class="last">{{ form_errors(form.orderA) }}</td>
+                </tr>
+                <tr class="bg">
+                    <td class="first" width="172"><strong>Previo</strong></td>
+                    <td>{{ form_widget(form.previewA) }}</td>
+                    <td class="last">{{ form_errors(form.previewA) }}</td>
+                </tr>
                 <tr>
                     <td class="first"><strong>Tipo</strong></td>
                     <td>{{ form_widget(form.type) }}</td>

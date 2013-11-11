@@ -13,6 +13,8 @@ class ActivityFormType extends AbstractType
             add('name', 'text', array('trim' => true))->
             add('description', 'textarea', array('trim' => true, 'required' => false))->
             add('includeText', 'textarea', array('trim' => true, 'required' => false))->
+            add('orderA', 'integer', array('required' => false))->
+            add('previewA', 'text', array('required' => false))->
             add('type', 'choice', array(
             'choices'   => array('1' => 'Flash', '2' => 'JavaScript Presentation', '3' => 'Test'),
             'required'  => false,

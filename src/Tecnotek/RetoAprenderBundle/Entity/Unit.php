@@ -52,7 +52,7 @@ class Unit
      * @var Activity
      *
      * @ORM\OneToMany(targetEntity="Activity", mappedBy="unit", cascade={"all"})
-     * @ORM\OrderBy({"name" = "ASC"})
+     * @ORM\OrderBy({"orderA" = "ASC"})
      */
     private $activities;
 

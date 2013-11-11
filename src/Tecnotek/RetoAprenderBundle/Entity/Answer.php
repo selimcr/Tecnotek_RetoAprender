@@ -12,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="tek_answers")
  * @ORM\Entity()
- * @UniqueEntity("name")
  */
 class Answer
 {
@@ -37,8 +36,9 @@ class Answer
     private $type;
 
     /**
-     * @ManyToOne(targetEntity="Question", inversedBy="options", cascade={"all"})
+     * @ManyToOne(targetEntity="Question", inversedBy="answers")
      * @JoinColumn(name="question_id", referencedColumnName="id")
+     *
      */
     private $question;
 

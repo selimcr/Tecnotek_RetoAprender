@@ -1,6 +1,25 @@
 {% extends 'RetoAprenderBundle::layout.html.twig' %}
 
 {% block content %}
+
+
+    <!-- jQuery - the core -->
+    <script src="http://retoaprender.com/js/jquery-1.7.1.min.js"></script>
+
+    <!-- Sliding effect -->
+    <script src="http://retoaprender.com/js/slideLogin.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Scrollable effect -->
+    <script src="http://retoaprender.com/js/jquery.tools.min.js"></script>
+
+    <script type="text/javascript" src="js/resources_activities.js"></script>
+
+    <script type="text/javascript">
+        Tecnotek.module = "showActivity";
+        Tecnotek.ShowActivity.maximunSlide = 12;
+    </script>
+
+
 <div class="mainContainer">
     <h1>{{ unit.level ~ " :: " ~ unit.name }}</h1>
     <p style="padding-left: 20px;">{{ unit.description }}</p>
@@ -17,6 +36,7 @@
         </div>
         <div class="clearer"></div>
     </div>
+
     {% if loop.index % 2 == 0 %}
     <div class="clearer"></div>
     {% endif %}

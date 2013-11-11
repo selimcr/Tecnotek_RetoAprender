@@ -43,6 +43,17 @@ class Activity
     private $type;
 
     /**
+     * @ORM\Column(type="integer", nullable = true)
+     */
+    private $orderA;
+
+
+    /**
+     * @ORM\Column(type="string", length=60, nullable = true)
+     */
+    private $previewA;
+
+    /**
      * @ORM\Column(type="string", nullable = true)
      * @Assert\MaxLength(limit = 1024)
      */
@@ -134,6 +145,47 @@ class Activity
     {
         $this->type = $type;
     }
+
+    /**
+     * Get orderA
+     *
+     * @return integer
+     */
+    public function getOrderA()
+    {
+        return $this->orderA;
+    }
+
+    /**
+     * Set orderA
+     *
+     * @param type $orderA
+     */
+    public function setOrderA($orderA)
+    {
+        $this->orderA = $orderA;
+    }
+
+    /**
+     * Get previewA
+     *
+     * @return integer
+     */
+    public function getPreviewA()
+    {
+        return $this->previewA;
+    }
+
+    /**
+     * Set previewA
+     *
+     * @param type $previewA
+     */
+    public function setPreviewA($previewA)
+    {
+        $this->previewA = $previewA;
+    }
+
 
     /**
      * Get includeText
