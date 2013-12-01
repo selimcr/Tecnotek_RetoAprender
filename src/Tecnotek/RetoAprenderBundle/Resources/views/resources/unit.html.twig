@@ -12,7 +12,7 @@
     <!-- Scrollable effect -->
     <script src="http://retoaprender.com/js/jquery.tools.min.js"></script>
 
-    <script type="text/javascript" src="js/resources_activities.js"></script>
+    <script type="text/javascript" src="{{ asset('js/resources_activities.js') }}"></script>
 
     <script type="text/javascript">
         Tecnotek.module = "showActivity";
@@ -32,7 +32,18 @@
         <h1>{{activity.name}}</h1>
         <p>{{ activity.description }}</p>
         <div class="right">
-            <a href="#">Preview</a> | <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}">Ver</a>
+            <div class="button" style="float: left;">
+                <img src="" alt="Preview" rel="#mies1"> </div> <div style="float: left;">&nbsp &nbsp | <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}">Ver</a></div>
+        </div>
+
+
+        <div class="simple_overlay" id="mies1" style="top: 54.6px; left: 461.5px; position: fixed; display: none;"><a class="close"></a>
+
+            <div style="text-align: center; padding-left: 20px; margin-top: 20px;">
+
+                <div id="slideB1" class="presentation-slide" style=" display: block;"><img src="{{ asset('images/' ~ activity.previewA  ) }}">
+                </div>
+            </div>
         </div>
         <div class="clearer"></div>
     </div>
@@ -45,4 +56,6 @@
     {% endfor %}
 </div>
 <div class="clearer"></div>
+
 {% endblock %}
+
