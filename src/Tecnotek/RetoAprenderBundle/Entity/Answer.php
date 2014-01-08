@@ -23,10 +23,10 @@ class Answer
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=60)
+     * @ORM\Column(type="string", length=200)
      * @Assert\NotBlank()
-     * @Assert\MinLength(limit = 3)
-     * @Assert\MaxLength(limit = 60)
+     * @Assert\MinLength(limit = 1)
+     * @Assert\MaxLength(limit = 200)
      */
     private $answerLabel;
 

@@ -54,7 +54,8 @@
 
         <div class="info" style="font-size: 18px; width: 800px;">
             <div style="float: left; width: 30px;"><img src="{{ app.request.getBaseURL() ~ "" ~ app.user.getAvatarWebPath() }}" alt="User Avatar" height="25px"></div>
-            <div style="width: 200px; float: left;">Bienvenido <a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}"><span style="font-size: 18px;" class="username">{{ app.user.username }}</span></a></div>
+            <div style="float: left;">Bienvenido <a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}"><span style="font-size: 18px;" class="username">{{ app.user.username }}</span></a></div>
+            <div style="width: 25px; float: left;">&nbsp;</div>
             <div style="width: 150px; float: left;"><a alt="Ver mi cuenta" href="{{ path('reto_aprender_user') }}">Ver Mi Cuenta</a></div>
 
             {% if is_granted('ROLE_ADMIN') %}
