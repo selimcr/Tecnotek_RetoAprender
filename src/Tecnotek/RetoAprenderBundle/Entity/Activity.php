@@ -32,8 +32,8 @@ class Activity
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=120, nullable = true)
-     * @Assert\MaxLength(limit = 120)
+     * @ORM\Column(type="string", length=300, nullable = true)
+     * @Assert\MaxLength(limit = 300)
      */
     private $description;
 

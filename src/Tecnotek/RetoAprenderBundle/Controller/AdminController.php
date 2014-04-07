@@ -561,7 +561,7 @@ class AdminController extends Controller
 
     public function answerDeleteAction($id){
         $em = $this->getDoctrine()->getEntityManager();
-        $entity = $em->getRepository("RetoAprenderBundle:answer")->find( $id );
+        $entity = $em->getRepository("RetoAprenderBundle:Answer")->find( $id );
         if ( isset($entity) ) {
             $em->remove($entity);
             $em->flush();

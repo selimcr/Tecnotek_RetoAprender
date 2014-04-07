@@ -21,7 +21,7 @@
 
 
 <div class="mainContainer">
-    <h1>{{ unit.level ~ " :: " ~ unit.name }}</h1>
+    <h1><a href="{{ path('reto_aprender_level',{'id': unit.level.id} )}}" >{{ unit.level }}</a>{{   " :: " ~ unit.name }}</h1>
     <p style="padding-left: 20px;">{{ unit.description }}</p>
 
 </div><!--End imageContainer-->
@@ -33,11 +33,11 @@
         <p>{{ activity.description }}</p>
         <div class="right">
             <div class="button" style="float: left;">
-                <img src="" alt="Preview" rel="#mies1"> </div> <div style="float: left;">&nbsp &nbsp | <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}">Ver</a></div>
+                <img src="" alt="Preview" rel="#mies{{ activity.id  }}"> </div> <div style="float: left;">&nbsp &nbsp | <a href="{{ path('reto_aprender_activity',{'id': activity.id} )}}"><img src="" border="2">Ver</a></div>
         </div>
 
 
-        <div class="simple_overlay" id="mies1" style="top: 54.6px; left: 461.5px; position: fixed; display: none;"><a class="close"></a>
+        <div class="simple_overlay" id="mies{{ activity.id  }}" style="top: 54.6px; left: 461.5px; position: fixed; display: none;"><a class="close"></a>
 
             <div style="text-align: center; padding-left: 20px; margin-top: 20px;">
 
